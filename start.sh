@@ -2,6 +2,13 @@
 set -e  # Exit on error
 
 echo "🚀 Starting deployment..."
+
+# Ensure PORT is set and is a valid integer
+PORT=${PORT:-8080}
+# Remove any non-numeric characters and ensure it's an integer
+PORT=$(echo "$PORT" | sed 's/[^0-9]//g')
+export PORT
+
 echo "PORT is set to: ${PORT}"
 
 # Run database migrations
