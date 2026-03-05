@@ -39,9 +39,10 @@ RUN npm run build
 
 # Set permissions
 RUN chmod -R 777 storage bootstrap/cache
+RUN chmod +x /app/start.sh
 
 # Expose port
 EXPOSE 8080
 
 # Start the application (Railway uses PORT env variable)
-CMD bash -c "php artisan migrate --force && echo 'Migrations done' && php artisan db:seed --force --class=DatabaseSeeder && echo 'Seeding done' && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+CMD ["/app/start.sh"]
