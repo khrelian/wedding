@@ -1,5 +1,6 @@
 [phases.setup]
-nixPkgs = ["nodejs", "npm"]
+nixPkgs = ["nodejs", "npm", "php82", "php82Extensions.gd", "php82Extensions.imagick"]
+nixLibs = ["libjpeg", "libpng", "freetype"]
 
 [phases.install]
 cmds = [
