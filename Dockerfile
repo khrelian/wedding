@@ -45,4 +45,4 @@ RUN chmod +x /app/start.sh
 EXPOSE 8080
 
 # Start the application (Railway uses PORT env variable)
-CMD ["/app/start.sh"]
+CMD ["sh", "-c", "echo '=== DOCKERFILE CMD EXECUTING ===' && /app/start.sh"]
