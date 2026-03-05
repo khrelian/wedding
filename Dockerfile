@@ -37,13 +37,11 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm ci
 RUN npm run build
 
-# Generate optimized config
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
+# Set permissions
+RUN chmod -R 777 storage bootstrap/cache
 
 # Expose port
-EXPOSE $PORT
+EXPOSE 8080
 
-# Start the application
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+# Start the application (Railway uses PORT env variable)
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
