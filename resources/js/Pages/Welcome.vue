@@ -468,7 +468,10 @@ onBeforeUnmount(() => {
                         <p
                             class="text-amber-200/80 mb-2 text-lg font-elegant font-medium"
                         >
-                            Saint Joseph Cathedral
+                            Sto. Niño Diocesan Shrine
+                        </p>
+                        <p class="text-amber-300/60 text-sm font-sans italic mb-0">
+                            Libertad, Butuan City
                         </p>
                         <p
                             class="text-amber-300/60 text-sm font-sans italic mb-4"
@@ -476,7 +479,7 @@ onBeforeUnmount(() => {
                             Morning ceremony under the stars
                         </p>
                         <a
-                            href="https://maps.google.com/?q=Butuan+City+Cathedral"
+                            href="https://maps.google.com/?q=Sto+Nino+Diocesan+Shrine+Libertad+Butuan+City"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 rounded-full text-sm font-sans transition border border-amber-400/40 hover:border-amber-400/60"
@@ -530,7 +533,7 @@ onBeforeUnmount(() => {
                         <p
                             class="text-amber-200/80 mb-2 text-lg font-elegant font-medium"
                         >
-                            Butuan Watergate
+                            The Pavillion at Watergate
                         </p>
                         <p
                             class="text-amber-300/60 text-sm font-sans italic mb-4"
@@ -538,7 +541,7 @@ onBeforeUnmount(() => {
                             Breakfast reception following the ceremony
                         </p>
                         <a
-                            href="https://maps.google.com/?q=Butuan+Watergate"
+                            href="https://maps.google.com/?q=The+Pavillion+at+Watergate+Butuan+City"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 rounded-full text-sm font-sans transition border border-amber-400/40 hover:border-amber-400/60"
