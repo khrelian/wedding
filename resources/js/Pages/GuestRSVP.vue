@@ -64,7 +64,7 @@ const submit = () => {
                         Ian Jay & Karen Kate
                     </p>
                     <p class="text-amber-200/80 font-elegant">
-                        July 17, 2026 • 7:00 AM • Butuan City Cathedral
+                        July 17, 2026 • 7:00 AM • Sto. Niño Diocesan Shrine
                     </p>
                 </div>
 
@@ -77,7 +77,7 @@ const submit = () => {
                         Hello, {{ invitee.name }}!
                     </h2>
                     <p class="text-amber-100/90 font-sans">
-                        We hope you can join us under the starry sky for our special day! 
+                        We hope you can join us under the starry sky for our special day!
                         Please let us know if you'll be able to attend.
                     </p>
                     <p class="text-amber-300/80 text-sm mt-2 font-sans" v-if="invitee.party_size > 1">
@@ -124,9 +124,9 @@ const submit = () => {
                             <label class="block text-sm font-medium text-slate-800 mb-2 font-sans">
                                 Song Request
                             </label>
-                            <input 
+                            <input
                                 v-model="form.song_request"
-                                type="text" 
+                                type="text"
                                 class="mt-1 block w-full rounded-md border-amber-200 shadow-sm focus:border-amber-500 focus:ring-amber-500 bg-white"
                                 placeholder="What song will get you dancing under the stars?"
                             >
@@ -137,7 +137,7 @@ const submit = () => {
                             <label class="block text-sm font-medium text-slate-800 mb-2 font-sans">
                                 Special Message for the Couple
                             </label>
-                            <textarea 
+                            <textarea
                                 v-model="form.special_message"
                                 rows="4"
                                 class="mt-1 block w-full rounded-md border-amber-200 shadow-sm focus:border-amber-500 focus:ring-amber-500 bg-white"
@@ -159,6 +159,35 @@ const submit = () => {
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <!-- Adults-Only Note -->
+                <div class="mt-6 bg-gradient-to-br from-slate-800/80 to-blue-900/80 backdrop-blur-md rounded-lg shadow-xl border border-amber-400/30 p-6 text-center">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-display font-semibold text-amber-200 mb-2">An Adults-Only Celebration</h3>
+                    <p class="text-amber-100/70 font-sans text-sm leading-relaxed">
+                        We adore your little ones, and we hope you understand that our celebration is reserved for adults only. We kindly ask that you make arrangements for childcare so you can relax, celebrate, and enjoy the evening to the fullest with us.
+                    </p>
+                </div>
+
+                <!-- Gift Preference -->
+                <div class="mt-6 bg-gradient-to-br from-slate-800/80 to-indigo-900/80 backdrop-blur-md rounded-lg shadow-xl border border-amber-400/30 p-6 text-center">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1012 10.125 2.625 2.625 0 0012 4.875z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.125V21m0-10.875c-2.485 0-4.5-1.119-4.5-2.5V6.75m4.5 3.375c2.485 0 4.5-1.119 4.5-2.5V6.75m-9 4.5h18" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-display font-semibold text-amber-200 mb-2">A Note on Gifts</h3>
+                    <p class="text-amber-100/70 font-sans text-sm leading-relaxed">
+                        Your presence on our special day is already the greatest gift we could ask for. However, if you wish to bless us further, we kindly prefer
+                        <span class="text-amber-300 font-medium">cash gifts</span>
+                        as we begin building our new life together.
+                    </p>
                 </div>
 
                 <!-- Footer Note -->
