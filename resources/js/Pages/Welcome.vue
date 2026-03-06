@@ -20,7 +20,7 @@ onMounted(() => {
     }
 
     // Generate constellation lines connecting some stars
-    const numConstellations = 90;
+    const numConstellations = 50;
     for (let i = 0; i < numConstellations; i++) {
         const star1 =
             stars.value[Math.floor(Math.random() * stars.value.length)];
@@ -215,12 +215,12 @@ onBeforeUnmount(() => {
                         July 17, 2026
                     </p>
                     <p class="text-amber-200/80 font-elegant text-lg">
-                        Saint Joseph Cathedral
+                        Sto. Niño Diocesan Shrine
                     </p>
                     <p
                         class="text-amber-300/60 text-sm mt-1 font-sans italic font-light"
                     >
-                        Under the Starry Sky
+                        Libertad, Butuan City
                     </p>
                 </div>
 

@@ -240,10 +240,10 @@ onBeforeUnmount(() => {
                         July 17, 2026
                     </p>
                     <p class="text-amber-200/80 font-elegant text-lg">
-                        Butuan City Cathedral
+                        Sto. Niño Diocesan Shrine
                     </p>
                     <p class="text-amber-300/60 text-sm mt-1 font-sans italic">
-                        Under the Starry Sky
+                        Libertad, Butuan City
                     </p>
                     <p
                         v-if="invitee.party_size > 1"
