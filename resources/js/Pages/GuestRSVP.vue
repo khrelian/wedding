@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import { Head, useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -13,10 +14,12 @@ const form = useForm({
     special_message: props.existingRsvp?.special_message || '',
 });
 
+const submitted = ref(false);
+
 const submit = () => {
     form.post(route('rsvp.guest.store', props.invitee.token), {
         onSuccess: () => {
-            // Form will show success message
+            submitted.value = true;
         },
     });
 };
@@ -66,6 +69,20 @@ const submit = () => {
                     <p class="text-amber-200/80 font-elegant">
                         July 17, 2026 • 7:00 AM • Sto. Niño Diocesan Shrine
                     </p>
+                </div>
+
+                <!-- Success State -->
+                <div v-if="submitted" class="bg-gradient-to-br from-slate-800/80 to-blue-900/80 backdrop-blur-md rounded-lg shadow-2xl border border-amber-400/30 p-10 text-center">
+                    <div class="flex justify-center mb-6">
+                        <svg class="w-16 h-16 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-display font-bold text-amber-200 mb-3">Thank You, {{ invitee.name }}!</h2>
+                    <p class="text-amber-100/80 font-elegant text-xl mb-2">
+                        {{ form.attendance === 'yes' ? 'We\'re so excited to celebrate with you! 🌙' : 'We\'ll miss you, but we understand. Thank you for letting us know.' }}
+                    </p>
+                    <p class="text-amber-300/60 text-sm font-sans mt-4">Your RSVP has been successfully recorded.</p>
                 </div>
 
                 <!-- Welcome Message -->
