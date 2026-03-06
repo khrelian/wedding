@@ -52,7 +52,7 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
 RUN sed -i 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf
 
 # Enable AllowOverride so .htaccess / Laravel routing works
-RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
 # Run migrations and start Apache
 COPY docker-entrypoint.sh /usr/local/bin/
