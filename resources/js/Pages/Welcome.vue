@@ -747,6 +747,32 @@ onBeforeUnmount(() => {
             </div>
         </div>
 
+        <!-- Gift Preference Section -->
+        <div class="py-16 px-6 bg-gradient-to-b from-indigo-950/80 to-slate-950 border-t border-amber-400/20">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="flex justify-center mb-5">
+                    <svg class="w-10 h-10 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1012 10.125 2.625 2.625 0 0012 4.875z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.125V21m0-10.875c-2.485 0-4.5-1.119-4.5-2.5V6.75m4.5 3.375c2.485 0 4.5-1.119 4.5-2.5V6.75m-9 4.5h18" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-display font-semibold text-amber-200 mb-4 tracking-tight">
+                    A Note on Gifts
+                </h2>
+                <p class="text-amber-100/80 font-elegant text-lg md:text-xl leading-relaxed mb-4">
+                    Your presence on our special day is already the greatest gift we could ask for.
+                </p>
+                <p class="text-amber-100/60 font-sans text-sm md:text-base leading-relaxed max-w-lg mx-auto">
+                    However, if you wish to bless us further, we kindly prefer
+                    <span class="text-amber-300 font-medium">cash gifts</span>
+                    as we begin building our new life together. Your generosity will go a long way in helping us create a beautiful home and future.
+                </p>
+                <p class="text-amber-400/50 text-xs mt-6 font-sans italic">
+                    Thank you from the bottom of our hearts. 🌙
+                </p>
+            </div>
+        </div>
+
         <!-- Promotional Section -->
         <div
             class="py-16 px-6 bg-gradient-to-b from-slate-950 to-indigo-950 border-t border-amber-400/20"
