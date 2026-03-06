@@ -148,7 +148,7 @@ onBeforeUnmount(() => {
                 ></div>
             </div>
             <div
-                class="text-center max-w-6xl mx-auto w-full relative hero-content-frame flex flex-col min-h-screen"
+                class="text-center max-w-6xl mx-auto w-full relative hero-content-frame flex flex-col justify-center"
             >
                 <!-- Decorative Corner Borders (frame around hero content) -->
                 <div class="corner-border-wrapper">
