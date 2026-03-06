@@ -750,6 +750,26 @@ onBeforeUnmount(() => {
             </div>
         </div>
 
+        <!-- Adults-Only Note -->
+        <div class="py-12 px-6 bg-slate-950/60 border-t border-amber-400/20">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-8 h-8 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-display font-semibold text-amber-200 mb-3 tracking-tight">
+                    An Adults-Only Celebration
+                </h2>
+                <p class="text-amber-100/70 font-sans text-sm md:text-base leading-relaxed max-w-lg mx-auto">
+                    We adore your little ones, and we hope you understand that our celebration is reserved for adults only. We kindly ask that you make arrangements for childcare so you can relax, celebrate, and enjoy the evening to the fullest with us.
+                </p>
+                <p class="text-amber-400/50 text-xs mt-4 font-sans italic">
+                    Thank you for your understanding and cooperation. 🌙
+                </p>
+            </div>
+        </div>
+
         <!-- Gift Preference Section -->
         <div class="py-16 px-6 bg-gradient-to-b from-indigo-950/80 to-slate-950 border-t border-amber-400/20">
             <div class="max-w-2xl mx-auto text-center">
