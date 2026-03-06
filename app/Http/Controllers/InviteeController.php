@@ -11,6 +11,25 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class InviteeController extends Controller
 {
     /**
+     * Show personalized invitation/welcome page for a guest
+     */
+    public function showInvitation(Request $request, string $token): Response
+    {
+        // Find invitee by token
+        $invitee = Invitee::where('token', $token)->firstOrFail();
+
+        return Inertia::render('PersonalizedWelcome', [
+            'invitee' => [
+                'id' => $invitee->id,
+                'name' => $invitee->name,
+                'party_size' => $invitee->party_size,
+                'token' => $invitee->token,
+                'rsvp_url' => route('rsvp.guest', ['token' => $invitee->token]),
+            ],
+        ]);
+    }
+
+    /**
      * Display a listing of invitees (Admin Page)
      */
     public function index(): Response
@@ -28,6 +47,7 @@ class InviteeController extends Controller
                     'rsvp_status' => $invitee->rsvp_status,
                     'notes' => $invitee->notes,
                     'rsvp_url' => $invitee->getSignedRsvpUrl(),
+                    'invitation_url' => $invitee->getSignedInvitationUrl(),
                     'created_at' => $invitee->created_at->format('M d, Y'),
                 ];
             });
@@ -97,7 +117,7 @@ class InviteeController extends Controller
      */
     public function downloadQrCode(Invitee $invitee)
     {
-        $url = $invitee->getSignedRsvpUrl();
+        $url = $invitee->getSignedInvitationUrl();
         
         $qrCode = QrCode::format('png')
             ->size(400)
@@ -117,7 +137,7 @@ class InviteeController extends Controller
      */
     public function getQrCode(Invitee $invitee)
     {
-        $url = $invitee->getSignedRsvpUrl();
+        $url = $invitee->getSignedInvitationUrl();
         
         $qrCode = QrCode::format('svg')
             ->size(300)

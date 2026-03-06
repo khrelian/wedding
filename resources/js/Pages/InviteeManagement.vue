@@ -61,7 +61,7 @@ const shareToMessenger = (url) => {
 };
 
 const shareToWhatsApp = (invitee) => {
-    const message = `You're invited to Ian Jay & Karen Kate's Wedding! 🌟\n\nJuly 17, 2026 at 7:00 AM\nButuan City Cathedral\n\nPlease RSVP here: ${invitee.rsvp_url}`;
+    const message = `You're invited to Ian Jay & Karen Kate's Wedding! 🌟\n\nJuly 17, 2026 at 7:00 AM\nButuan City Cathedral\n\nView your personal invitation: ${invitee.invitation_url}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
@@ -77,7 +77,7 @@ Time: 7:00 AM
 Location: Butuan City Cathedral
 Theme: Elegant Starry Night
 
-Please RSVP by visiting: ${invitee.rsvp_url}
+View your personal invitation and RSVP: ${invitee.invitation_url}
 
 We can't wait to celebrate with you!
 
@@ -390,9 +390,9 @@ const copyUrl = (url) => {
                                             </svg>
                                         </button>
                                         <button
-                                            @click="copyUrl(invitee.rsvp_url)"
+                                            @click="copyUrl(invitee.invitation_url)"
                                             class="text-blue-600 hover:text-blue-900"
-                                            title="Copy RSVP URL"
+                                            title="Copy Invitation URL"
                                         >
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
@@ -607,13 +607,13 @@ const copyUrl = (url) => {
                         </svg>
                     </button>
                 </div>
-                <div class="mb-4 p-4 bg-white border-4 border-amber-400 rounded-lg inline-block">
+                <div class="mb-4 p-3 bg-white border-4 border-amber-400 rounded-lg inline-block">
                     <img :src="route('invitees.qrcode', selectedInvitee.id)" alt="QR Code" class="w-64 h-64">
                 </div>
-                <p class="text-sm text-gray-600 mb-4">Scan this QR code to access the RSVP form</p>
+                <p class="text-sm text-gray-600 mb-4">Scan this QR code to view personalized invitation and RSVP</p>
                 <div class="flex gap-3 justify-center">
                     <button
-                        @click="copyUrl(selectedInvitee.rsvp_url)"
+                        @click="copyUrl(selectedInvitee.invitation_url)"
                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 flex items-center gap-2"
                     >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -676,10 +676,10 @@ const copyUrl = (url) => {
                     </button>
 
                     <!-- Share via Messenger -->
-                    <button
-                        @click="shareToMessenger(selectedInvitee.rsvp_url)"
-                        class="w-full flex items-center gap-3 p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow"
-                    >
+                                        <button
+                                            @click="shareToMessenger(selectedInvitee.invitation_url)"
+                                            class="w-full flex items-center gap-3 p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow"
+                                        >
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.898 1.454 5.488 3.727 7.198V22l3.556-1.955c.95.262 1.956.402 2.994.402 5.523 0 10-4.145 10-9.243S17.523 2 12 2zm.994 12.455l-2.583-2.758-5.031 2.758 5.536-5.879 2.647 2.758 4.967-2.758-5.536 5.879z"/>
                         </svg>
@@ -703,19 +703,19 @@ const copyUrl = (url) => {
                         </div>
                     </button>
 
-                    <!-- Copy URL -->
-                    <button
-                        @click="copyUrl(selectedInvitee.rsvp_url)"
-                        class="w-full flex items-center gap-3 p-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition border border-gray-300"
-                    >
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
-                        </svg>
-                        <div class="text-left">
-                            <div class="font-semibold">Copy RSVP Link</div>
-                            <div class="text-xs opacity-90">Copy link to clipboard</div>
-                        </div>
-                    </button>
+                                    <!-- Copy URL -->
+                                    <button
+                                        @click="copyUrl(selectedInvitee.invitation_url)"
+                                        class="w-full flex items-center gap-3 p-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition border border-gray-300"
+                                    >
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                                        </svg>
+                                        <div class="text-left">
+                                            <div class="font-semibold">Copy Invitation Link</div>
+                                            <div class="text-xs opacity-90">Copy personalized invitation link to clipboard</div>
+                                        </div>
+                                    </button>
                 </div>
 
                 <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">

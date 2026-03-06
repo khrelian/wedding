@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 
 class Invitee extends Model
 {
@@ -35,11 +36,23 @@ class Invitee extends Model
     }
 
     /**
+     * Get the signed invitation URL (personalized welcome page)
+     */
+    public function getSignedInvitationUrl(): string
+    {
+        return URL::temporarySignedRoute(
+            'invitation.show',
+            now()->addMonths(6), // Valid for 6 months
+            ['token' => $this->token]
+        );
+    }
+
+    /**
      * Get the signed RSVP URL for this invitee
      */
     public function getSignedRsvpUrl(): string
     {
-        return \URL::temporarySignedRoute(
+        return URL::temporarySignedRoute(
             'rsvp.guest',
             now()->addMonths(6), // Valid for 6 months
             ['token' => $this->token]

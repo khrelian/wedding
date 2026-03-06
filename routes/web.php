@@ -21,7 +21,10 @@ Route::get('/dashboard', function () {
     return redirect()->route('invitees.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Guest RSVP Routes (signed URLs - no authentication required)
+// Guest Routes (signed URLs - no authentication required)
+// Personalized welcome page for invitees
+Route::get('/invitation/{token}', [InviteeController::class, 'showInvitation'])->name('invitation.show');
+// Guest RSVP Routes
 Route::get('/rsvp/guest/{token}', [RsvpController::class, 'showGuest'])->name('rsvp.guest');
 Route::post('/rsvp/guest/{token}', [RsvpController::class, 'storeGuest'])->name('rsvp.guest.store');
 
