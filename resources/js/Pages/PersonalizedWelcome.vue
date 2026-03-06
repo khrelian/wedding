@@ -186,7 +186,7 @@ onBeforeUnmount(() => {
                         Dear
                     </p>
                     <h1
-                        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 bg-clip-text text-transparent mb-6 drop-shadow-lg tracking-wider leading-relaxed"
+                        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 bg-clip-text text-transparent mb-6 drop-shadow-lg tracking-wider leading-relaxed py-2 px-4"
                     >
                         {{ invitee.name }}
                     </h1>
