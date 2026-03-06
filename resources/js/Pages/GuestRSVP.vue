@@ -14,7 +14,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('rsvp.guest.store', props.invitee.id), {
+    form.post(route('rsvp.guest.store', props.invitee.token), {
         onSuccess: () => {
             // Form will show success message
         },

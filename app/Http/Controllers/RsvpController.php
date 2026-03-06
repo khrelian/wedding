@@ -79,6 +79,7 @@ class RsvpController extends Controller
         return Inertia::render('GuestRSVP', [
             'invitee' => [
                 'id' => $invitee->id,
+                'token' => $invitee->token,
                 'name' => $invitee->name,
                 'party_size' => $invitee->party_size,
             ],
