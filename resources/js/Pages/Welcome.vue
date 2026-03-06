@@ -92,9 +92,7 @@ onBeforeUnmount(() => {
 <template>
     <Head title="Welcome to Our Wedding - Elegant Starry Night" />
 
-    <div
-        class="relative"
-    >
+    <div class="relative">
         <!-- Hero Section -->
         <div
             class="flex items-center justify-center min-h-screen px-8 sm:px-12 md:px-16 lg:px-20 pt-16 md:pt-20 relative z-10 scroll-animate bg-gradient-to-b from-slate-900 via-blue-900 to-indigo-900 overflow-hidden"
@@ -230,12 +228,6 @@ onBeforeUnmount(() => {
                 <div
                     class="flex flex-wrap justify-center items-center gap-4 mt-12 hero-cta"
                 >
-                    <Link
-                        :href="route('dashboard')"
-                        class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 rounded-full font-sans font-semibold tracking-wide hover:from-amber-400 hover:to-amber-500 transition shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transform hover:-translate-y-0.5 border border-amber-400"
-                    >
-                        RSVP Now
-                    </Link>
                     <a
                         href="#story"
                         class="inline-flex items-center px-8 py-3 bg-slate-800/50 backdrop-blur-md text-amber-100 rounded-full font-sans font-medium tracking-wide hover:bg-slate-700/50 transition shadow-lg border border-amber-400/30 hover:shadow-xl transform hover:-translate-y-0.5"
@@ -271,142 +263,161 @@ onBeforeUnmount(() => {
                     >
                         <!-- Walking silhouettes -->
                         <div class="story-characters pointer-events-none">
-                            <div class="story-character-wrap story-character-left">
-                                <div class="story-character-gradient story-character-gradient-left" aria-hidden="true"></div>
-                                <img src="/images/story-man.png" alt="Groom walking" class="story-character" />
+                            <div
+                                class="story-character-wrap story-character-left"
+                            >
+                                <div
+                                    class="story-character-gradient story-character-gradient-left"
+                                    aria-hidden="true"
+                                ></div>
+                                <img
+                                    src="/images/story-man.png"
+                                    alt="Groom walking"
+                                    class="story-character"
+                                />
                             </div>
-                            <div class="story-character-wrap story-character-right">
-                                <div class="story-character-gradient story-character-gradient-right" aria-hidden="true"></div>
-                                <img src="/images/story-woman.png" alt="Bride walking" class="story-character" />
+                            <div
+                                class="story-character-wrap story-character-right"
+                            >
+                                <div
+                                    class="story-character-gradient story-character-gradient-right"
+                                    aria-hidden="true"
+                                ></div>
+                                <img
+                                    src="/images/story-woman.png"
+                                    alt="Bride walking"
+                                    class="story-character"
+                                />
                             </div>
                         </div>
                         <div class="relative z-10">
-                        <p
-                            class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
-                        >
-                            Like celestial bodies guided by an invisible force,
-                            we were drawn to each other across the vast expanse
-                            of life. We weren't searching, yet somehow we found
-                            exactly what our hearts needed.
-                        </p>
+                            <p
+                                class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
+                            >
+                                Like celestial bodies guided by an invisible
+                                force, we were drawn to each other across the
+                                vast expanse of life. We weren't searching, yet
+                                somehow we found exactly what our hearts needed.
+                            </p>
 
-                        <div class="flex justify-center my-6">
-                            <svg
-                                class="w-8 h-8 text-amber-300 animate-pulse"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                        </div>
+                            <div class="flex justify-center my-6">
+                                <svg
+                                    class="w-8 h-8 text-amber-300 animate-pulse"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                            </div>
 
-                        <p
-                            class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
-                        >
-                            It was as if the universe had been quietly aligning
-                            stars, preparing constellations, and weaving fate's
-                            delicate threads long before our paths crossed. The
-                            moment we met, it felt less like a beginning and
-                            more like a recognition— as though our souls had
-                            always known each other, waiting patiently for this
-                            lifetime to reunite.
-                        </p>
+                            <p
+                                class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
+                            >
+                                It was as if the universe had been quietly
+                                aligning stars, preparing constellations, and
+                                weaving fate's delicate threads long before our
+                                paths crossed. The moment we met, it felt less
+                                like a beginning and more like a recognition— as
+                                though our souls had always known each other,
+                                waiting patiently for this lifetime to reunite.
+                            </p>
 
-                        <p
-                            class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
-                        >
-                            In a world of endless searching, we discovered each
-                            other effortlessly. No grand plans, no deliberate
-                            pursuit—just two hearts guided by something greater,
-                            drawn together like stars destined to share the same
-                            sky.
-                        </p>
+                            <p
+                                class="text-amber-50 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light"
+                            >
+                                In a world of endless searching, we discovered
+                                each other effortlessly. No grand plans, no
+                                deliberate pursuit—just two hearts guided by
+                                something greater, drawn together like stars
+                                destined to share the same sky.
+                            </p>
 
-                        <div class="flex justify-center my-8">
-                            <svg
-                                class="w-6 h-6 text-amber-300 mx-2 animate-pulse"
-                                style="animation-delay: 0.2s"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                            <svg
-                                class="w-8 h-8 text-amber-200 mx-2 animate-pulse"
-                                style="animation-delay: 0.4s"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                            <svg
-                                class="w-6 h-6 text-amber-300 mx-2 animate-pulse"
-                                style="animation-delay: 0.6s"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                        </div>
+                            <div class="flex justify-center my-8">
+                                <svg
+                                    class="w-6 h-6 text-amber-300 mx-2 animate-pulse"
+                                    style="animation-delay: 0.2s"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                                <svg
+                                    class="w-8 h-8 text-amber-200 mx-2 animate-pulse"
+                                    style="animation-delay: 0.4s"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                                <svg
+                                    class="w-6 h-6 text-amber-300 mx-2 animate-pulse"
+                                    style="animation-delay: 0.6s"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                            </div>
 
-                        <p
-                            class="text-amber-100 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light italic"
-                        >
-                            What we have is rare and precious—a love that found
-                            us when we least expected it, proving that the most
-                            beautiful things in life aren't found by searching,
-                            but by being open to the magic that surrounds us.
-                        </p>
+                            <p
+                                class="text-amber-100 text-lg md:text-xl mb-6 leading-relaxed font-elegant font-light italic"
+                            >
+                                What we have is rare and precious—a love that
+                                found us when we least expected it, proving that
+                                the most beautiful things in life aren't found
+                                by searching, but by being open to the magic
+                                that surrounds us.
+                            </p>
 
-                        <p
-                            class="text-amber-200 text-xl md:text-2xl font-display font-medium mt-8 mb-8"
-                        >
-                            Now, under the same stars that brought us together,
-                            we begin our forever.
-                        </p>
+                            <p
+                                class="text-amber-200 text-xl md:text-2xl font-display font-medium mt-8 mb-8"
+                            >
+                                Now, under the same stars that brought us
+                                together, we begin our forever.
+                            </p>
 
-                        <div
-                            class="flex justify-center items-center gap-3 mt-10 text-amber-100"
-                        >
-                            <span
-                                class="text-2xl md:text-3xl font-display font-medium"
-                                >Ian Jay</span
+                            <div
+                                class="flex justify-center items-center gap-3 mt-10 text-amber-100"
                             >
-                            <svg
-                                class="w-6 h-6 md:w-7 md:h-7 text-amber-300"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                            <span
-                                class="text-lg md:text-xl font-elegant font-light"
-                                >and</span
-                            >
-                            <svg
-                                class="w-6 h-6 md:w-7 md:h-7 text-amber-300"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
-                                />
-                            </svg>
-                            <span
-                                class="text-2xl md:text-3xl font-display font-medium"
-                                >Karen Kate</span
-                            >
-                        </div>
+                                <span
+                                    class="text-2xl md:text-3xl font-display font-medium"
+                                    >Ian Jay</span
+                                >
+                                <svg
+                                    class="w-6 h-6 md:w-7 md:h-7 text-amber-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                                <span
+                                    class="text-lg md:text-xl font-elegant font-light"
+                                    >and</span
+                                >
+                                <svg
+                                    class="w-6 h-6 md:w-7 md:h-7 text-amber-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                                    />
+                                </svg>
+                                <span
+                                    class="text-2xl md:text-3xl font-display font-medium"
+                                    >Karen Kate</span
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -737,37 +748,71 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Promotional Section -->
-        <div class="py-16 px-6 bg-gradient-to-b from-slate-950 to-indigo-950 border-t border-amber-400/20">
+        <div
+            class="py-16 px-6 bg-gradient-to-b from-slate-950 to-indigo-950 border-t border-amber-400/20"
+        >
             <div class="max-w-2xl mx-auto text-center">
                 <div class="flex justify-center mb-4">
-                    <svg class="w-8 h-8 text-amber-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z" />
+                    <svg
+                        class="w-8 h-8 text-amber-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                        />
                     </svg>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-display font-semibold text-amber-200 mb-3 tracking-tight">
+                <h2
+                    class="text-2xl md:text-3xl font-display font-semibold text-amber-200 mb-3 tracking-tight"
+                >
                     Want a Wedding Website Like This?
                 </h2>
                 <p class="text-amber-100/70 font-elegant text-lg mb-8">
-                    We'd love to help you create a personalized wedding website for your special day.
+                    We'd love to help you create a personalized wedding website
+                    for your special day.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-2">
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-2"
+                >
                     <a
                         href="tel:09617982617"
                         class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-amber-400/30 rounded-full text-amber-100 hover:border-amber-400/70 hover:bg-slate-700/60 transition-all duration-200"
                     >
-                        <svg class="w-5 h-5 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/>
+                        <svg
+                            class="w-5 h-5 text-amber-400 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"
+                            />
                         </svg>
-                        <span class="font-sans text-sm tracking-wide whitespace-nowrap">0961 798 2617</span>
+                        <span
+                            class="font-sans text-sm tracking-wide whitespace-nowrap"
+                            >0961 798 2617</span
+                        >
                     </a>
                     <a
                         href="mailto:mr.ianjaybronola@gmail.com"
                         class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-amber-400/30 rounded-full text-amber-100 hover:border-amber-400/70 hover:bg-slate-700/60 transition-all duration-200"
                     >
-                        <svg class="w-5 h-5 text-amber-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        <svg
+                            class="w-5 h-5 text-amber-400 shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            />
                         </svg>
-                        <span class="font-sans text-sm tracking-wide">mr.ianjaybronola@gmail.com</span>
+                        <span class="font-sans text-sm tracking-wide"
+                            >mr.ianjaybronola@gmail.com</span
+                        >
                     </a>
                     <a
                         href="https://m.me/karenkate.buendiaserona"
@@ -775,10 +820,19 @@ onBeforeUnmount(() => {
                         rel="noopener noreferrer"
                         class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-amber-400/30 rounded-full text-amber-100 hover:border-amber-400/70 hover:bg-slate-700/60 transition-all duration-200"
                     >
-                        <svg class="w-5 h-5 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.444 5.503 3.705 7.205V22l3.38-1.857A10.7 10.7 0 0012 20.486c5.523 0 10-4.145 10-9.243S17.523 2 12 2zm1.007 12.435l-2.547-2.715-4.97 2.715 5.467-5.802 2.61 2.715 4.908-2.715-5.468 5.802z"/>
+                        <svg
+                            class="w-5 h-5 text-amber-400 shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.444 5.503 3.705 7.205V22l3.38-1.857A10.7 10.7 0 0012 20.486c5.523 0 10-4.145 10-9.243S17.523 2 12 2zm1.007 12.435l-2.547-2.715-4.97 2.715 5.467-5.802 2.61 2.715 4.908-2.715-5.468 5.802z"
+                            />
                         </svg>
-                        <span class="font-sans text-sm tracking-wide whitespace-nowrap">Karenkate Buendia Seronay</span>
+                        <span
+                            class="font-sans text-sm tracking-wide whitespace-nowrap"
+                            >Karenkate Buendia Seronay</span
+                        >
                     </a>
                 </div>
             </div>
