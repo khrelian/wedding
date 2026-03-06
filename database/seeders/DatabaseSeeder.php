@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create admin user for Ian Jay
-        User::factory()->create([
-            'name' => 'Ian Jay Broñola',
-            'email' => 'admin@wedding.com',
-            'password' => bcrypt('password'), // Change this to your preferred password
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@wedding.com'],
+            [
+                'name' => 'Ian Jay Broñola',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+            ]
+        );
     }
 }
