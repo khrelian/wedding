@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -24,8 +24,11 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www/html
 
 # Copy application files
 COPY . .
@@ -39,10 +42,17 @@ RUN npm run build
 
 # Set permissions
 RUN chmod -R 777 storage bootstrap/cache
-RUN chmod +x /app/start.sh
+RUN chown -R www-data:www-data /var/www/html
 
-# Expose port
-EXPOSE 8080
+# Configure Apache to use public directory as document root
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf
 
-# Start the application (Railway uses PORT env variable)
-CMD ["sh", "-c", "echo '=== DOCKERFILE CMD EXECUTING ===' && /app/start.sh"]
+# Run migrations and start Apache
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
