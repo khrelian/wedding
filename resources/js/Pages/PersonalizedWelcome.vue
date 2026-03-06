@@ -2,6 +2,10 @@
 import { Head, Link } from "@inertiajs/vue3";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
+const props = defineProps({
+    invitee: Object,
+});
+
 const stars = ref([]);
 const constellations = ref([]);
 const observedSections = ref(new Set());
@@ -20,7 +24,7 @@ onMounted(() => {
     }
 
     // Generate constellation lines connecting some stars
-    const numConstellations = 90;
+    const numConstellations = 40;
     for (let i = 0; i < numConstellations; i++) {
         const star1 =
             stars.value[Math.floor(Math.random() * stars.value.length)];
@@ -90,7 +94,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <Head title="Welcome to Our Wedding - Elegant Starry Night" />
+    <Head
+        :title="`${invitee.name}, You're Invited! - Ian Jay & Karen Kate's Wedding`"
+    />
 
     <div
         class="relative"
@@ -133,6 +139,15 @@ onBeforeUnmount(() => {
                 />
             </svg>
 
+            <!-- Realistic Moon -->
+            <div class="absolute top-20 right-80 z-20">
+                <img
+                    src="/images/moon.png"
+                    alt="Moon"
+                    class="moon w-20 h-20 md:w-28 md:h-28"
+                />
+            </div>
+
             <!-- Shooting Stars -->
             <div
                 class="shooting-stars absolute inset-0 pointer-events-none overflow-hidden"
@@ -155,27 +170,35 @@ onBeforeUnmount(() => {
                     <div class="corner-border corner-border-left"></div>
                     <div class="corner-border corner-border-right"></div>
                 </div>
-                <!-- Hero Ornament (crescent moon & cranes) -->
-                <div class="flex justify-center mb-8 hero-stars">
+                <!-- Hero Ornament (crescent moon & cranes) - vertically centered -->
+                <div class="flex justify-center w-full shrink-0 hero-stars">
                     <img
                         src="/images/hero-ornament.png"
                         alt=""
-                        class="w-40 h-auto md:w-52 max-w-[280px] object-contain"
+                        class="w-24 h-auto sm:w-28 md:w-32 max-w-[180px] object-contain"
                     />
                 </div>
+                <!-- Personalized Greeting -->
+                <div class="mb-8 hero-greeting">
+                    <p
+                        class="text-2xl sm:text-3xl md:text-4xl text-amber-300 font-elegant mb-4"
+                    >
+                        Dear
+                    </p>
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 bg-clip-text text-transparent mb-6 drop-shadow-lg tracking-wider leading-relaxed"
+                    >
+                        {{ invitee.name }}
+                    </h1>
+                </div>
+
                 <!-- Main Content -->
                 <div class="px-4 sm:px-8 md:px-12 hero-title">
-                    <h1
-                        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 bg-clip-text text-transparent mb-8 drop-shadow-lg tracking-wider leading-relaxed"
-                        style="
-                            padding-left: 0.5rem;
-                            padding-right: 0.5rem;
-                            -webkit-box-decoration-break: clone;
-                            box-decoration-break: clone;
-                        "
+                    <h2
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 bg-clip-text text-transparent mb-8 drop-shadow-lg tracking-wider leading-relaxed"
                     >
-                        We're Getting Married!
-                    </h1>
+                        You're Invited to Our Wedding!
+                    </h2>
                 </div>
 
                 <div
@@ -217,25 +240,31 @@ onBeforeUnmount(() => {
                         July 17, 2026
                     </p>
                     <p class="text-amber-200/80 font-elegant text-lg">
-                        Saint Joseph Cathedral
+                        Butuan City Cathedral
+                    </p>
+                    <p class="text-amber-300/60 text-sm mt-1 font-sans italic">
+                        Under the Starry Sky
                     </p>
                     <p
-                        class="text-amber-300/60 text-sm mt-1 font-sans italic font-light"
+                        v-if="invitee.party_size > 1"
+                        class="text-amber-200 text-sm mt-3 font-sans"
                     >
-                        Under the Starry Sky
+                        You and {{ invitee.party_size - 1 }}
+                        {{ invitee.party_size === 2 ? "guest" : "guests" }} are
+                        invited
                     </p>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Call to Action -->
                 <div
                     class="flex flex-wrap justify-center items-center gap-4 mt-12 hero-cta"
                 >
-                    <Link
-                        :href="route('dashboard')"
-                        class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 rounded-full font-sans font-semibold tracking-wide hover:from-amber-400 hover:to-amber-500 transition shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transform hover:-translate-y-0.5 border border-amber-400"
+                    <a
+                        :href="invitee.rsvp_url"
+                        class="inline-flex items-center px-10 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 rounded-full font-sans font-bold text-lg tracking-wide hover:from-amber-400 hover:to-amber-500 transition shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transform hover:-translate-y-0.5 border border-amber-400 animate-pulse-glow"
                     >
                         RSVP Now
-                    </Link>
+                    </a>
                     <a
                         href="#story"
                         class="inline-flex items-center px-8 py-3 bg-slate-800/50 backdrop-blur-md text-amber-100 rounded-full font-sans font-medium tracking-wide hover:bg-slate-700/50 transition shadow-lg border border-amber-400/30 hover:shadow-xl transform hover:-translate-y-0.5"
@@ -395,7 +424,7 @@ onBeforeUnmount(() => {
                             >
                             <svg
                                 class="w-6 h-6 md:w-7 md:h-7 text-amber-300"
-                                fill="currentColor"
+                                fill="CurrentColor"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -457,7 +486,7 @@ onBeforeUnmount(() => {
                         <p
                             class="text-amber-200/80 mb-2 text-lg font-elegant font-medium"
                         >
-                            Saint Joseph Cathedral
+                            Butuan City Cathedral
                         </p>
                         <p
                             class="text-amber-300/60 text-sm font-sans italic mb-4"
@@ -733,6 +762,28 @@ onBeforeUnmount(() => {
                         </div>
                     </div>
                 </div>
+
+                <!-- Final CTA -->
+                <div class="mt-16 text-center section-content">
+                    <p class="text-amber-200 text-xl mb-6 font-elegant">
+                        We can't wait to celebrate with you!
+                    </p>
+                    <a
+                        :href="invitee.rsvp_url"
+                        class="inline-flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 rounded-full font-sans font-bold text-lg tracking-wide hover:from-amber-400 hover:to-amber-500 transition shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transform hover:-translate-y-0.5 border border-amber-400"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"
+                            />
+                        </svg>
+                        RSVP Now
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -748,7 +799,7 @@ onBeforeUnmount(() => {
                     Want a Wedding Website Like This?
                 </h2>
                 <p class="text-amber-100/70 font-elegant text-lg mb-8">
-                    We'd love to help you create a personalized wedding website for your special day.
+                    We'd love to help you create a personalized starry-night wedding experience for your special day.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-2">
                     <a
@@ -1075,7 +1126,7 @@ html {
     max-height: 100%;
     object-fit: contain;
     object-position: bottom;
-    filter: drop-shadow(0 0 20px rgba(15, 23, 42, 0.9));
+    filter: drop-shadow(0 0 20px rgba(15, 23, 42, 0.5));
 }
 
 #story.animate-in .story-character-wrap.story-character-left {
@@ -1170,34 +1221,40 @@ html {
 }
 
 /* Hero section staggered animations */
+.hero-greeting {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 1s ease-out 0.1s forwards;
+}
+
 .hero-stars {
     opacity: 0;
     transform: translateY(-20px);
-    animation: fadeInDown 1s ease-out 0.2s forwards;
+    animation: fadeInDown 1s ease-out 0.3s forwards;
 }
 
 .hero-title {
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1s ease-out 0.4s forwards;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
 }
 
 .hero-names {
     opacity: 0;
     transform: scale(0.9);
-    animation: fadeInScale 1s ease-out 0.6s forwards;
+    animation: fadeInScale 1s ease-out 0.7s forwards;
 }
 
 .hero-date {
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 1s ease-out 0.8s forwards;
+    animation: fadeInUp 1s ease-out 0.9s forwards;
 }
 
 .hero-cta {
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 1s ease-out 1s forwards;
+    animation: fadeInUp 1s ease-out 1.1s forwards;
 }
 
 /* Section animations */
@@ -1284,9 +1341,24 @@ html {
     }
 }
 
+/* Pulsing glow animation for RSVP button */
+@keyframes pulse-glow {
+    0%,
+    100% {
+        box-shadow: 0 10px 30px rgba(245, 158, 11, 0.5);
+    }
+    50% {
+        box-shadow: 0 10px 40px rgba(245, 158, 11, 0.7);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
 /* Enhanced button hover animations */
 a[href^="#"],
-.Link {
+a {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -1310,13 +1382,6 @@ a[href^="#"]::before {
 a[href^="#"]:hover::before {
     width: 300px;
     height: 300px;
-}
-
-/* Parallax effect on scroll */
-@media (prefers-reduced-motion: no-preference) {
-    .stars-container {
-        will-change: transform;
-    }
 }
 
 /* Smooth transitions for all interactive elements */
