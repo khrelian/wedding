@@ -149,7 +149,7 @@ return [
             'groom' => [
                 'label' => 'Parents of the Groom',
                 'members' => [
-                    ['name' => 'Mr. Ignacio M. Broñola', 'memorial' => true],
+                    ['name' => 'Mr. Ignacio M. Broñola Jr.', 'memorial' => true],
                     ['name' => 'Mrs. Analyn C. Broñola'],
                 ],
             ],
@@ -276,6 +276,7 @@ return [
         'subtitle' => 'Moments captured beneath the stars',
         'note' => 'Share your photos from our celebration—tag us or send them to our email. Selected guest photos may appear here after the wedding.',
         'upload_email' => 'karenkateseronay@gmail.com',
+        'background_mosaic' => true,
         'images' => [
             [
                 'src' => '/images/gallery/engagement.JPG',
@@ -307,6 +308,46 @@ return [
                 'src' => '/images/gallery/memories.jpg',
                 'alt' => 'Wedding memories',
                 'label' => 'Memories',
+            ],
+            [
+                'src' => '/images/gallery/gal1.jpg',
+                'alt' => 'Photo 1',
+                'label' => 'Photo 1',
+            ],
+            [
+                'src' => '/images/gallery/gal2.jpg',
+                'alt' => 'Photo 2',
+                'label' => 'Photo 2',
+            ],
+            [
+                'src' => '/images/gallery/gal4.jpg',
+                'alt' => 'Photo 4',
+                'label' => 'Photo 4',
+            ],
+            [
+                'src' => '/images/gallery/gal5.jpg',
+                'alt' => 'Photo 5',
+                'label' => 'Photo 5',
+            ],
+            [
+                'src' => '/images/gallery/gal6.jpg',
+                'alt' => 'Photo 6',
+                'label' => 'Photo 6',
+            ],
+            [
+                'src' => '/images/gallery/gal7.jpg',
+                'alt' => 'Photo 7',
+                'label' => 'Photo 7',
+            ],
+            [
+                'src' => '/images/gallery/gal9.jpg',
+                'alt' => 'Photo 9',
+                'label' => 'Photo 9',
+            ],
+            [
+                'src' => '/images/gallery/gal10.jpeg',
+                'alt' => 'Photo 10',
+                'label' => 'Photo 10',
             ],
         ],
     ],

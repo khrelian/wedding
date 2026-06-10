@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { useScrollReveal } from '@/composables/useScrollReveal';
 import StarField from '@/Components/Wedding/StarField.vue';
+import PhotoMosaicBackground from '@/Components/Wedding/PhotoMosaicBackground.vue';
 import WeddingNavbar from '@/Components/Wedding/WeddingNavbar.vue';
 import HeroSection from '@/Components/Wedding/HeroSection.vue';
 import StorySection from '@/Components/Wedding/StorySection.vue';
@@ -29,12 +30,23 @@ const props = defineProps({
 const page = usePage();
 const wedding = computed(() => page.props.wedding);
 
+const showMosaicBackground = computed(
+    () => Boolean(wedding.value.gallery?.background_mosaic && wedding.value.gallery?.images?.length),
+);
+
 useScrollReveal();
 </script>
 
 <template>
-    <div class="relative min-h-screen overflow-x-hidden bg-midnight text-ivory">
+    <div
+        class="relative min-h-screen overflow-x-hidden bg-midnight text-ivory"
+        :class="{ 'site-with-mosaic': showMosaicBackground }"
+    >
         <StarField v-if="!wedding.images?.hero?.background" />
+        <PhotoMosaicBackground
+            v-if="showMosaicBackground"
+            :images="wedding.gallery.images"
+        />
         <WeddingNavbar :wedding="wedding" :invitee="invitee" />
 
         <main class="relative z-10">
@@ -53,6 +65,6 @@ useScrollReveal();
             <PromoSection :wedding="wedding" />
         </main>
 
-        <WeddingFooter :wedding="wedding" />
+        <WeddingFooter :wedding="wedding" class="relative z-10" />
     </div>
 </template>

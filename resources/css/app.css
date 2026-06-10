@@ -201,6 +201,78 @@
     .faq-item + .faq-item {
         @apply border-t border-white/10;
     }
+
+    .photo-mosaic-bg {
+        @apply pointer-events-none fixed inset-0 z-[1] overflow-hidden;
+    }
+
+    .photo-mosaic-wrap {
+        --tileswrap-height: calc(100vh * 1.35);
+        position: absolute;
+        left: 45%;
+        top: 66%;
+        width: 150%;
+        height: var(--tileswrap-height);
+        transform-origin: center center;
+        will-change: transform, opacity;
+    }
+
+    .photo-mosaic-line {
+        @apply flex;
+        will-change: transform;
+    }
+
+    .photo-mosaic-cell {
+        --tile-margin: 0.85vw;
+        flex: 0 0 auto;
+        width: calc(10.25% - var(--tile-margin) * 2);
+        aspect-ratio: 3 / 4;
+        height: auto;
+        margin: var(--tile-margin);
+        @apply overflow-hidden bg-midnight/80;
+    }
+
+    .photo-mosaic-tile {
+        @apply h-full w-full object-cover;
+        opacity: 0.82;
+        filter: sepia(0.22) saturate(0.62) brightness(0.82) contrast(1.04);
+    }
+
+    .photo-mosaic-overlay {
+        @apply absolute inset-0;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(11, 16, 38, 0.68) 0%,
+                rgba(11, 16, 38, 0.42) 42%,
+                rgba(11, 16, 38, 0.5) 100%
+            );
+    }
+
+    .photo-mosaic-vignette {
+        @apply absolute inset-0;
+        background: radial-gradient(
+            ellipse 88% 75% at 50% 42%,
+            transparent 0%,
+            rgba(11, 16, 38, 0.1) 58%,
+            rgba(11, 16, 38, 0.38) 100%
+        );
+    }
+
+    .site-with-mosaic .wedding-section.bg-midnight {
+        background-color: rgba(11, 16, 38, 0.68);
+        backdrop-filter: blur(1px);
+    }
+
+    .site-with-mosaic .wedding-section[class*='bg-celestial'] {
+        background-color: rgba(26, 31, 75, 0.34);
+        backdrop-filter: blur(1px);
+    }
+
+    .site-with-mosaic footer.bg-midnight {
+        @apply backdrop-blur-[2px];
+        background-color: rgba(11, 16, 38, 0.76);
+    }
 }
 
 @layer utilities {
