@@ -24,6 +24,7 @@ export default {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 display: ['Playfair Display', ...defaultTheme.fontFamily.serif],
+                script: ['Allura', ...defaultTheme.fontFamily.serif],
             },
             fontSize: {
                 'display-xl': ['clamp(3rem,7vw,5rem)', { lineHeight: '1.08', letterSpacing: '-0.01em' }],

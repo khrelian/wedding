@@ -45,9 +45,9 @@ useScrollReveal();
                     <h1 class="font-display text-display-md text-white md:text-display-lg">
                         You're Invited
                     </h1>
-                    <p class="mt-4 font-display text-2xl italic text-gold-soft md:text-3xl">
+                    <p class="mt-4 wedding-script-names text-gold-soft">
                         {{ wedding.couple.partner1.name }}
-                        <span class="not-italic">&</span>
+                        <span class="mx-1">&</span>
                         {{ wedding.couple.partner2.name }}
                     </p>
                     <p class="mt-4 font-sans text-sm uppercase tracking-[0.18em] text-ivory/50">

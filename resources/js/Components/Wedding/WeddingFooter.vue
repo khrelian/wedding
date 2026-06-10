@@ -8,7 +8,7 @@ defineProps({
     <footer class="border-t border-white/10 bg-midnight px-6 py-16">
         <div class="wedding-container text-center">
             <p class="font-display text-3xl italic text-gold-soft md:text-4xl">{{ wedding.tagline }}</p>
-            <p class="mt-4 font-display text-2xl text-white">
+            <p class="mt-4 wedding-script-names text-white">
                 {{ wedding.couple.display_names }}
             </p>
             <p class="mt-2 font-sans text-sm uppercase tracking-[0.2em] text-ivory/40">

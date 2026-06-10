@@ -25,9 +25,9 @@ defineProps({
                         >
                             <template #fallback>
                                 <div class="flex h-full flex-col justify-end p-8">
-                                    <p class="font-display text-3xl text-gold-soft">{{ wedding.couple.partner1.name }}</p>
-                                    <p class="mt-2 font-sans text-label text-ivory/40">&</p>
-                                    <p class="mt-2 font-display text-3xl text-gold-soft">{{ wedding.couple.partner2.name }}</p>
+                                    <p class="wedding-script-names text-gold-soft">{{ wedding.couple.partner1.name }}</p>
+                                    <p class="mt-1 font-script text-2xl text-gold-soft/80">&</p>
+                                    <p class="mt-1 wedding-script-names text-gold-soft">{{ wedding.couple.partner2.name }}</p>
                                 </div>
                             </template>
                             <template v-if="wedding.story.image_alt" #caption>

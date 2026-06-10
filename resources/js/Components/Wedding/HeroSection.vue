@@ -78,7 +78,7 @@ const hasBackground = (wedding) => Boolean(wedding?.images?.hero?.background);
 
                 <h1 class="scroll-reveal wedding-couple-names hero-text-shadow">
                     {{ wedding.couple.partner1.name }}
-                    <span class="mx-2 italic">&</span>
+                    <span class="mx-2">&</span>
                     {{ wedding.couple.partner2.name }}
                 </h1>
 
