@@ -38,7 +38,7 @@ return [
         ],
         'reception' => [
             'name' => 'The Pavillion at Watergate',
-            'address' => 'Butuan City',
+            'address' => 'Jose Rosales Ave.',
             'city' => 'Butuan City',
             'state' => 'Agusan del Norte',
             'country' => 'Philippines',
