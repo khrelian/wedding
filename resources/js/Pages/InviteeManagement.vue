@@ -1,12 +1,15 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     invitees: Array,
     stats: Object,
 });
+
+const page = usePage();
+const wedding = computed(() => page.props.wedding);
 
 const showAddModal = ref(false);
 const showEditModal = ref(false);
@@ -61,28 +64,28 @@ const shareToMessenger = (url) => {
 };
 
 const shareToWhatsApp = (invitee) => {
-    const message = `You're invited to Ian Jay & Karen Kate's Wedding! 🌟\n\nJuly 17, 2026 at 7:00 AM\nButuan City Cathedral\n\nView your personal invitation: ${invitee.invitation_url}`;
+    const message = `You're invited to ${wedding.value.couple.display_names}'s Wedding!\n\n${wedding.value.date.display} at ${wedding.value.date.ceremony_time}\n${wedding.value.venue.ceremony.name}\n\nView your personal invitation: ${invitee.invitation_url}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
 
 const shareViaEmail = (invitee) => {
-    const subject = "You're Invited to Our Wedding! 🌟";
+    const subject = "You're Invited to Our Wedding!";
     const body = `Dear ${invitee.name},
 
 We're getting married and we'd love for you to join us!
 
-Date: July 17, 2026
-Time: 7:00 AM
-Location: Butuan City Cathedral
-Theme: Elegant Starry Night
+Date: ${wedding.value.date.display}
+Time: ${wedding.value.date.ceremony_time}
+Location: ${wedding.value.venue.ceremony.name}
+Theme: ${wedding.value.tagline}
 
 View your personal invitation and RSVP: ${invitee.invitation_url}
 
 We can't wait to celebrate with you!
 
 Love,
-Ian Jay & Karen Kate`;
+${wedding.value.couple.display_names}`;
     
     window.location.href = `mailto:${invitee.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
@@ -129,9 +132,9 @@ const downloadInvitationImage = async (invitee) => {
     // Details
     ctx.fillStyle = '#fcd34d';
     ctx.font = '32px sans-serif';
-    ctx.fillText('July 17, 2026 • 7:00 AM', canvas.width / 2, 280);
-    ctx.fillText('Butuan City Cathedral', canvas.width / 2, 330);
-    ctx.fillText('Butuan City', canvas.width / 2, 370);
+    ctx.fillText(`${wedding.value.date.display} • ${wedding.value.date.ceremony_time}`, canvas.width / 2, 280);
+    ctx.fillText(wedding.value.venue.ceremony.name, canvas.width / 2, 330);
+    ctx.fillText(wedding.value.venue.ceremony.city, canvas.width / 2, 370);
     
     // Guest name
     ctx.fillStyle = '#ffffff';
