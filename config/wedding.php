@@ -320,7 +320,7 @@ return [
                 'label' => 'Photo 2',
             ],
             [
-                'src' => '/images/gallery/gal4.jpg',
+                'src' => '/images/gallery/gal4.JPG',
                 'alt' => 'Photo 4',
                 'label' => 'Photo 4',
             ],
