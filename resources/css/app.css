@@ -215,6 +215,7 @@
         height: var(--tileswrap-height);
         transform-origin: center center;
         will-change: transform, opacity;
+        transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .photo-mosaic-line {

@@ -344,11 +344,6 @@ return [
                 'alt' => 'Photo 9',
                 'label' => 'Photo 9',
             ],
-            [
-                'src' => '/images/gallery/gal10.jpeg',
-                'alt' => 'Photo 10',
-                'label' => 'Photo 10',
-            ],
         ],
     ],
 
