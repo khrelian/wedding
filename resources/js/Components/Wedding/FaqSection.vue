@@ -9,7 +9,7 @@ const openIndex = ref(0);
 </script>
 
 <template>
-    <section id="faq" class="wedding-section bg-midnight">
+    <section id="faq" class="wedding-section">
         <div class="wedding-container">
             <div class="editorial-grid">
                 <div class="md:col-span-5">
@@ -31,8 +31,8 @@ const openIndex = ref(0);
                             class="flex w-full items-start justify-between gap-6 text-left"
                             @click="openIndex = openIndex === index ? -1 : index"
                         >
-                            <span class="font-display text-xl text-white md:text-2xl">{{ item.question }}</span>
-                            <span class="font-sans text-gold-soft">{{ openIndex === index ? '−' : '+' }}</span>
+                            <span class="wedding-subheading !text-lg md:!text-xl">{{ item.question }}</span>
+                            <span class="font-sans text-sm text-gold-soft/80">{{ openIndex === index ? '−' : '+' }}</span>
                         </button>
                         <p
                             v-show="openIndex === index"

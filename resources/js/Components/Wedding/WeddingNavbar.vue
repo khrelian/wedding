@@ -27,9 +27,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
         class="fixed inset-x-0 top-0 z-50 transition-all duration-luxury"
         :class="[
             isScrolled
-                ? 'border-b border-white/5 bg-midnight/92 py-4 backdrop-blur-md'
+                ? 'border-b border-ivory/10 bg-midnight/90 py-4 backdrop-blur-md'
                 : hasHeroBackground
-                    ? 'bg-gradient-to-b from-midnight/90 via-midnight/55 to-transparent py-5 md:py-7'
+                    ? 'bg-gradient-to-b from-midnight/80 via-midnight/40 to-transparent py-5 md:py-7'
                     : 'bg-transparent py-6 md:py-8',
         ]"
     >
@@ -68,7 +68,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
                 <a
                     v-if="invitee?.rsvp_url"
                     :href="invitee.rsvp_url"
-                    class="hero-button-solid py-2.5 text-xs"
+                    class="hero-pill-primary min-w-0 px-5 py-2 text-[0.62rem]"
                 >
                     RSVP
                 </a>
@@ -77,7 +77,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
 
         <nav
             v-if="isMenuOpen"
-            class="border-t border-white/10 bg-midnight/95 px-6 py-6 backdrop-blur-md md:hidden"
+            class="border-t border-ivory/10 bg-midnight/95 px-6 py-6 backdrop-blur-md md:hidden"
         >
             <div class="flex flex-col gap-4">
                 <a
@@ -92,7 +92,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
                 <a
                     v-if="invitee?.rsvp_url"
                     :href="invitee.rsvp_url"
-                    class="hero-button-solid mt-2 w-full"
+                    class="hero-pill-primary mt-2 w-full"
                     @click="isMenuOpen = false"
                 >
                     RSVP

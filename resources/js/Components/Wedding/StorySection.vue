@@ -7,9 +7,9 @@ defineProps({
 </script>
 
 <template>
-    <section id="story" class="wedding-section bg-midnight">
+    <section id="story" class="wedding-section">
         <div class="wedding-container">
-            <div class="scroll-reveal mx-auto max-w-3xl text-center">
+            <div class="scroll-reveal wedding-section-intro">
                 <p class="wedding-label-gold mb-4">Chapter One</p>
                 <h2 class="wedding-heading">{{ wedding.story.title }}</h2>
             </div>
@@ -18,7 +18,7 @@ defineProps({
 
             <div class="editorial-grid mt-16 items-start">
                 <div class="md:col-span-5">
-                    <div class="relative aspect-[4/5] overflow-hidden border border-white/10">
+                    <div class="wedding-image-frame aspect-[4/5]">
                         <WeddingImage
                             :src="wedding.story.image"
                             :alt="wedding.story.image_alt"
@@ -31,11 +31,9 @@ defineProps({
                                 </div>
                             </template>
                             <template v-if="wedding.story.image_alt" #caption>
-                                <div class="bg-gradient-to-t from-midnight/95 via-midnight/60 to-transparent px-8 pb-8 pt-20">
-                                    <p class="font-sans text-[0.65rem] uppercase tracking-[0.22em] text-gold-soft/70">
-                                        Our Story
-                                    </p>
-                                    <p class="mt-2 font-display text-xl text-white md:text-2xl">
+                                <div class="bg-gradient-to-t from-midnight/90 via-midnight/40 to-transparent px-8 pb-8 pt-20">
+                                    <p class="wedding-label mb-2">Our Story</p>
+                                    <p class="wedding-subheading !text-lg md:!text-xl">
                                         {{ wedding.story.image_alt }}
                                     </p>
                                 </div>
@@ -53,7 +51,7 @@ defineProps({
                         >
                             {{ paragraph }}
                         </p>
-                        <p class="font-display text-2xl text-white md:text-3xl">
+                        <p class="wedding-quote text-white">
                             {{ wedding.story.closing }}
                         </p>
                     </div>

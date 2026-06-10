@@ -7,15 +7,15 @@ defineProps({
 <template>
     <section
         v-if="wedding.features.promo"
-        class="wedding-section border-t border-white/5 bg-celestial/30"
+        class="wedding-section"
     >
         <div class="wedding-container">
-            <div class="scroll-reveal mx-auto max-w-3xl text-center">
+            <div class="scroll-reveal wedding-section-intro">
                 <p class="wedding-label mb-4">For Couples</p>
                 <h2 class="wedding-heading">{{ wedding.promo.title }}</h2>
                 <p class="mt-4 wedding-body">{{ wedding.promo.body }}</p>
 
-                <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+                <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
                     <a :href="'tel:' + wedding.promo.phone" class="wedding-button-primary">
                         {{ wedding.promo.phone_display }}
                     </a>

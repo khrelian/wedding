@@ -76,25 +76,24 @@
     }
 
     .wedding-label {
-        @apply font-sans text-label uppercase text-ivory/90;
+        @apply font-sans text-label uppercase tracking-[0.3em] text-ivory/70;
     }
 
     .wedding-label-gold {
-        @apply font-sans text-label uppercase text-gold-soft/80;
+        @apply font-sans text-label uppercase tracking-[0.3em] text-gold-soft/70;
     }
 
     .wedding-save-the-date {
-        @apply flex items-center justify-center gap-4 font-sans text-label-sm uppercase text-ivory/90;
+        @apply font-sans text-label-sm uppercase tracking-[0.28em] text-ivory/65;
     }
 
     .wedding-save-the-date::before,
     .wedding-save-the-date::after {
-        content: '';
-        @apply h-px w-10 bg-ivory/35 md:w-14;
+        content: none;
     }
 
     .wedding-heading {
-        @apply font-display font-medium text-display-md md:text-display-lg text-white;
+        @apply font-display font-normal text-display-md md:text-display-lg text-white;
     }
 
     .wedding-couple-names {
@@ -115,7 +114,7 @@
     }
 
     .wedding-divider {
-        @apply mx-auto my-10 h-px w-24 bg-gradient-to-r from-transparent via-gold-soft/50 to-transparent;
+        @apply mx-auto my-12 h-px w-24 bg-gradient-to-r from-transparent via-gold-soft/50 to-transparent;
     }
 
     .wedding-link {
@@ -123,11 +122,11 @@
     }
 
     .wedding-button-primary {
-        @apply inline-flex items-center justify-center gap-2 border border-gold-soft/60 bg-transparent px-8 py-3.5 font-sans text-sm uppercase tracking-[0.18em] text-gold-soft transition-all duration-luxury hover:border-gold-soft hover:bg-gold-soft/10 hover:text-white;
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-soft bg-gold-soft/90 px-8 py-3 font-sans text-xs uppercase tracking-[0.18em] text-midnight transition-all duration-luxury hover:bg-gold-soft hover:text-midnight;
     }
 
     .wedding-button-secondary {
-        @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-sans text-sm uppercase tracking-[0.18em] text-ivory/70 transition-colors duration-luxury hover:text-gold-soft;
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-ivory/25 px-8 py-3 font-sans text-xs uppercase tracking-[0.18em] text-ivory/80 transition-all duration-luxury hover:border-ivory/45 hover:text-white;
     }
 
     .hero-text-shadow {
@@ -143,6 +142,104 @@
         );
     }
 
+    .hero-scrim-soft {
+        background: radial-gradient(
+            ellipse 80% 65% at 50% 42%,
+            rgba(11, 16, 38, 0.62) 0%,
+            rgba(11, 16, 38, 0.28) 50%,
+            transparent 78%
+        );
+    }
+
+    .hero-minimal-kicker {
+        @apply font-sans text-[0.62rem] uppercase tracking-[0.34em] text-ivory/65;
+    }
+
+    .hero-minimal-name {
+        @apply block font-script font-normal text-white;
+        font-size: clamp(2.75rem, 7vw, 5rem);
+        line-height: 1.02;
+    }
+
+    .hero-minimal-amp {
+        @apply my-1 block font-script text-[clamp(1.75rem,4vw,2.5rem)] text-gold-soft/90;
+        line-height: 1;
+    }
+
+    .hero-minimal-tagline {
+        @apply font-display text-lg italic text-gold-soft/85 md:text-xl;
+    }
+
+    .hero-minimal-details {
+        @apply flex items-stretch justify-center gap-8 md:gap-10;
+    }
+
+    .hero-minimal-date {
+        @apply min-w-[5.5rem] text-right;
+    }
+
+    .hero-minimal-date-month,
+    .hero-minimal-date-year {
+        @apply font-sans text-[0.62rem] uppercase tracking-[0.24em] text-ivory/55;
+    }
+
+    .hero-minimal-date-day {
+        @apply my-1 font-display text-4xl leading-none text-white md:text-5xl;
+    }
+
+    .hero-minimal-rule {
+        @apply w-px shrink-0 bg-ivory/20;
+        min-height: 6.5rem;
+    }
+
+    .hero-minimal-weekday {
+        @apply font-sans text-[0.62rem] uppercase tracking-[0.24em] text-ivory/55;
+    }
+
+    .hero-minimal-time {
+        @apply mt-2 font-display text-lg text-ivory md:text-xl;
+    }
+
+    .hero-minimal-venue-name {
+        @apply mt-2 font-display text-lg leading-snug text-white md:text-xl;
+    }
+
+    .hero-minimal-city {
+        @apply mt-1 font-sans text-sm text-ivory/55;
+    }
+
+    .hero-minimal-countdown {
+        @apply flex flex-wrap items-end justify-center gap-x-5 gap-y-4;
+    }
+
+    .hero-minimal-countdown-unit {
+        @apply flex min-w-[3.5rem] flex-col items-center;
+    }
+
+    .hero-minimal-countdown-value {
+        @apply font-display text-2xl tabular-nums text-ivory md:text-3xl;
+    }
+
+    .hero-minimal-countdown-label {
+        @apply mt-1 font-sans text-[0.55rem] uppercase tracking-[0.22em] text-ivory/45;
+    }
+
+    .hero-pill-primary {
+        @apply inline-flex min-w-[12rem] items-center justify-center rounded-full bg-gold-soft px-10 py-3 font-sans text-xs uppercase tracking-[0.2em] text-midnight transition-all duration-luxury hover:bg-white;
+    }
+
+    .hero-pill-outline {
+        @apply inline-flex min-w-[12rem] items-center justify-center rounded-full border border-ivory/30 bg-transparent px-10 py-3 font-sans text-xs uppercase tracking-[0.2em] text-ivory/85 transition-all duration-luxury hover:border-ivory/50 hover:text-white;
+    }
+
+    .hero-text-link {
+        @apply mt-1 font-sans text-xs uppercase tracking-[0.18em] text-ivory/55 transition-colors duration-luxury hover:text-gold-soft;
+    }
+
+    .hero-scroll-hint {
+        @apply absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-ivory/45 transition-colors duration-luxury hover:text-gold-soft/80;
+    }
+
     .hero-countdown-cell {
         @apply border border-white/15 bg-midnight/55 px-4 py-6 backdrop-blur-md;
         box-shadow: 0 8px 32px rgba(11, 16, 38, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -154,13 +251,11 @@
     }
 
     .hero-button-solid {
-        @apply inline-flex items-center justify-center gap-2 border border-gold-soft/80 bg-midnight/70 px-8 py-3.5 font-sans text-sm uppercase tracking-[0.18em] text-gold-soft backdrop-blur-md transition-all duration-luxury hover:border-gold-soft hover:bg-midnight/85 hover:text-white;
-        box-shadow: 0 4px 24px rgba(11, 16, 38, 0.4);
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-soft px-6 py-2.5 font-sans text-xs uppercase tracking-[0.18em] text-midnight transition-all duration-luxury hover:bg-white;
     }
 
     .hero-button-ghost {
-        @apply inline-flex items-center justify-center gap-2 border border-white/25 bg-white/5 px-8 py-3.5 font-sans text-sm uppercase tracking-[0.18em] text-ivory backdrop-blur-md transition-all duration-luxury hover:border-white/40 hover:bg-white/10 hover:text-white;
-        text-shadow: 0 1px 8px rgba(11, 16, 38, 0.8);
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-ivory/25 px-6 py-2.5 font-sans text-xs uppercase tracking-[0.18em] text-ivory/85 transition-all duration-luxury hover:border-ivory/45 hover:text-white;
     }
 
     .scroll-reveal {
@@ -204,11 +299,67 @@
     }
 
     .editorial-grid {
-        @apply grid gap-10 md:grid-cols-12 md:gap-16;
+        @apply grid gap-12 md:grid-cols-12 md:gap-20;
+    }
+
+    .wedding-section-intro {
+        @apply mx-auto max-w-3xl text-center;
+    }
+
+    .wedding-subheading {
+        @apply font-display text-xl font-normal text-white md:text-2xl;
+    }
+
+    .wedding-meta {
+        @apply font-sans text-sm leading-relaxed text-ivory/55;
+    }
+
+    .wedding-image-frame {
+        @apply relative overflow-hidden;
+    }
+
+    .wedding-quote {
+        @apply font-display text-xl italic leading-relaxed text-ivory/90 md:text-2xl;
+    }
+
+    .wedding-panel {
+        @apply px-2 py-6 text-center md:px-6 md:py-8 md:text-left;
+    }
+
+    .wedding-row {
+        @apply grid gap-3 border-b border-ivory/10 py-8 last:border-b-0 md:grid-cols-[7.5rem_1fr] md:gap-8;
+    }
+
+    .wedding-row-time {
+        @apply font-display text-lg tabular-nums text-gold-soft/90 md:text-xl;
+    }
+
+    .wedding-timeline-item {
+        @apply grid gap-3 border-b border-ivory/10 py-10 last:border-b-0 md:grid-cols-2 md:gap-16;
+    }
+
+    .wedding-timeline-marker {
+        @apply font-display text-lg italic text-gold-soft/80;
+    }
+
+    .wedding-entourage-name {
+        @apply font-sans text-base text-ivory/85 md:text-lg;
+    }
+
+    .wedding-swatch {
+        @apply h-14 w-14 rounded-full md:h-16 md:w-16;
+    }
+
+    .wedding-gallery-item {
+        @apply relative overflow-hidden bg-midnight/30;
+    }
+
+    .wedding-callout {
+        @apply mx-auto max-w-2xl px-2 py-4 text-center md:px-0;
     }
 
     .faq-item + .faq-item {
-        @apply border-t border-white/10;
+        @apply border-t border-ivory/10;
     }
 
     .photo-mosaic-bg {
@@ -269,17 +420,12 @@
         );
     }
 
-    .site-with-mosaic .wedding-section.bg-midnight {
+    .site-with-mosaic .wedding-section {
         background-color: rgba(11, 16, 38, 0.68);
         backdrop-filter: blur(1px);
     }
 
-    .site-with-mosaic .wedding-section[class*='bg-celestial'] {
-        background-color: rgba(26, 31, 75, 0.34);
-        backdrop-filter: blur(1px);
-    }
-
-    .site-with-mosaic footer.bg-midnight {
+    .site-with-mosaic footer {
         @apply backdrop-blur-[2px];
         background-color: rgba(11, 16, 38, 0.76);
     }
