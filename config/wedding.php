@@ -49,7 +49,7 @@ return [
 
     'story' => [
         'title' => 'Our Story',
-        'image' => '/images/story/couple.jpg',
+        'image' => '/images/story/couple.JPG',
         'image_alt' => 'Ian Jay and Karen Kate',
         'closing' => 'Now, under the same stars that brought us together, we begin our forever.',
         'paragraphs' => [
@@ -278,13 +278,13 @@ return [
         'upload_email' => 'karenkateseronay@gmail.com',
         'images' => [
             [
-                'src' => '/images/gallery/engagement.jpg',
+                'src' => '/images/gallery/engagement.JPG',
                 'alt' => 'Engagement photo',
                 'label' => 'Engagement',
                 'featured' => true,
             ],
             [
-                'src' => '/images/gallery/pre-wedding.jpg',
+                'src' => '/images/gallery/pre-wedding.JPG',
                 'alt' => 'Pre-wedding photo',
                 'label' => 'Pre-wedding',
             ],
