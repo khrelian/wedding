@@ -37,7 +37,8 @@ defineProps({
                 <article class="scroll-reveal md:col-span-6 md:mt-24">
                     <p class="wedding-label mb-3">Reception</p>
                     <h3 class="font-display text-3xl text-white">{{ wedding.venue.reception.name }}</h3>
-                    <p class="mt-4 font-sans text-body-md text-ivory/70">{{ wedding.date.display }}</p>
+                    <p class="mt-4 font-display text-xl text-gold-soft">{{ wedding.date.reception_time }}</p>
+                    <p class="mt-2 font-sans text-body-md text-ivory/70">{{ wedding.date.display }}</p>
                     <p class="mt-2 font-sans text-sm text-ivory/50">
                         {{ wedding.venue.reception.address }}, {{ wedding.venue.reception.city }}
                     </p>

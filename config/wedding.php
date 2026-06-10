@@ -19,10 +19,10 @@ return [
 
     'date' => [
         'ceremony' => '2026-07-17 14:00:00',
-        'reception' => '2026-07-17 17:00:00',
+        'reception' => '2026-07-17 16:00:00',
         'display' => 'July 17, 2026',
         'ceremony_time' => '2:00 PM',
-        'reception_time' => 'Reception following the ceremony',
+        'reception_time' => '4:00 PM',
         'timezone' => 'Asia/Manila',
     ],
 
@@ -42,7 +42,7 @@ return [
             'city' => 'Butuan City',
             'state' => 'Agusan del Norte',
             'country' => 'Philippines',
-            'note' => 'Celebration following the ceremony',
+            'note' => 'Drinks and snacks will be served.',
             'google_maps_url' => 'https://maps.google.com/?q=The+Pavillion+at+Watergate+Butuan+City',
         ],
     ],
@@ -107,9 +107,9 @@ return [
             'description' => 'Celebratory portraits with family and friends.',
         ],
         [
-            'time' => '5:00 PM',
+            'time' => '4:00 PM',
             'title' => 'Reception',
-            'description' => 'Celebration at The Pavillion at Watergate.',
+            'description' => 'Drinks and snacks at The Pavillion at Watergate.',
         ],
     ],
 
@@ -376,7 +376,7 @@ return [
         ],
         [
             'question' => 'Are children welcome?',
-            'answer' => 'We love your little ones, but our celebration is reserved for adults only.',
+            'answer' => 'We love your little ones, but we have chosen to keep our celebration intimate and adults-only, with the exception of our selected child participants in the entourage.',
         ],
         [
             'question' => 'What about gifts?',
@@ -421,9 +421,9 @@ return [
         ['label' => 'Our Story', 'href' => '#story'],
         ['label' => 'Proposal', 'href' => '#proposal'],
         ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Schedule', 'href' => '#schedule'],
-        ['label' => 'Attire', 'href' => '#what-to-wear'],
         ['label' => 'Entourage', 'href' => '#entourage'],
+        ['label' => 'Attire', 'href' => '#what-to-wear'],
+        ['label' => 'Schedule', 'href' => '#schedule'],
         ['label' => 'RSVP', 'href' => '#rsvp'],
         ['label' => 'Gallery', 'href' => '#gallery'],
         ['label' => 'Guestbook', 'href' => '#guestbook'],
