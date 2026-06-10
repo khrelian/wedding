@@ -298,6 +298,42 @@
         left: 15%;
     }
 
+    .ember-field {
+        @apply pointer-events-none fixed inset-0 z-[2] overflow-hidden;
+    }
+
+    .ember-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--ember-size);
+        height: var(--ember-size);
+        animation: ember-rise var(--ember-duration) linear infinite;
+        animation-delay: var(--ember-delay);
+        will-change: transform, opacity;
+    }
+
+    .ember-glow {
+        width: 100%;
+        height: 100%;
+        border-radius: 9999px;
+        mix-blend-mode: screen;
+        background: radial-gradient(
+            circle,
+            rgba(255, 236, 170, 0.95) 0%,
+            rgba(212, 175, 55, 0.55) 32%,
+            rgba(212, 175, 55, 0) 72%
+        );
+        animation: ember-pulse 3.2s ease-in-out infinite;
+        animation-delay: var(--ember-pulse-delay);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ember-field {
+            display: none;
+        }
+    }
+
     .editorial-grid {
         @apply grid gap-12 md:grid-cols-12 md:gap-20;
     }
@@ -459,5 +495,37 @@
     96% {
         opacity: 0;
         transform: translateX(280px) translateY(140px) rotate(-35deg);
+    }
+}
+
+@keyframes ember-rise {
+    0% {
+        opacity: 0;
+        transform: translate3d(var(--ember-start-x), 105vh, 0);
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    75% {
+        opacity: 0.45;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--ember-end-x), -118vh, 0);
+    }
+}
+
+@keyframes ember-pulse {
+    0%, 100% {
+        opacity: 0.55;
+        transform: scale(0.75);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.35);
     }
 }

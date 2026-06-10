@@ -480,6 +480,7 @@ return [
         'guestbook' => true,
         'entourage' => true,
         'promo' => true,
+        'embers' => true,
     ],
 
 ];
