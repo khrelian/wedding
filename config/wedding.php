@@ -49,7 +49,7 @@ return [
 
     'story' => [
         'title' => 'Our Story',
-        'image' => '/images/story/couple.jpg',
+        'image' => '/images/story/story.jpg',
         'image_alt' => 'Ian Jay and Karen Kate',
         'closing' => 'Now, under the same stars that brought us together, we begin our forever.',
         'paragraphs' => [
