@@ -49,7 +49,7 @@ return [
 
     'story' => [
         'title' => 'Our Story',
-        'image' => '/images/story/couple.JPG',
+        'image' => '/images/story/couple.jpg',
         'image_alt' => 'Ian Jay and Karen Kate',
         'closing' => 'Now, under the same stars that brought us together, we begin our forever.',
         'paragraphs' => [
@@ -279,13 +279,13 @@ return [
         'background_mosaic' => false,
         'images' => [
             [
-                'src' => '/images/gallery/engagement.JPG',
+                'src' => '/images/gallery/engagement.jpg',
                 'alt' => 'Engagement photo',
                 'label' => 'Engagement',
                 'featured' => true,
             ],
             [
-                'src' => '/images/gallery/pre-wedding.JPG',
+                'src' => '/images/gallery/pre-wedding.jpg',
                 'alt' => 'Pre-wedding photo',
                 'label' => 'Pre-wedding',
             ],
@@ -309,48 +309,48 @@ return [
                 'alt' => 'Wedding memories',
                 'label' => 'Memories',
             ],
-            // [
-            //     'src' => '/images/gallery/gal1.jpg',
-            //     'alt' => 'Photo 1',
-            //     'label' => 'Photo 1',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal2.jpg',
-            //     'alt' => 'Photo 2',
-            //     'label' => 'Photo 2',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal4.JPG',
-            //     'alt' => 'Photo 4',
-            //     'label' => 'Photo 4',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal5.jpg',
-            //     'alt' => 'Photo 5',
-            //     'label' => 'Photo 5',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal6.jpg',
-            //     'alt' => 'Photo 6',
-            //     'label' => 'Photo 6',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal7.jpg',
-            //     'alt' => 'Photo 7',
-            //     'label' => 'Photo 7',
-            //     'featured' => false,
-            // ],
-            // [
-            //     'src' => '/images/gallery/gal9.jpg',
-            //     'alt' => 'Photo 9',
-            //     'label' => 'Photo 9',
-            //     'featured' => false,
-            // ],
+            [
+                'src' => '/images/gallery/gal1.jpg',
+                'alt' => 'Photo 1',
+                'label' => 'Photo 1',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal2.jpg',
+                'alt' => 'Photo 2',
+                'label' => 'Photo 2',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal4.JPG',
+                'alt' => 'Photo 4',
+                'label' => 'Photo 4',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal5.jpg',
+                'alt' => 'Photo 5',
+                'label' => 'Photo 5',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal6.jpg',
+                'alt' => 'Photo 6',
+                'label' => 'Photo 6',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal7.jpg',
+                'alt' => 'Photo 7',
+                'label' => 'Photo 7',
+                'featured' => false,
+            ],
+            [
+                'src' => '/images/gallery/gal9.jpg',
+                'alt' => 'Photo 9',
+                'label' => 'Photo 9',
+                'featured' => false,
+            ],
         ],
     ],
 
