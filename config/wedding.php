@@ -351,6 +351,12 @@ return [
                 'label' => 'Photo 9',
                 'featured' => false,
             ],
+            [
+                'src' => '/images/gallery/gal11.jpeg',
+                'alt' => 'Photo 9',
+                'label' => 'Photo 9',
+                'featured' => false,
+            ],
         ],
     ],
 
@@ -366,7 +372,7 @@ return [
 
     'images' => [
         'hero' => [
-            'background' => '/images/hero/starry-sky.jpg',
+            'background' => '/images/hero/hero.jpg',
             'background_alt' => 'Starry night sky',
             'ornament' => '/images/hero/ornament.png',
             'ornament_alt' => 'Celestial ornament',
