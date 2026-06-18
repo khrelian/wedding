@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" fill="none">
+  <defs>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B2D4A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#3D1A30" stop-opacity="0.75"/>
+    </linearGradient>
+    <radialGradient id="petalPink" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F8B4D0"/>
+      <stop offset="55%" stop-color="#E8789A"/>
+      <stop offset="100%" stop-color="#C44B72" stop-opacity="0.85"/>
+    </radialGradient>
+    <radialGradient id="petalMagenta" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8A0C8"/>
+      <stop offset="50%" stop-color="#C85A8E"/>
+      <stop offset="100%" stop-color="#8E2D5C" stop-opacity="0.9"/>
+    </radialGradient>
+    <radialGradient id="petalDeep" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D47AA8"/>
+      <stop offset="100%" stop-color="#6B1E45" stop-opacity="0.95"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base foliage wash -->
+  <ellipse cx="600" cy="380" rx="620" ry="120" fill="#4A2038" opacity="0.25"/>
+  <ellipse cx="200" cy="360" rx="280" ry="90" fill="#6B3050" opacity="0.2"/>
+  <ellipse cx="1000" cy="370" rx="300" ry="95" fill="#6B3050" opacity="0.2"/>
+
+  <!-- Leaves -->
+  <g opacity="0.9">
+    <ellipse cx="120" cy="310" rx="55" ry="18" fill="url(#leafGrad)" transform="rotate(-35 120 310)"/>
+    <ellipse cx="1080" cy="300" rx="60" ry="20" fill="url(#leafGrad)" transform="rotate(30 1080 300)"/>
+    <ellipse cx="350" cy="340" rx="48" ry="16" fill="url(#leafGrad)" transform="rotate(-20 350 340)"/>
+    <ellipse cx="850" cy="335" rx="52" ry="17" fill="url(#leafGrad)" transform="rotate(22 850 335)"/>
+    <ellipse cx="600" cy="355" rx="70" ry="22" fill="url(#leafGrad)" transform="rotate(-5 600 355)"/>
+    <ellipse cx="500" cy="320" rx="40" ry="14" fill="url(#leafGrad)" transform="rotate(-40 500 320)"/>
+    <ellipse cx="700" cy="325" rx="42" ry="15" fill="url(#leafGrad)" transform="rotate(38 700 325)"/>
+  </g>
+
+  <!-- Large blooms -->
+  <circle cx="180" cy="250" r="72" fill="url(#petalPink)" opacity="0.92"/>
+  <circle cx="155" cy="225" r="48" fill="url(#petalMagenta)" opacity="0.88"/>
+  <circle cx="210" cy="230" r="42" fill="url(#petalPink)" opacity="0.85"/>
+  <circle cx="175" cy="245" r="22" fill="#FCE4EF" opacity="0.7"/>
+
+  <circle cx="1020" cy="240" r="78" fill="url(#petalMagenta)" opacity="0.9"/>
+  <circle cx="990" cy="215" r="52" fill="url(#petalDeep)" opacity="0.85"/>
+  <circle cx="1055" cy="220" r="46" fill="url(#petalPink)" opacity="0.82"/>
+  <circle cx="1015" cy="238" r="24" fill="#F8D0E4" opacity="0.65"/>
+
+  <circle cx="600" cy="280" r="85" fill="url(#petalDeep)" opacity="0.88"/>
+  <circle cx="565" cy="250" r="58" fill="url(#petalMagenta)" opacity="0.9"/>
+  <circle cx="640" cy="255" r="54" fill="url(#petalPink)" opacity="0.86"/>
+  <circle cx="600" cy="275" r="28" fill="#FCE8F0" opacity="0.7"/>
+
+  <circle cx="420" cy="300" r="58" fill="url(#petalPink)" opacity="0.88"/>
+  <circle cx="395" cy="278" r="38" fill="url(#petalMagenta)" opacity="0.85"/>
+  <circle cx="780" cy="295" r="62" fill="url(#petalMagenta)" opacity="0.87"/>
+  <circle cx="810" cy="272" r="40" fill="url(#petalPink)" opacity="0.84"/>
+
+  <!-- Medium buds -->
+  <circle cx="90" cy="330" r="28" fill="url(#petalMagenta)" opacity="0.8"/>
+  <circle cx="1110" cy="325" r="30" fill="url(#petalPink)" opacity="0.82"/>
+  <circle cx="280" cy="310" r="34" fill="url(#petalDeep)" opacity="0.78"/>
+  <circle cx="920" cy="308" r="32" fill="url(#petalDeep)" opacity="0.8"/>
+  <circle cx="500" cy="290" r="26" fill="url(#petalPink)" opacity="0.75"/>
+  <circle cx="700" cy="288" r="27" fill="url(#petalMagenta)" opacity="0.76"/>
+
+  <!-- Small accent petals -->
+  <circle cx="60" cy="280" r="16" fill="#F0A8C8" opacity="0.7"/>
+  <circle cx="1140" cy="275" r="18" fill="#E890B0" opacity="0.72"/>
+  <circle cx="330" cy="265" r="14" fill="#D8789C" opacity="0.65"/>
+  <circle cx="870" cy="260" r="15" fill="#D8789C" opacity="0.68"/>
+</svg>

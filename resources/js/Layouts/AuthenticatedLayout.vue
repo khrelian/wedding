@@ -45,6 +45,12 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     View RSVPs
                                 </NavLink>
+                                <NavLink
+                                    :href="route('guest-photos.index')"
+                                    :active="route().current('guest-photos.index')"
+                                >
+                                    Guest Photos
+                                </NavLink>
                             </div>
                         </div>
 
@@ -152,12 +158,18 @@ const showingNavigationDropdown = ref(false);
                         >
                             Invitees
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            :href="route('rsvp.management')"
-                            :active="route().current('rsvp.management')"
-                        >
-                            View RSVPs
-                        </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('rsvp.management')"
+                                :active="route().current('rsvp.management')"
+                            >
+                                View RSVPs
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('guest-photos.index')"
+                                :active="route().current('guest-photos.index')"
+                            >
+                                Guest Photos
+                            </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->

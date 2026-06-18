@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\InviteeController;
+use App\Http\Controllers\GuestPhotoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,15 @@ Route::get('/invitation/{token}', [InviteeController::class, 'showInvitation'])-
 Route::get('/rsvp/guest/{token}', [RsvpController::class, 'showGuest'])->name('rsvp.guest');
 Route::post('/rsvp/guest/{token}', [RsvpController::class, 'storeGuest'])->name('rsvp.guest.store');
 
+// Guest photo sharing
+Route::get('/photos', [GuestPhotoController::class, 'show'])->name('photos.share');
+Route::post('/photos', [GuestPhotoController::class, 'store'])->middleware('throttle:20,1')->name('photos.share.store');
+Route::get('/photos/guest/{token}', [GuestPhotoController::class, 'showGuest'])->name('photos.guest');
+Route::post('/photos/guest/{token}', [GuestPhotoController::class, 'storeGuest'])->middleware('throttle:20,1')->name('photos.guest.store');
+Route::get('/slideshow', [GuestPhotoController::class, 'slideshow'])->name('photos.slideshow');
+Route::get('/slideshow/qrcode', [GuestPhotoController::class, 'slideshowQrCode'])->name('photos.slideshow.qrcode');
+Route::get('/slideshow/photos', [GuestPhotoController::class, 'slideshowPhotos'])->name('photos.slideshow.data');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     // RSVP Form (Admin)
     Route::get('/rsvp', [RsvpController::class, 'show'])->name('rsvp');
@@ -43,6 +53,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/invitees/{invitee}', [InviteeController::class, 'destroy'])->name('invitees.destroy');
     Route::get('/invitees/{invitee}/qrcode', [InviteeController::class, 'getQrCode'])->name('invitees.qrcode');
     Route::get('/invitees/{invitee}/qrcode/download', [InviteeController::class, 'downloadQrCode'])->name('invitees.qrcode.download');
+
+    // Guest photo moderation
+    Route::get('/guest-photos', [GuestPhotoController::class, 'index'])->name('guest-photos.index');
+    Route::patch('/guest-photos/{guestPhoto}/approve', [GuestPhotoController::class, 'approve'])->name('guest-photos.approve');
+    Route::delete('/guest-photos/{guestPhoto}', [GuestPhotoController::class, 'destroy'])->name('guest-photos.destroy');
     
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

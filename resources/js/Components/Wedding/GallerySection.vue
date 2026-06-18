@@ -3,6 +3,10 @@ import { computed, ref, watch, onBeforeUnmount } from 'vue';
 
 const props = defineProps({
     wedding: Object,
+    invitee: {
+        type: Object,
+        default: null,
+    },
 });
 
 const activeImage = ref(null);
@@ -174,15 +178,28 @@ onBeforeUnmount(() => {
                 </div>
             </div>
 
-            <div class="scroll-reveal wedding-callout mt-16">
+            <div
+                v-if="wedding.features?.guest_photos"
+                class="scroll-reveal wedding-callout mt-16"
+            >
                 <p class="wedding-label mb-3">Guest Photos</p>
                 <p class="wedding-body">{{ wedding.gallery.note }}</p>
-                <a
-                    :href="'mailto:' + wedding.gallery.upload_email + '?subject=Wedding%20Photos'"
-                    class="wedding-button-secondary mt-8 inline-flex"
-                >
-                    Share Your Photos
-                </a>
+                <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                    <a
+                        :href="invitee?.photos_url || route('photos.share')"
+                        class="wedding-button-primary inline-flex"
+                    >
+                        Share a Photo
+                    </a>
+                    <a
+                        v-if="wedding.features?.slideshow"
+                        :href="route('photos.slideshow')"
+                        class="wedding-button-secondary inline-flex"
+                        target="_blank"
+                    >
+                        View Live Slideshow
+                    </a>
+                </div>
             </div>
         </div>
 

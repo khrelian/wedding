@@ -66,5 +66,15 @@ class Invitee extends Model
     {
         return $this->hasOne(Rsvp::class, 'invitee_id');
     }
+
+    public function guestPhotos()
+    {
+        return $this->hasMany(GuestPhoto::class);
+    }
+
+    public function getPhotosUrl(): string
+    {
+        return route('photos.guest', ['token' => $this->token]);
+    }
 }
 

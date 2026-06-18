@@ -25,6 +25,7 @@ class InviteeController extends Controller
                 'party_size' => $invitee->party_size,
                 'token' => $invitee->token,
                 'rsvp_url' => route('rsvp.guest', ['token' => $invitee->token]),
+                'photos_url' => route('photos.guest', ['token' => $invitee->token]),
             ],
         ]);
     }
@@ -47,6 +48,7 @@ class InviteeController extends Controller
                     'rsvp_status' => $invitee->rsvp_status,
                     'notes' => $invitee->notes,
                     'rsvp_url' => $invitee->getSignedRsvpUrl(),
+                    'photos_url' => $invitee->getPhotosUrl(),
                     'invitation_url' => $invitee->getSignedInvitationUrl(),
                     'created_at' => $invitee->created_at->format('M d, Y'),
                 ];

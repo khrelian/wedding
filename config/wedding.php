@@ -274,7 +274,7 @@ return [
     'gallery' => [
         'title' => 'Gallery',
         'subtitle' => 'Moments captured beneath the stars',
-        'note' => 'Share your photos from our celebration—tag us or send them to our email. Selected guest photos may appear here after the wedding.',
+        'note' => 'Take a photo at the celebration and watch it appear on the live slideshow.',
         'upload_email' => 'karenkateseronay@gmail.com',
         'background_mosaic' => false,
         'images' => [
@@ -493,6 +493,172 @@ return [
         'entourage' => true,
         'promo' => true,
         'embers' => true,
+        'guest_photos' => true,
+        'slideshow' => true,
+    ],
+
+    'guest_photos' => [
+        'upload_title' => 'Share a Moment',
+        'upload_subtitle' => 'Take a photo from our celebration and add it to the live slideshow.',
+        'slideshow_title' => 'Moments captured by our guests',
+        'slideshow_subtitle' => 'Moments captured by our guests',
+        'max_upload_mb' => 10,
+        'slideshow_interval_seconds' => 8,
+        'slideshow_refresh_seconds' => 20,
+        'require_approval' => false,
+        'wedding_frame' => [
+            'title' => 'Ian Jay &',
+            'name' => 'Karen Kate',
+            'date' => '17 | 07 | 2026',
+            'floral_image' => '/images/filters/floral-border.png',
+        ],
+        'wedding_frame_overlay' => [
+            'overlay_image' => '/images/filters/wedding-frame-overlay.png',
+        ],
+        'wedding_frame_pavilion' => [
+            'overlay_image' => '/images/filters/wedding-frame-pavilion.png',
+        ],
+        'wedding_frame_elegant' => [
+            'names' => 'IAN JAY & KAREN KATE',
+            'date' => '07.17.2026',
+            'text_color' => '#FFFFFF',
+            'border_color' => '#FFFFFF',
+        ],
+        'face_filters' => [
+            [
+                'id' => 'none',
+                'label' => 'No Filter',
+                'emoji' => '✨',
+            ],
+            [
+                'id' => 'party_glasses',
+                'label' => 'Party Glasses',
+                'face_sticker' => 'glasses',
+                'emoji' => '🕶️',
+                'images' => [
+                    [
+                        'image' => '/images/filters/glasses-heart.png',
+                        'label' => 'Heart Glasses',
+                    ],
+                    [
+                        'image' => '/images/filters/glasses-hearts-2.png',
+                        'label' => 'Hearts Glasses',
+                    ],
+                    [
+                        'image' => '/images/filters/glasses-beers.png',
+                        'label' => 'Beer Glasses',
+                    ],
+                ],
+            ],
+            [
+                'id' => 'mustache',
+                'label' => 'Mustache',
+                'face_sticker' => 'mustache',
+                'emoji' => '👨',
+                'image' => '/images/filters/mustache.png',
+            ],
+            [
+                'id' => 'crown',
+                'label' => 'Crown',
+                'face_sticker' => 'crown',
+                'emoji' => '👑',
+            ],
+            [
+                'id' => 'raining_hearts',
+                'label' => 'Raining Hearts',
+                'face_sticker' => 'raining_hearts',
+                'emoji' => '💕',
+            ],
+            [
+                'id' => 'thought_bubble_face',
+                'label' => 'Thought Bubble',
+                'face_sticker' => 'thought_bubble',
+                'emoji' => '💭',
+                'image' => '/images/filters/thought-bubble.png',
+                'phrases' => [
+                    'Best day ever!',
+                    'So much love!',
+                    'Written in the stars ✨',
+                    'They finally did it!',
+                    'Party time!',
+                    'Goals 💕',
+                ],
+            ],
+            [
+                'id' => 'wedding_frame',
+                'label' => 'Wedding Frame',
+                'face_sticker' => 'wedding_frame',
+                'emoji' => '💐',
+            ],
+        ],
+        'photo_filters' => [
+            [
+                'id' => 'none',
+                'label' => 'No Sticker',
+                'emoji' => '✨',
+            ],
+            [
+                'id' => 'wedding_frame',
+                'label' => 'Wedding Frame',
+                'sticker' => 'wedding_frame',
+                'emoji' => '💐',
+            ],
+            [
+                'id' => 'couple_names',
+                'label' => 'Our Names',
+                'sticker' => 'couple_names',
+                'emoji' => '💍',
+            ],
+            [
+                'id' => 'thought_bubble',
+                'label' => 'Thought Bubble',
+                'sticker' => 'thought_bubble',
+                'emoji' => '💭',
+                'phrases' => [
+                    'Best day ever!',
+                    'So much love!',
+                    'Written in the stars ✨',
+                    'They finally did it!',
+                    'Tissue please 🥹',
+                    'Party time!',
+                    'Goals 💕',
+                    'Happy tears only',
+                    'This couple though!',
+                    'Forever starts today',
+                ],
+            ],
+            [
+                'id' => 'cheers',
+                'label' => 'Cheers!',
+                'sticker' => 'speech_bubble',
+                'text' => 'Cheers! 🥂',
+                'emoji' => '🥂',
+            ],
+            [
+                'id' => 'just_married',
+                'label' => 'Just Married',
+                'sticker' => 'just_married',
+                'emoji' => '💒',
+            ],
+            [
+                'id' => 'hearts',
+                'label' => 'Hearts',
+                'sticker' => 'hearts',
+                'emoji' => '💕',
+            ],
+            [
+                'id' => 'raining_hearts',
+                'label' => 'Raining Hearts',
+                'sticker' => 'raining_hearts',
+                'emoji' => '💖',
+            ],
+            [
+                'id' => 'tagline',
+                'label' => 'Written In The Stars',
+                'sticker' => 'tagline',
+                'emoji' => '⭐',
+            ],
+        ],
     ],
 
 ];
