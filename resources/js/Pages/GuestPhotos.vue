@@ -1,17 +1,16 @@
 <script setup>
-import { computed, onBeforeUnmount, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { useScrollReveal } from '@/composables/useScrollReveal';
 import {
     createFaceFilterContext,
     cycleCrownVariant,
     cycleGlassesVariant,
-    getCrownVariantLabel,
-    getGlassesVariantLabel,
     isCrownToggleable,
     isGlassesToggleable,
 } from '@/composables/useFaceStickers';
 import { createStickerContext, exportStickeredPhoto } from '@/composables/usePhotoStickers';
+import { getCameraSupportMessage } from '@/composables/useCameraSupport';
 import {
     getWeddingFrameVariantLabel,
     getWeddingFrameVariants,
@@ -19,7 +18,7 @@ import {
     setWeddingFrameVariant,
     toggleWeddingFrameVariant,
 } from '@/composables/useWeddingFrame';
-import PhotoFaceCamera from '@/Components/Wedding/PhotoFaceCamera.vue';
+import FaceCameraSession from '@/Components/Wedding/FaceCameraSession.vue';
 import PhotoStickerOverlay from '@/Components/Wedding/PhotoStickerOverlay.vue';
 import StarField from '@/Components/Wedding/StarField.vue';
 
@@ -51,7 +50,17 @@ const faceStickerContext = ref({});
 const fileInput = ref(null);
 const submitted = ref(false);
 const isExporting = ref(false);
+const isMobileViewport = ref(false);
+const cameraSupportMessage = ref('');
 const weddingFrameVariants = getWeddingFrameVariants();
+
+const updateMobileViewport = () => {
+    if (typeof window === 'undefined') {
+        return;
+    }
+
+    isMobileViewport.value = window.matchMedia('(max-width: 767px)').matches;
+};
 
 const form = useForm({
     photo: null,
@@ -69,10 +78,6 @@ const uploadRoute = computed(() => {
 
 const selectedFilter = computed(() => {
     return photoFilters.value.find((filter) => filter.id === selectedFilterId.value) ?? photoFilters.value[0];
-});
-
-const selectedFaceFilter = computed(() => {
-    return faceFilters.value.find((filter) => filter.id === selectedFaceFilterId.value) ?? faceFilters.value[0];
 });
 
 const weddingContext = computed(() => ({
@@ -105,6 +110,21 @@ const isCameraPhoto = computed(() => photoSource.value === 'camera');
 const showCamera = computed(() => photoSource.value === 'camera' && !previewUrl.value);
 const showSourcePicker = computed(() => !photoSource.value && !previewUrl.value);
 
+const lockBodyScroll = (locked) => {
+    if (typeof document === 'undefined') {
+        return;
+    }
+
+    document.body.style.overflow = locked ? 'hidden' : '';
+};
+
+watch(showCamera, (open) => {
+    const isMobile = typeof window !== 'undefined'
+        && window.matchMedia('(max-width: 767px)').matches;
+
+    lockBodyScroll(open && isMobile);
+});
+
 const setPhotoFromFile = (file, source) => {
     if (previewUrl.value) {
         URL.revokeObjectURL(previewUrl.value);
@@ -133,6 +153,14 @@ const onFileChange = (event) => {
 };
 
 const openCamera = () => {
+    const message = getCameraSupportMessage();
+
+    if (message) {
+        cameraSupportMessage.value = message;
+        return;
+    }
+
+    cameraSupportMessage.value = '';
     photoSource.value = 'camera';
     selectedFaceFilterId.value = 'none';
     faceStickerContext.value = {};
@@ -140,6 +168,7 @@ const openCamera = () => {
 };
 
 const openGallery = () => {
+    cameraSupportMessage.value = '';
     fileInput.value?.click();
 };
 
@@ -268,12 +297,23 @@ const submit = async () => {
 };
 
 onBeforeUnmount(() => {
+    if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', updateMobileViewport);
+    }
+
     if (previewUrl.value) {
         URL.revokeObjectURL(previewUrl.value);
     }
+
+    lockBodyScroll(false);
 });
 
 useScrollReveal();
+
+onMounted(() => {
+    updateMobileViewport();
+    window.addEventListener('resize', updateMobileViewport);
+});
 </script>
 
 <template>
@@ -438,10 +478,10 @@ useScrollReveal();
                         </div>
 
                         <div
-                            v-else-if="showCamera"
+                            v-else-if="showCamera && !isMobileViewport"
                             class="space-y-4"
                         >
-                            <PhotoFaceCamera
+                            <FaceCameraSession
                                 :face-filters="faceFilters"
                                 :selected-filter-id="selectedFaceFilterId"
                                 :sticker-context="faceStickerContext"
@@ -450,100 +490,20 @@ useScrollReveal();
                                 :wedding-frame-pavilion="weddingContext.weddingFramePavilion"
                                 :wedding-frame-elegant="weddingContext.weddingFrameElegant"
                                 :wedding-frame-botanical="weddingContext.weddingFrameBotanical"
+                                :wedding-frame-variants="weddingFrameVariants"
                                 @capture="onCameraCapture"
                                 @close="closeCamera"
+                                @select-filter="selectFaceFilter"
+                                @select-wedding-frame-variant="selectWeddingFrameVariant($event, 'camera')"
                             />
+                        </div>
 
-                            <div>
-                                <p class="mb-3 font-sans text-xs uppercase tracking-[0.15em] text-ivory/60">
-                                    Pick a Face Filter
-                                </p>
-                                <div class="flex gap-3 overflow-x-auto pb-1">
-                                    <button
-                                        v-for="filter in faceFilters"
-                                        :key="filter.id"
-                                        type="button"
-                                        class="group shrink-0 text-left"
-                                        @click="selectFaceFilter(filter.id)"
-                                    >
-                                        <div
-                                            class="relative flex h-16 w-16 items-center justify-center overflow-hidden border transition-colors sm:h-20 sm:w-20"
-                                            :class="selectedFaceFilterId === filter.id
-                                                ? 'border-gold-soft bg-gold-soft/10'
-                                                : 'border-white/15 bg-white/5 group-hover:border-white/40'"
-                                        >
-                                            <span
-                                                v-if="filter.id === 'none'"
-                                                class="font-sans text-[0.65rem] uppercase tracking-[0.12em] text-ivory/70"
-                                            >
-                                                None
-                                            </span>
-                                            <span
-                                                v-else
-                                                class="text-2xl sm:text-3xl"
-                                            >
-                                                {{ filter.emoji }}
-                                            </span>
-                                        </div>
-                                        <span
-                                            class="mt-2 block max-w-[4.5rem] truncate font-sans text-[0.625rem] uppercase tracking-[0.1em]"
-                                            :class="selectedFaceFilterId === filter.id ? 'text-gold-soft' : 'text-ivory/50'"
-                                        >
-                                            {{ filter.label }}
-                                        </span>
-                                    </button>
-                                </div>
-                                <p
-                                    v-if="selectedFaceFilter?.face_sticker === 'thought_bubble' && faceStickerContext.phrase"
-                                    class="mt-3 font-sans text-sm text-ivory/55"
-                                >
-                                    "{{ faceStickerContext.phrase }}" — tap again for a new one
-                                </p>
-                                <div
-                                    v-else-if="selectedFaceFilter?.face_sticker === 'wedding_frame'"
-                                    class="mt-3 space-y-3"
-                                >
-                                    <p class="font-sans text-sm text-ivory/55">
-                                        Frame style — tap 💐 again to cycle, or pick one:
-                                    </p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <button
-                                            v-for="variant in weddingFrameVariants"
-                                            :key="variant"
-                                            type="button"
-                                            class="border px-3 py-1.5 font-sans text-[0.65rem] uppercase tracking-[0.1em] transition-colors"
-                                            :class="(faceStickerContext.weddingFrameVariant ?? 'classic') === variant
-                                                ? 'border-gold-soft bg-gold-soft/15 text-gold-soft'
-                                                : 'border-white/15 text-ivory/55 hover:border-white/35 hover:text-ivory'"
-                                            @click="selectWeddingFrameVariant(variant, 'camera')"
-                                        >
-                                            {{ getWeddingFrameVariantLabel(variant) }}
-                                        </button>
-                                    </div>
-                                </div>
-                                <p
-                                    v-else-if="selectedFaceFilter?.face_sticker === 'glasses' && isGlassesToggleable(selectedFaceFilter)"
-                                    class="mt-3 font-sans text-sm text-ivory/55"
-                                >
-                                    {{
-                                        getGlassesVariantLabel(
-                                            selectedFaceFilter,
-                                            faceStickerContext.glassesVariantIndex ?? 0,
-                                        )
-                                    }} — tap again for the next style
-                                </p>
-                                <p
-                                    v-else-if="selectedFaceFilter?.face_sticker === 'crown' && isCrownToggleable(selectedFaceFilter)"
-                                    class="mt-3 font-sans text-sm text-ivory/55"
-                                >
-                                    {{
-                                        getCrownVariantLabel(
-                                            selectedFaceFilter,
-                                            faceStickerContext.crownVariantIndex ?? 0,
-                                        )
-                                    }} — tap again for the next style
-                                </p>
-                            </div>
+                        <div
+                            v-else-if="showCamera && isMobileViewport"
+                            class="sr-only"
+                            aria-hidden="true"
+                        >
+                            Camera open
                         </div>
 
                         <div
@@ -582,6 +542,13 @@ useScrollReveal();
                                 @change="onFileChange"
                             >
                         </div>
+
+                        <p
+                            v-if="cameraSupportMessage"
+                            class="mt-3 border border-amber-400/30 bg-amber-400/10 p-4 font-sans text-sm leading-relaxed text-amber-100"
+                        >
+                            {{ cameraSupportMessage }}
+                        </p>
 
                         <p v-if="form.errors.photo" class="mt-2 text-sm text-red-400">
                             {{ form.errors.photo }}
@@ -651,4 +618,42 @@ useScrollReveal();
             </div>
         </div>
     </div>
+
+    <Teleport to="body">
+        <div
+            v-if="showCamera && isMobileViewport"
+            class="camera-fullscreen-mobile"
+        >
+            <FaceCameraSession
+                fill-viewport
+                :face-filters="faceFilters"
+                :selected-filter-id="selectedFaceFilterId"
+                :sticker-context="faceStickerContext"
+                :wedding-frame="weddingContext.weddingFrame"
+                :wedding-frame-overlay="weddingContext.weddingFrameOverlay"
+                :wedding-frame-pavilion="weddingContext.weddingFramePavilion"
+                :wedding-frame-elegant="weddingContext.weddingFrameElegant"
+                :wedding-frame-botanical="weddingContext.weddingFrameBotanical"
+                :wedding-frame-variants="weddingFrameVariants"
+                @capture="onCameraCapture"
+                @close="closeCamera"
+                @select-filter="selectFaceFilter"
+                @select-wedding-frame-variant="selectWeddingFrameVariant($event, 'camera')"
+            />
+        </div>
+    </Teleport>
 </template>
+
+<style scoped>
+.camera-fullscreen-mobile {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100dvh;
+    background: #05060f;
+    overflow: hidden;
+}
+</style>

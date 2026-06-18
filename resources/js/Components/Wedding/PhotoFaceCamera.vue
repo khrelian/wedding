@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { detectFaceLandmarks, getFaceLandmarker } from '@/composables/useFaceLandmarker';
 import { createFaceFilterContext, drawFaceSticker, preloadFaceStickerImages } from '@/composables/useFaceStickers';
 import { resetRainingHearts } from '@/composables/useRainingHearts';
+import { getCameraSupportMessage } from '@/composables/useCameraSupport';
 import { drawWeddingFrameSync, isWeddingFrameSticker, preloadWeddingFrameImages, resolveActiveWeddingFrameConfig } from '@/composables/useWeddingFrame';
 
 const props = defineProps({
@@ -37,6 +38,10 @@ const props = defineProps({
     weddingFrameBotanical: {
         type: Object,
         default: () => ({}),
+    },
+    fillViewport: {
+        type: Boolean,
+        default: false,
     },
 });
 
@@ -190,8 +195,10 @@ const initialize = async () => {
     errorMessage.value = '';
 
     try {
-        if (!navigator.mediaDevices?.getUserMedia) {
-            throw new Error('Camera is not supported in this browser.');
+        const cameraSupportMessage = getCameraSupportMessage();
+
+        if (cameraSupportMessage) {
+            throw new Error(cameraSupportMessage);
         }
 
         await preloadFaceStickerImages(props.faceFilters);
@@ -287,8 +294,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="face-camera">
-        <div class="face-camera-stage border border-white/10">
+    <div class="face-camera" :class="{ 'face-camera--fill': fillViewport }">
+        <div class="face-camera-stage" :class="{ 'face-camera-stage--fill': fillViewport }">
             <video
                 ref="videoRef"
                 class="sr-only"
@@ -355,11 +362,30 @@ onBeforeUnmount(() => {
     gap: 1rem;
 }
 
+.face-camera--fill {
+    flex: 1;
+    min-height: 0;
+    gap: 0.75rem;
+}
+
+.face-camera--fill .face-camera-shutter {
+    flex-shrink: 0;
+    margin: 0 1rem;
+}
+
 .face-camera-stage {
     position: relative;
     overflow: hidden;
     background: #05060f;
     aspect-ratio: 1 / 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.face-camera-stage--fill {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 0;
+    border: none;
 }
 
 .face-camera-canvas {
@@ -382,14 +408,20 @@ onBeforeUnmount(() => {
     position: absolute;
     right: 0.75rem;
     top: 0.75rem;
+    z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(11, 16, 38, 0.8);
-    padding: 0.35rem 0.7rem;
+    padding: 0.5rem 0.85rem;
     font-family: Inter, system-ui, sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #f8f5f0;
+}
+
+.face-camera-stage--fill .face-camera-close {
+    top: max(0.75rem, env(safe-area-inset-top));
+    right: max(0.75rem, env(safe-area-inset-right));
 }
 
 .face-camera-hint {
