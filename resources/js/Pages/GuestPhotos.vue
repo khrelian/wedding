@@ -4,8 +4,11 @@ import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { useScrollReveal } from '@/composables/useScrollReveal';
 import {
     createFaceFilterContext,
+    cycleCrownVariant,
     cycleGlassesVariant,
+    getCrownVariantLabel,
     getGlassesVariantLabel,
+    isCrownToggleable,
     isGlassesToggleable,
 } from '@/composables/useFaceStickers';
 import { createStickerContext, exportStickeredPhoto } from '@/composables/usePhotoStickers';
@@ -180,6 +183,14 @@ const selectFaceFilter = (filterId) => {
 
     if (filterId === selectedFaceFilterId.value && isGlassesToggleable(filter)) {
         faceStickerContext.value = cycleGlassesVariant(
+            faceStickerContext.value,
+            filter.images.length,
+        );
+        return;
+    }
+
+    if (filterId === selectedFaceFilterId.value && isCrownToggleable(filter)) {
+        faceStickerContext.value = cycleCrownVariant(
             faceStickerContext.value,
             filter.images.length,
         );
@@ -518,6 +529,17 @@ useScrollReveal();
                                         getGlassesVariantLabel(
                                             selectedFaceFilter,
                                             faceStickerContext.glassesVariantIndex ?? 0,
+                                        )
+                                    }} — tap again for the next style
+                                </p>
+                                <p
+                                    v-else-if="selectedFaceFilter?.face_sticker === 'crown' && isCrownToggleable(selectedFaceFilter)"
+                                    class="mt-3 font-sans text-sm text-ivory/55"
+                                >
+                                    {{
+                                        getCrownVariantLabel(
+                                            selectedFaceFilter,
+                                            faceStickerContext.crownVariantIndex ?? 0,
                                         )
                                     }} — tap again for the next style
                                 </p>

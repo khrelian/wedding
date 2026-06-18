@@ -8,9 +8,7 @@ const DEFAULT_CROWN_IMAGE = '/images/filters/crown.png';
 const stickerImages = {
     mustache: null,
     mustacheCrop: null,
-    crown: null,
-    crownCrop: null,
-    crownBaseY: 1,
+    crowns: [],
     glasses: [],
 };
 
@@ -144,7 +142,8 @@ export async function preloadFaceStickerImages(faceFilters = []) {
     const mustacheFilter = faceFilters.find((filter) => filter.face_sticker === 'mustache');
     const mustacheUrl = mustacheFilter?.image ?? DEFAULT_MUSTACHE_IMAGE;
     const crownFilter = faceFilters.find((filter) => filter.face_sticker === 'crown');
-    const crownUrl = crownFilter?.image ?? DEFAULT_CROWN_IMAGE;
+    const crownUrls = crownFilter?.images?.map((variant) => variant.image)
+        ?? (crownFilter?.image ? [crownFilter.image] : [DEFAULT_CROWN_IMAGE]);
     const thoughtFilter = faceFilters.find((filter) => filter.face_sticker === 'thought_bubble');
     const thoughtUrl = thoughtFilter?.image ?? undefined;
     const glassesFilter = faceFilters.find((filter) => filter.face_sticker === 'glasses');
@@ -175,14 +174,21 @@ export async function preloadFaceStickerImages(faceFilters = []) {
         stickerImages.mustacheCrop = null;
     }
 
-    try {
-        stickerImages.crown = await loadImage(crownUrl);
-        stickerImages.crownCrop = detectImageCrop(stickerImages.crown);
-        stickerImages.crownBaseY = detectCrownBaseY(stickerImages.crown, stickerImages.crownCrop);
-    } catch {
-        stickerImages.crown = null;
-        stickerImages.crownCrop = null;
-        stickerImages.crownBaseY = 1;
+    stickerImages.crowns = [];
+
+    for (const url of crownUrls) {
+        try {
+            const image = await loadImage(url);
+            const crop = detectImageCrop(image);
+
+            stickerImages.crowns.push({
+                image,
+                crop,
+                baseY: detectCrownBaseY(image, crop),
+            });
+        } catch {
+            // Skip variants that fail to load.
+        }
     }
 
     try {
@@ -421,35 +427,40 @@ function drawMustache(ctx, landmarks, width, height, mirrored = false) {
     ctx.restore();
 }
 
-function drawCrown(ctx, landmarks, width, height, mirrored = false) {
+function drawCrown(ctx, landmarks, width, height, filter, stickerContext = {}, mirrored = false) {
     const forehead = point(landmarks, 10, width, height, mirrored);
     const leftTemple = point(landmarks, 234, width, height, mirrored);
     const rightTemple = point(landmarks, 454, width, height, mirrored);
     const headWidth = distance(leftTemple, rightTemple);
-    const headAngle = Math.atan2(
-        rightTemple.y - leftTemple.y,
-        rightTemple.x - leftTemple.x,
-    );
+    const variantIndex = stickerContext.crownVariantIndex ?? 0;
+    const crownAsset = stickerImages.crowns[variantIndex] ?? stickerImages.crowns[0];
 
-    if (stickerImages.crown && stickerImages.crownCrop) {
-        const crop = stickerImages.crownCrop;
+    if (crownAsset?.image) {
+        const crop = crownAsset.crop;
         const drawWidth = headWidth * 1.2;
         const drawHeight = drawWidth / (crop.width / crop.height);
-        const baseY = stickerImages.crownBaseY ?? 0.98;
+        const baseY = crownAsset.baseY ?? 0.98;
+        const screenLeft = leftTemple.x <= rightTemple.x ? leftTemple : rightTemple;
+        const screenRight = leftTemple.x <= rightTemple.x ? rightTemple : leftTemple;
+        const headAngle = Math.atan2(
+            screenRight.y - screenLeft.y,
+            screenRight.x - screenLeft.x,
+        );
+        const bottomInset = drawHeight * (1 - baseY);
 
         ctx.save();
-        ctx.translate(forehead.x, forehead.y + headWidth * 0.02);
+        ctx.translate(forehead.x, forehead.y);
         ctx.rotate(headAngle);
         ctx.drawImage(
-            stickerImages.crown,
+            crownAsset.image,
             crop.x,
             crop.y,
             crop.width,
             crop.height,
             -drawWidth / 2,
-            -drawHeight * baseY,
+            bottomInset,
             drawWidth,
-            drawHeight,
+            -drawHeight,
         );
         ctx.restore();
 
@@ -497,6 +508,10 @@ export function createGlassesStickerContext() {
     return { glassesVariantIndex: 0 };
 }
 
+export function createCrownStickerContext() {
+    return { crownVariantIndex: 0 };
+}
+
 export function cycleGlassesVariant(context = {}, variantCount) {
     if (variantCount <= 1) {
         return context;
@@ -514,7 +529,28 @@ export function isGlassesToggleable(filter) {
     return filter?.face_sticker === 'glasses' && (filter.images?.length ?? 0) > 1;
 }
 
+export function cycleCrownVariant(context = {}, variantCount) {
+    if (variantCount <= 1) {
+        return context;
+    }
+
+    const current = context.crownVariantIndex ?? 0;
+
+    return {
+        ...context,
+        crownVariantIndex: (current + 1) % variantCount,
+    };
+}
+
+export function isCrownToggleable(filter) {
+    return filter?.face_sticker === 'crown' && (filter.images?.length ?? 0) > 1;
+}
+
 export function getGlassesVariantLabel(filter, variantIndex = 0) {
+    return filter?.images?.[variantIndex]?.label ?? `Style ${variantIndex + 1}`;
+}
+
+export function getCrownVariantLabel(filter, variantIndex = 0) {
     return filter?.images?.[variantIndex]?.label ?? `Style ${variantIndex + 1}`;
 }
 
@@ -538,6 +574,10 @@ export function createFaceFilterContext(filter) {
 
     if (filter.face_sticker === 'glasses') {
         return createGlassesStickerContext();
+    }
+
+    if (filter.face_sticker === 'crown') {
+        return createCrownStickerContext();
     }
 
     return {};
@@ -572,7 +612,7 @@ export function drawFaceSticker(ctx, landmarks, filter, stickerContext, width, h
         drawMustache(ctx, landmarks, width, height, mirrored);
         break;
     case 'crown':
-        drawCrown(ctx, landmarks, width, height, mirrored);
+        drawCrown(ctx, landmarks, width, height, filter, stickerContext, mirrored);
         break;
     case 'thought_bubble':
         drawThoughtBubbleForFace(

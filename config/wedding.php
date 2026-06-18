@@ -562,7 +562,16 @@ return [
                 'label' => 'Crown',
                 'face_sticker' => 'crown',
                 'emoji' => '👑',
-                'image' => '/images/filters/crown.png',
+                'images' => [
+                    [
+                        'image' => '/images/filters/crown.png',
+                        'label' => 'Royal Crown',
+                    ],
+                    [
+                        'image' => '/images/filters/crown-variant.png',
+                        'label' => 'Rose Tiara',
+                    ],
+                ],
             ],
             [
                 'id' => 'raining_hearts',
