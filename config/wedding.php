@@ -562,6 +562,7 @@ return [
                 'label' => 'Crown',
                 'face_sticker' => 'crown',
                 'emoji' => '👑',
+                'image' => '/images/filters/crown.png',
             ],
             [
                 'id' => 'raining_hearts',

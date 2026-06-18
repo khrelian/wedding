@@ -3,10 +3,14 @@ import { createWeddingFrameStickerContext } from '@/composables/useWeddingFrame'
 import { drawRainingHearts } from '@/composables/useRainingHearts';
 
 const DEFAULT_MUSTACHE_IMAGE = '/images/filters/mustache.png';
+const DEFAULT_CROWN_IMAGE = '/images/filters/crown.png';
 
 const stickerImages = {
     mustache: null,
     mustacheCrop: null,
+    crown: null,
+    crownCrop: null,
+    crownBaseY: 1,
     glasses: [],
 };
 
@@ -98,6 +102,29 @@ function detectGlassesBridgeY(image, crop) {
     return Math.min(0.68, Math.max(0.34, (bridgeRow + height * 0.02) / height));
 }
 
+function detectCrownBaseY(image, crop) {
+    const canvas = document.createElement('canvas');
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(image, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
+
+    const { data, width, height } = ctx.getImageData(0, 0, crop.width, crop.height);
+    const searchStart = Math.floor(width * 0.2);
+    const searchEnd = Math.ceil(width * 0.8);
+
+    for (let y = height - 1; y >= 0; y--) {
+        for (let x = searchStart; x < searchEnd; x++) {
+            if (data[(y * width + x) * 4 + 3] > 20) {
+                return Math.min(1, (y + height * 0.01) / height);
+            }
+        }
+    }
+
+    return 0.98;
+}
+
 function averagePoints(points) {
     const total = points.reduce(
         (accumulator, current) => ({
@@ -116,6 +143,8 @@ function averagePoints(points) {
 export async function preloadFaceStickerImages(faceFilters = []) {
     const mustacheFilter = faceFilters.find((filter) => filter.face_sticker === 'mustache');
     const mustacheUrl = mustacheFilter?.image ?? DEFAULT_MUSTACHE_IMAGE;
+    const crownFilter = faceFilters.find((filter) => filter.face_sticker === 'crown');
+    const crownUrl = crownFilter?.image ?? DEFAULT_CROWN_IMAGE;
     const thoughtFilter = faceFilters.find((filter) => filter.face_sticker === 'thought_bubble');
     const thoughtUrl = thoughtFilter?.image ?? undefined;
     const glassesFilter = faceFilters.find((filter) => filter.face_sticker === 'glasses');
@@ -144,6 +173,16 @@ export async function preloadFaceStickerImages(faceFilters = []) {
     } catch {
         stickerImages.mustache = null;
         stickerImages.mustacheCrop = null;
+    }
+
+    try {
+        stickerImages.crown = await loadImage(crownUrl);
+        stickerImages.crownCrop = detectImageCrop(stickerImages.crown);
+        stickerImages.crownBaseY = detectCrownBaseY(stickerImages.crown, stickerImages.crownCrop);
+    } catch {
+        stickerImages.crown = null;
+        stickerImages.crownCrop = null;
+        stickerImages.crownBaseY = 1;
     }
 
     try {
@@ -387,6 +426,36 @@ function drawCrown(ctx, landmarks, width, height, mirrored = false) {
     const leftTemple = point(landmarks, 234, width, height, mirrored);
     const rightTemple = point(landmarks, 454, width, height, mirrored);
     const headWidth = distance(leftTemple, rightTemple);
+    const headAngle = Math.atan2(
+        rightTemple.y - leftTemple.y,
+        rightTemple.x - leftTemple.x,
+    );
+
+    if (stickerImages.crown && stickerImages.crownCrop) {
+        const crop = stickerImages.crownCrop;
+        const drawWidth = headWidth * 1.2;
+        const drawHeight = drawWidth / (crop.width / crop.height);
+        const baseY = stickerImages.crownBaseY ?? 0.98;
+
+        ctx.save();
+        ctx.translate(forehead.x, forehead.y + headWidth * 0.02);
+        ctx.rotate(headAngle);
+        ctx.drawImage(
+            stickerImages.crown,
+            crop.x,
+            crop.y,
+            crop.width,
+            crop.height,
+            -drawWidth / 2,
+            -drawHeight * baseY,
+            drawWidth,
+            drawHeight,
+        );
+        ctx.restore();
+
+        return;
+    }
+
     const crownWidth = headWidth * 1.05;
     const crownHeight = headWidth * 0.35;
     const baseY = forehead.y - headWidth * 0.08;
