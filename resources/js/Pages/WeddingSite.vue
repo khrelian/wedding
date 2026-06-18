@@ -62,7 +62,7 @@ useScrollReveal();
             <WhatToWearSection :wedding="wedding" />
             <ScheduleSection :wedding="wedding" />
             <RsvpSection :wedding="wedding" :invitee="invitee" />
-            <GallerySection v-if="wedding.features.gallery" :wedding="wedding" />
+            <GallerySection v-if="wedding.features.gallery" :wedding="wedding" :invitee="invitee" />
             <GuestbookSection v-if="wedding.features.guestbook" :wedding="wedding" />
             <TravelSection :wedding="wedding" />
             <FaqSection :wedding="wedding" />
