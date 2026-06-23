@@ -20,6 +20,10 @@ echo "📦 Running migrations..."
 cd /var/www/html
 php artisan migrate --force 2>&1 || echo "⚠️ Migrations failed or already run"
 
+# Link public/storage so uploaded files are web-accessible
+echo "🔗 Linking storage..."
+php artisan storage:link --force 2>&1 || echo "⚠️ Storage link failed or already exists"
+
 # Seed database
 echo "🌱 Seeding database..."
 php artisan db:seed --force --class=DatabaseSeeder 2>&1 || echo "⚠️ Seeding failed or already done"

@@ -42,7 +42,7 @@ class GuestPhoto extends Model
 
     public function getUrlAttribute(): string
     {
-        return Storage::disk('public')->url($this->path);
+        return asset('storage/'.$this->path);
     }
 
     public function getDisplayNameAttribute(): string
