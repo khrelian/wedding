@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Guest photo moderation
     Route::get('/guest-photos', [GuestPhotoController::class, 'index'])->name('guest-photos.index');
     Route::patch('/guest-photos/{guestPhoto}/approve', [GuestPhotoController::class, 'approve'])->name('guest-photos.approve');
+    Route::patch('/guest-photos/{guestPhoto}/reject', [GuestPhotoController::class, 'reject'])->name('guest-photos.reject');
     Route::delete('/guest-photos/{guestPhoto}', [GuestPhotoController::class, 'destroy'])->name('guest-photos.destroy');
     
     // Profile

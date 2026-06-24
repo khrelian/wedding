@@ -128,6 +128,13 @@ class GuestPhotoController extends Controller
         return redirect()->back()->with('success', 'Photo approved.');
     }
 
+    public function reject(GuestPhoto $guestPhoto): RedirectResponse
+    {
+        $guestPhoto->update(['approved' => false]);
+
+        return redirect()->back()->with('success', 'Photo hidden from the slideshow.');
+    }
+
     public function destroy(GuestPhoto $guestPhoto): RedirectResponse
     {
         $guestPhoto->delete();
