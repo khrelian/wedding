@@ -50,6 +50,8 @@ const emit = defineEmits(['capture', 'close']);
 const videoRef = ref(null);
 const canvasRef = ref(null);
 const isLoading = ref(true);
+const isLoadingFilters = ref(false);
+const loadingStatus = ref('Preparing camera...');
 const isCapturing = ref(false);
 const isSwitchingCamera = ref(false);
 const canSwitchCamera = ref(false);
@@ -93,7 +95,7 @@ const drawFrame = () => {
     const video = videoRef.value;
     const canvas = canvasRef.value;
 
-    if (!video || !canvas || !landmarker) {
+    if (!video || !canvas || video.readyState < 2) {
         animationFrame = requestAnimationFrame(drawFrame);
         return;
     }
@@ -104,7 +106,7 @@ const drawFrame = () => {
 
     context.clearRect(0, 0, width, height);
 
-    if (video.currentTime !== lastVideoTime) {
+    if (landmarker && video.currentTime !== lastVideoTime) {
         lastVideoTime = video.currentTime;
         lastLandmarks.value = detectFaceLandmarks(landmarker, video, performance.now());
         faceDetected.value = Boolean(lastLandmarks.value);
@@ -118,6 +120,11 @@ const drawFrame = () => {
         context.restore();
     } else {
         context.drawImage(video, 0, 0, width, height);
+    }
+
+    if (isLoadingFilters.value) {
+        animationFrame = requestAnimationFrame(drawFrame);
+        return;
     }
 
     const filter = selectedFilter();
@@ -156,6 +163,44 @@ const drawFrame = () => {
     }
 
     animationFrame = requestAnimationFrame(drawFrame);
+};
+
+const loadFilterAssets = async () => {
+    isLoadingFilters.value = true;
+    loadingStatus.value = 'Loading face filters...';
+
+    const [
+        ,
+        landmarkerResult,
+        classic,
+        overlay,
+        pavilion,
+        botanical,
+    ] = await Promise.all([
+        preloadFaceStickerImages(props.faceFilters),
+        getFaceLandmarker(),
+        preloadWeddingFrameImages(props.weddingFrame),
+        preloadWeddingFrameImages({
+            ...props.weddingFrameOverlay,
+            variant: 'overlay',
+        }),
+        preloadWeddingFrameImages({
+            ...props.weddingFramePavilion,
+            variant: 'pavilion',
+        }),
+        preloadWeddingFrameImages({
+            ...props.weddingFrameBotanical,
+            variant: 'botanical',
+        }),
+    ]);
+
+    landmarker = landmarkerResult;
+    classicFrameAssets = classic;
+    overlayFrameAssets = overlay;
+    pavilionFrameAssets = pavilion;
+    botanicalFrameAssets = botanical;
+    isLoadingFilters.value = false;
+    loadingStatus.value = '';
 };
 
 const startCamera = async (preferredFacingMode = null, strict = false) => {
@@ -276,6 +321,8 @@ const switchCamera = async () => {
 
 const initialize = async () => {
     isLoading.value = true;
+    isLoadingFilters.value = false;
+    loadingStatus.value = 'Allow camera access when prompted';
     errorMessage.value = '';
 
     try {
@@ -285,33 +332,21 @@ const initialize = async () => {
             throw new Error(cameraSupportMessage);
         }
 
-        await preloadFaceStickerImages(props.faceFilters);
-
-        landmarker = await getFaceLandmarker();
-
-        classicFrameAssets = await preloadWeddingFrameImages(props.weddingFrame);
-        overlayFrameAssets = await preloadWeddingFrameImages({
-            ...props.weddingFrameOverlay,
-            variant: 'overlay',
-        });
-        pavilionFrameAssets = await preloadWeddingFrameImages({
-            ...props.weddingFramePavilion,
-            variant: 'pavilion',
-        });
-        botanicalFrameAssets = await preloadWeddingFrameImages({
-            ...props.weddingFrameBotanical,
-            variant: 'botanical',
-        });
-
+        loadingStatus.value = 'Allow camera access when prompted';
         await startCamera();
         await detectSwitchSupport();
+
+        isLoading.value = false;
         animationFrame = requestAnimationFrame(drawFrame);
+
+        await loadFilterAssets();
     } catch (error) {
         errorMessage.value = error instanceof Error
             ? error.message
             : 'Unable to start the camera.';
     } finally {
         isLoading.value = false;
+        isLoadingFilters.value = false;
     }
 };
 
@@ -388,9 +423,15 @@ onBeforeUnmount(() => {
             />
 
             <div v-if="isLoading" class="face-camera-overlay">
-                <p class="font-sans text-sm uppercase tracking-[0.15em] text-ivory/70">
-                    Loading face filters...
-                </p>
+                <div class="face-camera-loading">
+                    <div class="face-camera-spinner" aria-hidden="true" />
+                    <p class="face-camera-loading-title">
+                        Opening Camera
+                    </p>
+                    <p class="face-camera-loading-status">
+                        {{ loadingStatus }}
+                    </p>
+                </div>
             </div>
 
             <div v-else-if="errorMessage" class="face-camera-overlay px-6 text-center">
@@ -432,7 +473,14 @@ onBeforeUnmount(() => {
             </button>
 
             <p
-                v-if="!isLoading && !errorMessage && selectedFilter()?.face_sticker && !isWeddingFrameSticker(selectedFilter()?.face_sticker)"
+                v-if="!isLoading && !errorMessage && isLoadingFilters"
+                class="face-camera-filter-loading"
+            >
+                {{ loadingStatus }}
+            </p>
+
+            <p
+                v-if="!isLoading && !errorMessage && selectedFilter()?.face_sticker && !isWeddingFrameSticker(selectedFilter()?.face_sticker) && !isLoadingFilters"
                 class="face-camera-hint"
                 :class="selectedFilter()?.face_sticker === 'raining_hearts' || faceDetected ? 'text-green-300/80' : 'text-ivory/45'"
             >
@@ -449,7 +497,7 @@ onBeforeUnmount(() => {
         <button
             type="button"
             class="face-camera-shutter"
-            :disabled="isLoading || Boolean(errorMessage) || isCapturing"
+            :disabled="isLoading || Boolean(errorMessage) || isCapturing || isLoadingFilters"
             @click="capturePhoto"
         >
             {{ isCapturing ? 'Saving...' : 'Capture Photo' }}
@@ -503,7 +551,62 @@ onBeforeUnmount(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(5, 6, 15, 0.82);
+    background: rgba(5, 6, 15, 0.92);
+}
+
+.face-camera-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    max-width: 16rem;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.face-camera-spinner {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #d4af37;
+    border-radius: 9999px;
+    animation: face-camera-spin 0.8s linear infinite;
+}
+
+.face-camera-loading-title {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f8f5f0;
+}
+
+.face-camera-loading-status {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(248, 245, 240, 0.72);
+}
+
+.face-camera-filter-loading {
+    position: absolute;
+    left: 50%;
+    bottom: 0.85rem;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(5, 6, 15, 0.78);
+    padding: 0.45rem 0.75rem;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(248, 245, 240, 0.72);
+}
+
+@keyframes face-camera-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .face-camera-close {

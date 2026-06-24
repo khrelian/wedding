@@ -11,6 +11,8 @@ import {
 } from '@/composables/useFaceStickers';
 import { createStickerContext, exportStickeredPhoto } from '@/composables/usePhotoStickers';
 import { getCameraSupportMessage } from '@/composables/useCameraSupport';
+import { getFaceLandmarker } from '@/composables/useFaceLandmarker';
+import { preloadFaceStickerImages } from '@/composables/useFaceStickers';
 import {
     getWeddingFrameVariantLabel,
     getWeddingFrameVariants,
@@ -167,6 +169,15 @@ const openCamera = () => {
     submitted.value = false;
 };
 
+const warmUpCameraAssets = () => {
+    if (getCameraSupportMessage()) {
+        return;
+    }
+
+    void getFaceLandmarker();
+    void preloadFaceStickerImages(faceFilters.value);
+};
+
 const openGallery = () => {
     cameraSupportMessage.value = '';
     fileInput.value?.click();
@@ -313,6 +324,7 @@ useScrollReveal();
 onMounted(() => {
     updateMobileViewport();
     window.addEventListener('resize', updateMobileViewport);
+    warmUpCameraAssets();
 });
 </script>
 
@@ -519,6 +531,9 @@ onMounted(() => {
                                 <span class="mt-3 font-display text-xl text-white">Face Camera</span>
                                 <span class="mt-2 font-sans text-sm text-ivory/50">
                                     Live filters that follow your face
+                                </span>
+                                <span class="mt-3 font-sans text-xs text-ivory/35">
+                                    Camera access will be requested when you open this
                                 </span>
                             </button>
 
