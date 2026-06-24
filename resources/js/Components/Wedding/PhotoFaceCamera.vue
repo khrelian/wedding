@@ -51,6 +51,9 @@ const videoRef = ref(null);
 const canvasRef = ref(null);
 const isLoading = ref(true);
 const isCapturing = ref(false);
+const isSwitchingCamera = ref(false);
+const canSwitchCamera = ref(false);
+const currentFacingMode = ref('user');
 const errorMessage = ref('');
 const faceDetected = ref(false);
 const lastLandmarks = ref(null);
@@ -155,19 +158,44 @@ const drawFrame = () => {
     animationFrame = requestAnimationFrame(drawFrame);
 };
 
-const startCamera = async () => {
-    const constraints = [
-        { video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 1280 } }, audio: false },
-        { video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 1280 } }, audio: false },
-        { video: true, audio: false },
-    ];
+const startCamera = async (preferredFacingMode = null, strict = false) => {
+    const idealVideo = (facingMode) => ({
+        video: {
+            facingMode,
+            width: { ideal: 1280 },
+            height: { ideal: 1280 },
+        },
+        audio: false,
+    });
+
+    const constraints = preferredFacingMode
+        ? [
+            idealVideo({ exact: preferredFacingMode }),
+            idealVideo(preferredFacingMode),
+            ...(strict ? [] : [{ video: true, audio: false }]),
+        ]
+        : [
+            idealVideo('user'),
+            idealVideo('environment'),
+            { video: true, audio: false },
+        ];
 
     let mediaStream = null;
+    let resolvedFacingMode = preferredFacingMode ?? 'user';
 
     for (const constraint of constraints) {
         try {
             mediaStream = await navigator.mediaDevices.getUserMedia(constraint);
-            mirrorPreview = Boolean(constraint.video?.facingMode === 'user');
+            const facingMode = constraint.video?.facingMode;
+
+            if (typeof facingMode === 'string') {
+                resolvedFacingMode = facingMode;
+            } else if (facingMode?.exact) {
+                resolvedFacingMode = facingMode.exact;
+            } else if (!preferredFacingMode) {
+                resolvedFacingMode = constraint.video === true ? 'user' : resolvedFacingMode;
+            }
+
             break;
         } catch {
             // Try the next camera configuration.
@@ -179,6 +207,8 @@ const startCamera = async () => {
     }
 
     stream = mediaStream;
+    currentFacingMode.value = resolvedFacingMode;
+    mirrorPreview = resolvedFacingMode === 'user';
 
     const video = videoRef.value;
     video.srcObject = stream;
@@ -188,6 +218,60 @@ const startCamera = async () => {
     const canvas = canvasRef.value;
     canvas.width = video.videoWidth || 720;
     canvas.height = video.videoHeight || 720;
+};
+
+const stopStream = () => {
+    if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+        stream = null;
+    }
+
+    if (videoRef.value) {
+        videoRef.value.srcObject = null;
+    }
+};
+
+const detectSwitchSupport = async () => {
+    if (!navigator.mediaDevices?.enumerateDevices) {
+        canSwitchCamera.value = isMobileDevice();
+        return;
+    }
+
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const videoInputs = devices.filter((device) => device.kind === 'videoinput');
+
+    canSwitchCamera.value = videoInputs.length > 1 || isMobileDevice();
+};
+
+const isMobileDevice = () => {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        || (navigator.maxTouchPoints > 0 && window.matchMedia('(max-width: 768px)').matches);
+};
+
+const switchCamera = async () => {
+    if (isSwitchingCamera.value || isLoading.value || errorMessage.value) {
+        return;
+    }
+
+    isSwitchingCamera.value = true;
+    lastLandmarks.value = null;
+    lastVideoTime = -1;
+    resetRainingHearts();
+
+    const nextFacingMode = currentFacingMode.value === 'user' ? 'environment' : 'user';
+
+    try {
+        stopStream();
+        await startCamera(nextFacingMode, true);
+    } catch {
+        try {
+            await startCamera(currentFacingMode.value, true);
+        } catch {
+            errorMessage.value = 'Unable to switch camera.';
+        }
+    } finally {
+        isSwitchingCamera.value = false;
+    }
 };
 
 const initialize = async () => {
@@ -220,6 +304,7 @@ const initialize = async () => {
         });
 
         await startCamera();
+        await detectSwitchSupport();
         animationFrame = requestAnimationFrame(drawFrame);
     } catch (error) {
         errorMessage.value = error instanceof Error
@@ -236,14 +321,7 @@ const stopCamera = () => {
         animationFrame = null;
     }
 
-    if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
-        stream = null;
-    }
-
-    if (videoRef.value) {
-        videoRef.value.srcObject = null;
-    }
+    stopStream();
 };
 
 const capturePhoto = async () => {
@@ -320,6 +398,30 @@ onBeforeUnmount(() => {
                     {{ errorMessage }}
                 </p>
             </div>
+
+            <button
+                v-if="!isLoading && !errorMessage && canSwitchCamera"
+                type="button"
+                class="face-camera-flip"
+                :disabled="isSwitchingCamera"
+                :aria-label="currentFacingMode === 'user' ? 'Switch to back camera' : 'Switch to front camera'"
+                @click="switchCamera"
+            >
+                <svg
+                    class="face-camera-flip-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16 3h5v5M4 21l5-5M21 8a9 9 0 00-15.5-2.5M3 16a9 9 0 0015.5 2.5"
+                    />
+                </svg>
+            </button>
 
             <button
                 type="button"
@@ -417,6 +519,42 @@ onBeforeUnmount(() => {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #f8f5f0;
+}
+
+.face-camera-flip {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    background: rgba(11, 16, 38, 0.8);
+    color: #f8f5f0;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.face-camera-flip:hover:not(:disabled) {
+    background: rgba(11, 16, 38, 0.95);
+}
+
+.face-camera-flip:disabled {
+    cursor: wait;
+    opacity: 0.55;
+}
+
+.face-camera-flip-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.face-camera-stage--fill .face-camera-flip {
+    top: max(0.75rem, env(safe-area-inset-top));
+    left: max(0.75rem, env(safe-area-inset-left));
 }
 
 .face-camera-stage--fill .face-camera-close {
