@@ -36,6 +36,7 @@ Make sure you have these variables set in Railway:
 APP_KEY=base64:oV//bzswl9Q05W0NaRC1grYCZIpjNwMHC8w/K4oFS/4=
 APP_ENV=production
 APP_DEBUG=false
+APP_URL=https://${{RAILWAY_PUBLIC_DOMAIN}}
 DB_CONNECTION=mysql
 DB_HOST=${{MySQL.MYSQLHOST}}
 DB_PORT=${{MySQL.MYSQLPORT}}
@@ -44,7 +45,18 @@ DB_USERNAME=${{MySQL.MYSQLUSER}}
 DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
 ```
 
-## 📋 Next Steps:
+## Guest photos: persistent storage (important)
+
+Railway containers use **ephemeral disk**. Uploaded photos in `storage/app/public` are **deleted on every redeploy** unless you attach a volume.
+
+1. In Railway, open your **web service** → **Volumes** → **Add Volume**
+2. Mount path: `/var/www/html/storage/app/public`
+3. Redeploy once
+
+Without a volume, the database still lists old photos but the image files are gone after redeploy. Re-upload or delete stale rows from **Guest Photos** in the admin.
+
+The app also serves `/storage/...` through Laravel when Apache cannot follow the `public/storage` symlink (fixed in `docker-entrypoint.sh`).
+
 
 1. **Wait for new deployment** (3-5 minutes)
 2. **Check deployment logs** - should see "Server running on..."

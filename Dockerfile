@@ -54,6 +54,16 @@ RUN sed -i 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf
 # Enable AllowOverride so .htaccess / Laravel routing works
 RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
+# Allow Apache to follow the public/storage symlink
+RUN printf '%s\n' \
+    '<Directory /var/www/html/public>' \
+    '    Options FollowSymLinks' \
+    '    AllowOverride All' \
+    '    Require all granted' \
+    '</Directory>' \
+    > /etc/apache2/conf-available/laravel-public.conf \
+    && a2enconf laravel-public
+
 # Run migrations and start Apache
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh

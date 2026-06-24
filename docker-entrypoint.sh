@@ -20,9 +20,14 @@ echo "📦 Running migrations..."
 cd /var/www/html
 php artisan migrate --force 2>&1 || echo "⚠️ Migrations failed or already run"
 
-# Link public/storage so uploaded files are web-accessible
+# Ensure upload directories exist and are writable by Apache
+echo "📁 Preparing storage..."
+mkdir -p storage/app/public/guest-photos
+chown -R www-data:www-data storage bootstrap/cache
+
+# Link public/storage as www-data so Apache can follow the symlink
 echo "🔗 Linking storage..."
-php artisan storage:link --force 2>&1 || echo "⚠️ Storage link failed or already exists"
+su -s /bin/bash www-data -c "cd /var/www/html && php artisan storage:link --force" 2>&1 || echo "⚠️ Storage link failed or already exists"
 
 # Seed database
 echo "🌱 Seeding database..."
