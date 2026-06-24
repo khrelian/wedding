@@ -202,6 +202,7 @@ const fetchPhotos = async () => {
         if (!incoming.length) {
             slides.value = [];
             currentIndex.value = 0;
+            stopAdvanceTimer();
             return;
         }
 
@@ -214,6 +215,8 @@ const fetchPhotos = async () => {
         } else if (currentIndex.value >= incoming.length) {
             currentIndex.value = incoming.length - 1;
         }
+
+        startAdvanceTimer();
     } catch {
         // Ignore transient network errors during polling.
     }
@@ -235,7 +238,7 @@ const togglePause = () => {
     isPaused.value = !isPaused.value;
 };
 
-watch([isPaused, hasPhotos, intervalSeconds], () => {
+watch([isPaused, () => slides.value.length, intervalSeconds], () => {
     startAdvanceTimer();
 });
 
@@ -245,6 +248,8 @@ watch(() => props.photos, (photos) => {
     if (currentIndex.value >= photos.length) {
         currentIndex.value = Math.max(0, photos.length - 1);
     }
+
+    startAdvanceTimer();
 });
 
 onMounted(() => {
