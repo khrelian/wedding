@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\InviteeController;
 use App\Http\Controllers\GuestPhotoController;
+use App\Http\Controllers\GiveawayController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,9 @@ Route::post('/photos/guest/{token}', [GuestPhotoController::class, 'storeGuest']
 Route::get('/slideshow', [GuestPhotoController::class, 'slideshow'])->name('photos.slideshow');
 Route::get('/slideshow/qrcode', [GuestPhotoController::class, 'slideshowQrCode'])->name('photos.slideshow.qrcode');
 Route::get('/slideshow/photos', [GuestPhotoController::class, 'slideshowPhotos'])->name('photos.slideshow.data');
+
+// Giveaway instructions
+Route::get('/giveaway/chibi', [GiveawayController::class, 'chibi'])->name('giveaway.chibi');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // RSVP Form (Admin)

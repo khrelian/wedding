@@ -495,6 +495,17 @@ return [
         'embers' => true,
         'guest_photos' => true,
         'slideshow' => true,
+        'giveaways' => true,
+    ],
+
+    'giveaways' => [
+        'chibi' => [
+            'title' => 'Build Your Own Chibi',
+            'kicker' => 'Wedding Giveaway',
+            'subtitle' => 'A little keepsake from our special day',
+            'poster_image' => '/images/giveaways/chibi-instructions.png',
+            'poster_alt' => 'Build Your Own Chibi giveaway instructions — choose a head, choose a body, and bring your choices to the keepsake station',
+        ],
     ],
 
     'guest_photos' => [
