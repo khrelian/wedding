@@ -8,6 +8,8 @@
 
         <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512">
         <link rel="apple-touch-icon" href="/favicon.png">
+        <link rel="preload" href="/images/hero/ribbon-unwrap.png" as="image" type="image/png">
+        <link rel="preload" href="/images/hero/ribbon-tied-poster.png" as="image" type="image/png">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

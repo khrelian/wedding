@@ -996,9 +996,16 @@
     display: grid;
     place-items: center;
     overflow: hidden;
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 1.9s cubic-bezier(0.2, 0.65, 0.3, 1);
     background:
         radial-gradient(ellipse at var(--silver-shine-x, 52%) var(--silver-shine-y, 32%), rgba(255, 255, 255, 0.9), transparent 62%),
         linear-gradient(135deg, #b4b8bd, #f0f1f2 42%, #c2c6ca 72%, #e6e8ea);
+}
+
+.gate-veil.is-open {
+    transform: scale(1.12);
 }
 
 .gate-veil::before,
@@ -1072,7 +1079,10 @@
     overflow: hidden;
     background: transparent;
     backface-visibility: hidden;
-    transition: transform 1.7s cubic-bezier(0.72, 0, 0.24, 1);
+    filter: drop-shadow(0 12px 10px rgba(37, 42, 48, 0.15));
+    transition:
+        transform 1.7s cubic-bezier(0.72, 0, 0.24, 1),
+        filter 1.7s cubic-bezier(0.72, 0, 0.24, 1);
 }
 
 .gate-leaf-left { left: 0; transform-origin: left center; }
@@ -1086,11 +1096,23 @@
     max-width: none;
     height: 100%;
     object-fit: fill;
+    filter:
+        brightness(1.035)
+        contrast(1.08)
+        drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.88))
+        drop-shadow(-1px -1px 0 rgba(35, 40, 46, 0.48))
+        drop-shadow(0 4px 5px rgba(31, 36, 42, 0.22));
     user-select: none;
 }
 .gate-leaf-left img { left: -41.2%; transform: scaleX(-1); }
-.gate-veil.is-open .gate-leaf-left { transform: rotateY(-108deg); }
-.gate-veil.is-open .gate-leaf-right { transform: rotateY(108deg); }
+.gate-veil.is-open .gate-leaf-left {
+    transform: rotateY(-108deg);
+    filter: drop-shadow(18px 8px 16px rgba(37, 42, 48, 0.34));
+}
+.gate-veil.is-open .gate-leaf-right {
+    transform: rotateY(108deg);
+    filter: drop-shadow(-18px 8px 16px rgba(37, 42, 48, 0.34));
+}
 
 .gate-open-button {
     position: absolute;
@@ -1121,8 +1143,40 @@
     font-style: italic;
     letter-spacing: 0.08em;
 }
-.gate-veil-leave-active { transition: opacity 0.65s ease; }
-.gate-veil-leave-to { opacity: 0; pointer-events: none; }
+.ribbon-poster,
+.ribbon-overlay {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    display: block;
+    /* The source still has transparent side margins: its red band occupies ~65% of the PNG. */
+    width: min(118vw, 52.5rem);
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 7px rgba(35, 39, 44, 0.24));
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+.ribbon-poster { opacity: 1; }
+.ribbon-overlay { animation: ribbon-unwrap-fall 2.65s cubic-bezier(0.42, 0, 0.78, 0.32) both; }
+@keyframes ribbon-unwrap-fall {
+    0%, 42% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+    52% { opacity: 1; transform: translate(calc(-50% + 0.35rem), calc(-50% + 3vh)) rotate(2deg); }
+    100% { opacity: 0; transform: translate(calc(-50% - 1rem), 115vh) rotate(-12deg); }
+}
+.gate-veil-leave-active {
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.gate-veil-leave-to {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.24);
+}
 
 .silver-wedding .hero-scroll-hint { color: var(--silver-ink-soft); }
 .silver-bottom-nav {
@@ -1198,6 +1252,8 @@
     .gate-veil::before { width: 80vw; height: 80vw; }
     .gate-veil::after { width: 70vw; height: 70vw; }
     .iron-gate { width: min(92vw, 30rem); height: min(84vh, 48rem); min-height: 0; }
+    .ribbon-poster,
+    .ribbon-overlay { width: min(142vw, 46.5rem); }
     .gate-paper-card { width: 63vw; min-height: 52vh; }
     .gate-open-button { bottom: 12%; }
     .gate-instruction { bottom: 8.8%; }

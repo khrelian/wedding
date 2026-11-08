@@ -9,9 +9,14 @@ const props = defineProps({
 
 const gateOpened = ref(false);
 const gateDismissed = ref(false);
+const ribbonPlaying = ref(false);
 const musicAudio = ref(null);
 const musicIsPlaying = ref(false);
+const ribbonDurationMs = 2650;
+const gateOpenDelayMs = 650;
 let gateTimer;
+let gateOpenTimer;
+let ribbonTimer;
 let orientationEnabled = false;
 
 const setShinePosition = (x, y) => {
@@ -70,14 +75,30 @@ const toggleMusic = () => {
 };
 
 const openGate = () => {
-    if (gateOpened.value) return;
-    gateOpened.value = true;
+    if (gateOpened.value || ribbonPlaying.value) return;
+    ribbonPlaying.value = true;
+    gateOpenTimer = window.setTimeout(() => {
+        gateOpened.value = true;
+    }, gateOpenDelayMs);
     enableTiltShine();
     startMusic();
+};
+
+const openGateAfterRibbon = () => {
+    if (!ribbonPlaying.value) return;
+    window.clearTimeout(ribbonTimer);
+    window.clearTimeout(gateOpenTimer);
+    ribbonPlaying.value = false;
+    gateOpened.value = true;
     gateTimer = window.setTimeout(() => {
         gateDismissed.value = true;
         window.dispatchEvent(new Event('silver-gate-dismissed'));
     }, 1900);
+};
+
+const onRibbonLoaded = () => {
+    if (!ribbonPlaying.value || ribbonTimer) return;
+    ribbonTimer = window.setTimeout(openGateAfterRibbon, ribbonDurationMs);
 };
 
 onMounted(() => {
@@ -86,6 +107,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
     window.clearTimeout(gateTimer);
+    window.clearTimeout(gateOpenTimer);
+    window.clearTimeout(ribbonTimer);
     window.removeEventListener('pointermove', handlePointerMove);
     window.removeEventListener('deviceorientation', handleDeviceOrientation);
     document.documentElement.style.removeProperty('--silver-shine-x');
@@ -184,11 +207,29 @@ const padCountdown = (value) => String(value).padStart(2, '0');
                     </div>
                 </div>
 
-                <button type="button" class="gate-open-button" :disabled="gateOpened" @click="openGate">
-                    <span>{{ gateOpened ? 'Welcome' : 'Tap to open' }}</span>
+                <img
+                    v-if="!ribbonPlaying && !gateOpened"
+                    class="ribbon-poster"
+                    src="/images/hero/ribbon-tied-poster.png"
+                    alt=""
+                    aria-hidden="true"
+                    draggable="false"
+                >
+                <img
+                    v-if="ribbonPlaying"
+                    class="ribbon-overlay"
+                    src="/images/hero/ribbon-unwrap.png"
+                    alt=""
+                    aria-hidden="true"
+                    draggable="false"
+                    @load="onRibbonLoaded"
+                    @error="openGateAfterRibbon"
+                >
+                <button type="button" class="gate-open-button" :disabled="ribbonPlaying || gateOpened" @click="openGate">
+                    <span>{{ ribbonPlaying ? 'Untying the Ribbon' : (gateOpened ? 'Welcome' : 'Tap to Open') }}</span>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
                 </button>
-                <span class="gate-instruction">An invitation awaits</span>
+                <span class="gate-instruction">{{ ribbonPlaying ? 'A little moment before you enter' : 'An invitation awaits' }}</span>
             </div>
         </Transition>
 
