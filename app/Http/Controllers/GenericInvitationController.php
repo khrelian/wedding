@@ -64,14 +64,14 @@ class GenericInvitationController extends Controller
 
     public function downloadQrCode()
     {
-        $qrCode = QrCode::format('png')
+        $qrCode = QrCode::format('svg')
             ->size(800)
             ->margin(2)
             ->errorCorrection('H')
             ->generate(url('/'));
 
         return response($qrCode, 200)
-            ->header('Content-Type', 'image/png')
-            ->header('Content-Disposition', 'attachment; filename="generic-anniversary-rsvp-qr.png"');
+            ->header('Content-Type', 'image/svg+xml')
+            ->header('Content-Disposition', 'attachment; filename="generic-anniversary-rsvp-qr.svg"');
     }
 }

@@ -124,16 +124,16 @@ class InviteeController extends Controller
     {
         $url = $invitee->getSignedInvitationUrl();
         
-        $qrCode = QrCode::format('png')
+        $qrCode = QrCode::format('svg')
             ->size(400)
             ->margin(2)
             ->errorCorrection('H')
             ->generate($url);
 
-        $filename = 'qrcode-' . str($invitee->name)->slug() . '.png';
+        $filename = 'qrcode-' . str($invitee->name)->slug() . '.svg';
 
         return response($qrCode, 200)
-            ->header('Content-Type', 'image/png')
+            ->header('Content-Type', 'image/svg+xml')
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
