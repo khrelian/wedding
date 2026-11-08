@@ -59,7 +59,7 @@ defineProps({
             </div>
 
             <div class="mt-24">
-                <p class="scroll-reveal wedding-label mb-10 text-center">Constellation Timeline</p>
+                <p class="scroll-reveal wedding-label mb-10 text-center">A 25-Year Journey</p>
                 <div class="relative mx-auto max-w-4xl">
                     <div class="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-gold-soft/30 to-transparent md:block" />
                     <div

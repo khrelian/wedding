@@ -23,7 +23,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="RSVP - Elegant Starry Night Wedding" />
+    <Head title="RSVP — 25th Anniversary Celebration" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -44,11 +44,11 @@ const submit = () => {
                             <svg class="w-8 h-8 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"/>
                             </svg>
-                            <h3 class="text-2xl font-serif font-semibold text-amber-100">We hope you can join us under the stars!</h3>
+                            <h3 class="text-2xl font-serif font-semibold text-amber-100">Join us as we celebrate 25 years together!</h3>
                         </div>
                         <p class="text-amber-100/90">
                             Please let us know if you'll be able to attend our special night. 
-                            We can't wait to celebrate with you beneath the starry sky!
+                            We look forward to celebrating this special milestone with you!
                         </p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@ const submit = () => {
                                     v-model="form.song_request"
                                     type="text" 
                                     class="mt-1 block w-full rounded-md border-amber-200 shadow-sm focus:border-amber-500 focus:ring-amber-500 bg-white"
-                                    placeholder="What song will get you dancing under the stars?"
+                                placeholder="What song would you like to hear at the celebration?"
                                 >
                             </div>
 
@@ -145,25 +145,19 @@ const submit = () => {
                                 <svg class="w-5 h-5 text-amber-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"/>
                                 </svg>
-                                <span>Please RSVP by <strong class="text-amber-200">June 30, 2026</strong></span>
+                                <span>Kindly confirm by <strong class="text-amber-200">November 12, 2026</strong> so we can make the necessary arrangements.</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="w-5 h-5 text-amber-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"/>
                                 </svg>
-                                <span>Dress code: Elegant Evening Attire (think starry night elegance)</span>
+                                <span>Dress code: Ladies in baby pink or powder blue; gentlemen in a barong, khaki pants, and black leather shoes.</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="w-5 h-5 text-amber-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"/>
                                 </svg>
-                                <span><strong class="text-amber-200">Adults-Only Celebration:</strong> While we love your little ones, we would prefer to have an adults-only celebration. We hope you understand and can arrange childcare for the evening.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 text-amber-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847 1.417 8.156L12 18.896l-7.417 4.53L6 15.27 0 9.423l8.332-1.268z"/>
-                                </svg>
-                                <span>Questions? Contact us at <a href="mailto:karenkateseronay@gmail.com" class="text-amber-300 hover:text-amber-200 underline">karenkateseronay@gmail.com</a></span>
+                                <span>RSVP Contacts: <strong class="text-amber-200">Eunice Paton-og</strong> — <a href="tel:09937662797" class="text-amber-300 hover:text-amber-200 underline">09937662797</a>; <strong class="text-amber-200">Beng Lusida</strong> — <a href="tel:09763881213" class="text-amber-300 hover:text-amber-200 underline">09763881213</a>.</span>
                             </li>
                         </ul>
                     </div>
@@ -180,7 +174,7 @@ const submit = () => {
                         </h4>
                         <div class="bg-white/80 backdrop-blur-sm rounded-lg p-5 border border-amber-300/50">
                             <p class="text-slate-700 mb-3 leading-relaxed">
-                                Your presence at our wedding is the greatest gift we could ask for! 
+                                Your presence at this anniversary celebration is the greatest gift we could ask for!
                                 However, if you wish to honor us with a gift, we would be grateful for a cash contribution 
                                 to help us start our new journey together.
                             </p>

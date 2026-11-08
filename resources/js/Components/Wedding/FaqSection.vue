@@ -16,7 +16,7 @@ const openIndex = ref(0);
                     <p class="scroll-reveal wedding-label mb-4">Questions</p>
                     <h2 class="scroll-reveal wedding-heading">FAQ</h2>
                     <p class="scroll-reveal mt-6 wedding-body">
-                        Everything you need to know for a seamless celebration beneath the stars.
+                        Helpful details for celebrating this special 25-year milestone together.
                     </p>
                 </div>
 

@@ -1,7 +1,6 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import StarField from '@/Components/Wedding/StarField.vue';
 
 const props = defineProps({
     photos: {
@@ -271,7 +270,6 @@ onBeforeUnmount(() => {
     <Head :title="`${guestPhotos.slideshow_title} — ${wedding.couple.display_names}`" />
 
     <div class="relative min-h-screen overflow-hidden bg-midnight text-ivory">
-        <StarField />
         <div class="pointer-events-none absolute inset-0 hero-scrim hero-scrim-soft" aria-hidden="true" />
 
         <header class="relative z-30 flex flex-col gap-4 px-6 pt-8 pb-3 md:flex-row md:items-end md:justify-between md:px-10 md:pt-10">

@@ -4,7 +4,7 @@ Your wedding website now displays the official date and venue!
 
 ## 📅 Wedding Date
 
-**July 17, 2026**
+**December 8, 2026**
 
 ### Time Details (in config)
 - **Ceremony**: 3:00 PM (configurable)
@@ -33,7 +33,7 @@ Your wedding website now displays the official date and venue!
 **Save the Date Card:**
 ```
 Save the Date
-★ July 17, 2026 ★
+★ December 8, 2026 ★
 Butuan City Cathedral
 Under the Starry Sky
 ```
@@ -41,7 +41,7 @@ Under the Starry Sky
 **Ceremony Card:**
 ```
 ⭐ Ceremony
-July 17, 2026
+December 8, 2026
 Butuan City Cathedral
 Time to be announced
 ```
@@ -49,7 +49,7 @@ Time to be announced
 **Reception Card:**
 ```
 ⭐ Reception
-July 17, 2026
+December 8, 2026
 Venue to be announced
 Following the ceremony
 ```
@@ -57,7 +57,7 @@ Following the ceremony
 ### Configuration File (`config/wedding.php`)
 
 Updated with complete details:
-- Wedding date: July 17, 2026
+- Wedding date: December 8, 2026
 - Ceremony time: 3:00 PM (adjustable)
 - Reception time: 6:00 PM (adjustable)
 - Timezone: Asia/Manila
@@ -135,7 +135,7 @@ Your Name & Partner's Name
 
 ━━━━━━━━━━━━━━━━━━
 ★ Save the Date ★
-July 17, 2026
+December 8, 2026
 Butuan City Cathedral
 Under the Starry Sky
 ━━━━━━━━━━━━━━━━━━
@@ -146,7 +146,7 @@ Under the Starry Sky
 ### Event Details Section
 ```
 ★ Ceremony                    ★ Reception
-July 17, 2026                July 17, 2026
+December 8, 2026                December 8, 2026
 Butuan City Cathedral        Venue to be announced
 Time to be announced         Following the ceremony
 ```
@@ -159,7 +159,7 @@ All date and venue information is fully responsive and displays beautifully on m
 
 ### To Change the Date
 1. Edit `resources/js/Pages/Welcome.vue`
-2. Find "July 17, 2026" (appears 3 times)
+2. Find "December 8, 2026" (appears 3 times)
 3. Replace with your new date
 4. Run `npm run build` or `sail npm run build`
 
@@ -177,7 +177,7 @@ All date and venue information is fully responsive and displays beautifully on m
 ## 🌟 Suggested Enhancements
 
 ### 1. Countdown Timer
-Add a countdown to July 17, 2026:
+Add a countdown to December 8, 2026:
 
 ```vue
 <script setup>
@@ -235,7 +235,7 @@ To verify your updates:
    ```
 
 3. **Check these sections:**
-   - [ ] Save the Date card shows "July 17, 2026"
+   - [ ] Save the Date card shows "December 8, 2026"
    - [ ] Save the Date card shows "Butuan City Cathedral"
    - [ ] Ceremony card shows correct date
    - [ ] Ceremony card shows "Butuan City Cathedral"
@@ -262,4 +262,4 @@ To verify your updates:
 
 **Your wedding date and venue are now live on your website!** 📅⛪✨
 
-Guests can now mark their calendars for **July 17, 2026** at the beautiful **Butuan City Cathedral**!
+Guests can now mark their calendars for **December 8, 2026** at the beautiful **Butuan City Cathedral**!

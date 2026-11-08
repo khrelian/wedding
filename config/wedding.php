@@ -2,143 +2,126 @@
 
 return [
 
-    'tagline' => 'Written In The Stars',
+    'tagline' => 'Celebrating 25 Years Together',
 
     'couple' => [
         'partner1' => [
-            'name' => 'Ian Jay',
-            'full_name' => 'Ian Jay Broñola',
+            'name' => 'Joboy',
+            'full_name' => 'Joboy',
         ],
         'partner2' => [
-            'name' => 'Karen Kate',
-            'full_name' => 'Karen Kate Seronay',
+            'name' => 'Mimi',
+            'full_name' => 'Mimi',
         ],
-        'display_names' => 'Ian Jay & Karen Kate',
-        'hero_headline' => "We're Getting Married!",
+        'display_names' => 'Joboy & Mimi',
+        'hero_headline' => 'Celebrating 25 Years of Love',
     ],
 
     'date' => [
-        'ceremony' => '2026-07-17 14:00:00',
-        'reception' => '2026-07-17 16:00:00',
-        'display' => 'July 17, 2026',
-        'ceremony_time' => '2:00 PM',
-        'reception_time' => '4:00 PM',
+        'ceremony' => '2026-12-08 14:00:00',
+        'reception' => '2026-12-08 16:00:00',
+        'display' => 'December 8, 2026',
+        'ceremony_time' => '2:30 PM',
+        'reception_time' => '4:30 PM',
         'timezone' => 'Asia/Manila',
     ],
 
     'venue' => [
         'ceremony' => [
-            'name' => 'Sto. Niño Diocesan Shrine',
-            'address' => 'Libertad',
+            'name' => 'Saint Joseph Cathedral',
+            'address' => 'Ester Luna Street',
             'city' => 'Butuan City',
             'state' => 'Agusan del Norte',
             'country' => 'Philippines',
-            'note' => 'Afternoon ceremony at Sto. Niño Diocesan Shrine',
-            'google_maps_url' => 'https://maps.google.com/?q=Sto+Nino+Diocesan+Shrine+Libertad+Butuan+City',
+            'note' => 'Afternoon ceremony at Saint Joseph Cathedral',
+            'google_maps_url' => 'https://share.google/iNm1nJ0DAPESWu44S',
         ],
         'reception' => [
-            'name' => 'The Pavillion at Watergate',
-            'address' => 'Jose Rosales Ave.',
+            'name' => 'Almont Inland Resort',
+            'address' => 'J.C. Aquino Avenue, Barangay Imadejas',
             'city' => 'Butuan City',
             'state' => 'Agusan del Norte',
             'country' => 'Philippines',
             'note' => 'Drinks and snacks will be served.',
-            'google_maps_url' => 'https://maps.google.com/?q=The+Pavillion+at+Watergate+Butuan+City',
+            'google_maps_url' => 'https://maps.app.goo.gl/kc4s7VjWLKnY92Rq7',
         ],
     ],
 
     'story' => [
         'title' => 'Our Story',
         'image' => '/images/story/story.jpg',
-        'image_alt' => 'Ian Jay and Karen Kate',
-        'closing' => 'Now, under the same stars that brought us together, we begin our forever.',
+        'image_alt' => 'Joboy and Mimi',
+        'closing' => 'After 25 wonderful years, their story continues with the love of family and friends around them.',
         'paragraphs' => [
-            'Like celestial bodies guided by an invisible force, we were drawn to each other across the vast expanse of life. We weren\'t searching, yet somehow we found exactly what our hearts needed.',
-            'It was as if the universe had been quietly aligning stars, preparing constellations, and weaving fate\'s delicate threads long before our paths crossed. The moment we met, it felt less like a beginning and more like a recognition— as though our souls had always known each other, waiting patiently for this lifetime to reunite.',
-            'In a world of endless searching, we discovered each other effortlessly. No grand plans, no deliberate pursuit—just two hearts guided by something greater, drawn together like stars destined to share the same sky.',
-            'What we have is rare and precious—a love that found us when we least expected it, proving that the most beautiful things in life aren\'t found by searching, but by being open to the magic that surrounds us.',
+            'For 25 years, they have shared a life built on love, patience, laughter, and devotion.',
+            'Through every season, they have supported one another and created a home filled with meaningful moments and cherished memories.',
+            'Now, surrounded by family and friends, they celebrate this remarkable milestone and the many years of love that brought them here.',
         ],
     ],
 
     'timeline' => [
         [
-            'year' => 'First Light',
-            'title' => 'When Paths Aligned',
-            'description' => 'Two souls recognized each other across the ordinary moments of everyday life—less a beginning than a reunion written long ago.',
+            'year' => 'The Beginning',
+            'title' => 'A Life Together',
+            'description' => 'They began building a life together, sharing the everyday moments that became treasured memories.',
         ],
         [
-            'year' => 'Constellation',
-            'title' => 'Building Our Universe',
-            'description' => 'Through laughter, patience, and quiet devotion, our connection grew into something steady and luminous—like stars finding their place in the same sky.',
+            'year' => 'Through the Years',
+            'title' => 'Growing Together',
+            'description' => 'Through laughter, patience, and devotion, their partnership grew stronger with every passing year.',
         ],
         [
             'year' => '2026',
-            'title' => 'Written In The Stars',
-            'description' => 'Under the same celestial canopy that guided us together, we begin the next chapter of our forever.',
+            'title' => '25 Years',
+            'description' => 'Today, they celebrate 25 years of love and look forward to all the memories still to come.',
         ],
     ],
 
-    'proposal' => [
-        'title' => 'The Proposal',
-        'subtitle' => 'A moment suspended in starlight',
-        'image' => '/images/proposal/proposal.jpg',
-        'image_alt' => 'The proposal',
-        'paragraphs' => [
-            'When the question was asked, time seemed to still— as if the universe itself held its breath. In that sacred pause, every star felt closer, every heartbeat more certain.',
-            'Surrounded by the quiet magic of the night sky, a promise was made: to choose each other again and again, through every season the heavens would bring.',
-        ],
-        'quote' => 'Some love stories are written in ink. Ours was written in the stars.',
-    ],
-
-    'schedule' => [
-        [
-            'time' => '1:30 PM',
-            'title' => 'Guest Arrival',
-            'description' => 'Guests will be seated inside the church.',
-        ],
-        [
-            'time' => '2:00 PM',
-            'title' => 'Ceremony',
-            'description' => 'Holy matrimony at Sto. Niño Diocesan Shrine.',
-        ],
-        [
-            'time' => '3:30 PM',
-            'title' => 'Photo Session',
-            'description' => 'Celebratory portraits with family and friends.',
-        ],
-        [
-            'time' => '4:00 PM',
-            'title' => 'Reception',
-            'description' => 'Drinks and snacks at The Pavillion at Watergate.',
-        ],
-    ],
+    // 'schedule' => [
+    //     [
+    //         'time' => '1:30 PM',
+    //         'title' => 'Guest Arrival',
+    //         'description' => 'Guests will be seated inside the church.',
+    //     ],
+    //     [
+    //         'time' => '2:00 PM',
+    //         'title' => 'Ceremony',
+    //         'description' => 'Holy matrimony at Saint Joseph Cathedral.',
+    //     ],
+    //     [
+    //         'time' => '3:30 PM',
+    //         'title' => 'Photo Session',
+    //         'description' => 'Celebratory portraits with family and friends.',
+    //     ],
+    //     [
+    //         'time' => '4:00 PM',
+    //         'title' => 'Reception',
+    //         'description' => 'Drinks and snacks at The Pavillion at Watergate.',
+    //     ],
+    // ],
 
     'dress_code' => [
         'title' => 'Dress Code',
-        'style' => 'Formal Attire',
-        'theme' => 'Written In The Stars',
-        'note' => 'Think elegant evening wear with celestial touches—shimmer, sparkle, and shine like the stars.',
+        'style' => 'Wedding Attire',
+        'theme' => 'Baby Pink, Powder Blue & Barong',
+        'note' => 'Please follow the attire and color guide for the celebration.',
         'ladies' => [
-            'Long gowns or cocktail dresses',
-            'Evening colors preferred',
-            'Navy, midnight blue, gold, silver',
+            'Baby pink or powder blue',
         ],
         'gentlemen' => [
-            'Barong Tagalog or suit & tie',
-            'Dark suits recommended',
-            'Navy, black, or charcoal',
+            'Barong',
+            'Khaki pants',
+            'Black leather shoes',
         ],
     ],
 
     'what_to_wear' => [
         'title' => 'What to Wear',
-        'subtitle' => 'Starry Night Dress Code',
-        'intro' => 'In harmony with our Starry Night celebration, guests are encouraged to wear deep midnight hues, black, navy, plum, silver, or gold.',
+        'subtitle' => 'Attire / Dress Code',
+        'intro' => 'We kindly invite our guests to follow the attire guide below.',
         'colors' => [
-            ['name' => 'Midnight Navy', 'hex' => '#0B1026'],
-            ['name' => 'Plum', 'hex' => '#6B3B6E'],
-            ['name' => 'Gold', 'hex' => '#D4AF37'],
-            ['name' => 'Silver', 'hex' => '#C5C5C5'],
+            ['name' => 'Baby Pink', 'hex' => '#F2B7C5'],
+            ['name' => 'Powder Blue', 'hex' => '#AFCBE8'],
         ],
     ],
 
@@ -258,22 +241,22 @@ return [
     ],
 
     'policies' => [
-        'adults_only' => [
-            'title' => 'An Adults-Only Celebration',
-            'body' => 'We adore your little ones, and we hope you understand that our celebration is reserved for adults only. We kindly ask that you make arrangements for childcare so you can relax, celebrate, and enjoy the evening to the fullest with us.',
-            'footnote' => 'Thank you for your understanding and cooperation.',
-        ],
-        'gifts' => [
-            'title' => 'A Note on Gifts',
-            'lead' => 'Your presence on our special day is already the greatest gift we could ask for.',
-            'body' => 'However, if you wish to bless us further, we kindly prefer cash gifts as we begin building our new life together. Your generosity will go a long way in helping us create a beautiful home and future.',
-            'footnote' => 'Thank you from the bottom of our hearts.',
-        ],
+        // 'adults_only' => [
+        //     'title' => 'An Adults-Only Celebration',
+        //     'body' => 'We adore your little ones, and we hope you understand that our celebration is reserved for adults only. We kindly ask that you make arrangements for childcare so you can relax, celebrate, and enjoy the evening to the fullest with us.',
+        //     'footnote' => 'Thank you for your understanding and cooperation.',
+        // ],
+        // 'gifts' => [
+        //     'title' => 'A Note on Gifts',
+        //     'lead' => 'Your presence on our special day is already the greatest gift we could ask for.',
+        //     'body' => 'However, if you wish to bless us further, we kindly prefer cash gifts as we begin building our new life together. Your generosity will go a long way in helping us create a beautiful home and future.',
+        //     'footnote' => 'Thank you from the bottom of our hearts.',
+        // ],
     ],
 
     'gallery' => [
         'title' => 'Gallery',
-        'subtitle' => 'Moments captured beneath the stars',
+        'subtitle' => 'A collection of cherished memories',
         'note' => 'Take a photo at the celebration and watch it appear on the live slideshow.',
         'upload_email' => 'karenkateseronay@gmail.com',
         'background_mosaic' => false,
@@ -379,7 +362,7 @@ return [
     'images' => [
         'hero' => [
             'background' => '/images/hero/hero.jpg',
-            'background_alt' => 'Starry night sky',
+            'background_alt' => 'Anniversary celebration',
             'ornament' => '/images/hero/ornament.png',
             'ornament_alt' => 'Celestial ornament',
         ],
@@ -387,64 +370,64 @@ return [
 
     'guestbook' => [
         'title' => 'Guestbook',
-        'subtitle' => 'Leave a constellation of well wishes',
-        'note' => 'Your warm wishes mean the world to us. Share your message when you RSVP, or send a note to our email.',
+        'subtitle' => 'Share your warm wishes',
+        'note' => 'Your warm wishes mean the world to us. Share your message when you RSVP or leave a note in our guestbook.',
         'entries' => [
             [
                 'name' => 'With Love',
-                'message' => 'May your love shine as brightly as the stars that brought you together.',
+                'message' => 'Wishing you many more years filled with love, laughter, and happiness.',
             ],
         ],
     ],
 
-    'travel' => [
-        'title' => 'Travel Information',
-        'subtitle' => 'Journey to Butuan City',
-        'sections' => [
-            [
-                'title' => 'Getting There',
-                'body' => 'Butuan City is accessible via Bancasi Airport (BXU). From Manila, direct and connecting flights are available through major carriers.',
-            ],
-            [
-                'title' => 'Local Transport',
-                'body' => 'Grab, taxis, and tricycles are readily available throughout the city. We recommend arranging transport to the ceremony venue in advance for a smooth arrival.',
-            ],
-            [
-                'title' => 'Where to Stay',
-                'body' => 'Several hotels and accommodations are available in downtown Butuan City, within a short drive of both ceremony and reception venues.',
-            ],
-        ],
-    ],
+    // 'travel' => [
+    //     'title' => 'Travel Information',
+    //     'subtitle' => 'Journey to Butuan City',
+    //     'sections' => [
+    //         [
+    //             'title' => 'Getting There',
+    //             'body' => 'Butuan City is accessible via Bancasi Airport (BXU). From Manila, direct and connecting flights are available through major carriers.',
+    //         ],
+    //         [
+    //             'title' => 'Local Transport',
+    //             'body' => 'Grab, taxis, and tricycles are readily available throughout the city. We recommend arranging transport to the ceremony venue in advance for a smooth arrival.',
+    //         ],
+    //         [
+    //             'title' => 'Where to Stay',
+    //             'body' => 'Several hotels and accommodations are available in downtown Butuan City, within a short drive of both ceremony and reception venues.',
+    //         ],
+    //     ],
+    // ],
 
-    'faq' => [
-        [
-            'question' => 'What time should I arrive?',
-            'answer' => 'Please arrive by 1:30 PM for the 2:00 PM ceremony at Sto. Niño Diocesan Shrine. Guests will be seated inside the church.',
-        ],
-        [
-            'question' => 'Is this an adults-only celebration?',
-            'answer' => 'Yes. We kindly request that guests arrange childcare so everyone can fully enjoy the celebration.',
-        ],
-        [
-            'question' => 'What should I wear?',
-            'answer' => 'Formal attire inspired by our Written In The Stars theme. Ladies in gowns or cocktail dresses; gentlemen in barong or dark suits.',
-        ],
-        [
-            'question' => 'Are children welcome?',
-            'answer' => 'We love your little ones, but we have chosen to keep our celebration intimate and adults-only, with the exception of our selected child participants in the entourage.',
-        ],
-        [
-            'question' => 'What about gifts?',
-            'answer' => 'Your presence is the greatest gift. If you wish to give more, we kindly prefer cash gifts as we begin our new life together.',
-        ],
-        [
-            'question' => 'How do I RSVP?',
-            'answer' => 'If you received a personalized invitation, use the RSVP link in your invitation. For questions, contact us at karenkateseronay@gmail.com.',
-        ],
-    ],
+    // 'faq' => [
+    //     [
+    //         'question' => 'What time should I arrive?',
+    //         'answer' => 'Please arrive by 1:30 PM for the 2:00 PM ceremony at Saint Joseph Cathedral. Guests will be seated inside the church.',
+    //     ],
+    //     [
+    //         'question' => 'Is this an adults-only celebration?',
+    //         'answer' => 'Yes. We kindly request that guests arrange childcare so everyone can fully enjoy the celebration.',
+    //     ],
+    //     [
+    //         'question' => 'What should I wear?',
+    //         'answer' => 'Ladies are kindly requested to wear baby pink or powder blue. Gentlemen are kindly requested to wear a barong, khaki pants, and black leather shoes.',
+    //     ],
+    //     [
+    //         'question' => 'Are children welcome?',
+    //         'answer' => 'We love your little ones, but we have chosen to keep our celebration intimate and adults-only, with the exception of our selected child participants in the entourage.',
+    //     ],
+    //     [
+    //         'question' => 'What about gifts?',
+    //         'answer' => 'Your presence is the greatest gift. If you wish to give more, we kindly prefer cash gifts as we begin our new life together.',
+    //     ],
+    //     [
+    //         'question' => 'How do I RSVP?',
+    //         'answer' => 'Please confirm by November 12, 2026. For RSVP assistance, contact Eunice Paton-og at 09937662797 or Beng Lusida at 09763881213.',
+    //     ],
+    // ],
 
     'contact' => [
-        'email' => 'karenkateseronay@gmail.com',
+        'email' => null,
         'phone' => null,
     ],
 
@@ -460,7 +443,12 @@ return [
 
     'rsvp' => [
         'enabled' => true,
-        'deadline' => '2026-06-30',
+        'deadline' => '2026-11-12',
+        'deadline_display' => 'November 12, 2026',
+        'contacts' => [
+            ['name' => 'Eunice Paton-og', 'phone' => '09937662797'],
+            ['name' => 'Beng Lusida', 'phone' => '09763881213'],
+        ],
         'max_guests_per_invite' => 10,
     ],
 
@@ -473,24 +461,17 @@ return [
     ],
 
     'navigation' => [
-        ['label' => 'Our Story', 'href' => '#story'],
-        ['label' => 'Proposal', 'href' => '#proposal'],
         ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Entourage', 'href' => '#entourage'],
         ['label' => 'Attire', 'href' => '#what-to-wear'],
         ['label' => 'Schedule', 'href' => '#schedule'],
         ['label' => 'RSVP', 'href' => '#rsvp'],
-        ['label' => 'Gallery', 'href' => '#gallery'],
         ['label' => 'Guestbook', 'href' => '#guestbook'],
         ['label' => 'Travel', 'href' => '#travel'],
-        ['label' => 'FAQ', 'href' => '#faq'],
     ],
 
     'features' => [
         'countdown' => true,
-        'gallery' => true,
         'guestbook' => true,
-        'entourage' => true,
         'promo' => true,
         'embers' => true,
         'guest_photos' => true,
@@ -518,8 +499,8 @@ return [
         'slideshow_refresh_seconds' => 20,
         'require_approval' => false,
         'wedding_frame' => [
-            'title' => 'Ian Jay &',
-            'name' => 'Karen Kate',
+            'title' => 'Joboy &',
+            'name' => 'Mimi',
             'date' => '17 | 07 | 2026',
             'floral_image' => '/images/filters/floral-border.png',
         ],
@@ -530,7 +511,7 @@ return [
             'overlay_image' => '/images/filters/wedding-frame-pavilion.png',
         ],
         'wedding_frame_elegant' => [
-            'names' => 'IAN JAY & KAREN KATE',
+            'names' => 'Joboy & Mimi',
             'date' => '07.17.2026',
             'text_color' => '#FFFFFF',
             'border_color' => '#FFFFFF',
@@ -599,7 +580,7 @@ return [
                 'phrases' => [
                     'Best day ever!',
                     'So much love!',
-                    'Written in the stars ✨',
+                    '25 years of love',
                     'They finally did it!',
                     'Party time!',
                     'Goals 💕',
@@ -638,7 +619,7 @@ return [
                 'phrases' => [
                     'Best day ever!',
                     'So much love!',
-                    'Written in the stars ✨',
+                    '25 years of love',
                     'They finally did it!',
                     'Tissue please 🥹',
                     'Party time!',
@@ -675,7 +656,7 @@ return [
             ],
             [
                 'id' => 'tagline',
-                'label' => 'Written In The Stars',
+                'label' => '25 Years of Love',
                 'sticker' => 'tagline',
                 'emoji' => '⭐',
             ],

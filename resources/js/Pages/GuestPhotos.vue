@@ -22,7 +22,6 @@ import {
 } from '@/composables/useWeddingFrame';
 import FaceCameraSession from '@/Components/Wedding/FaceCameraSession.vue';
 import PhotoStickerOverlay from '@/Components/Wedding/PhotoStickerOverlay.vue';
-import StarField from '@/Components/Wedding/StarField.vue';
 
 const props = defineProps({
     invitee: {
@@ -332,7 +331,6 @@ onMounted(() => {
     <Head :title="`${guestPhotos.upload_title} — ${wedding.couple.display_names}`" />
 
     <div class="relative min-h-screen overflow-x-hidden bg-midnight text-ivory">
-        <StarField />
 
         <div class="relative z-10 px-6 py-24 md:py-32">
             <div class="mx-auto max-w-2xl">

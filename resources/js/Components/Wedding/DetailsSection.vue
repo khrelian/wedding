@@ -14,6 +14,14 @@ defineProps({
 
             <div class="scroll-reveal wedding-divider" />
 
+            <div class="venue-sketch">
+                <img
+                    src="/images/venue/ceremony-house-sketch.png"
+                    alt="Illustration of the wedding venue"
+                    draggable="false"
+                >
+            </div>
+
             <div class="editorial-grid mx-auto mt-12 max-w-4xl">
                 <article class="scroll-reveal md:col-span-6">
                     <p class="wedding-label mb-4">Ceremony</p>

@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import StarField from '@/Components/Wedding/StarField.vue';
 
 const page = usePage();
 const wedding = computed(() => page.props.wedding);
@@ -12,7 +11,6 @@ const giveaway = computed(() => wedding.value.giveaways?.chibi ?? {});
     <Head :title="`${giveaway.title ?? 'Build Your Own Chibi'} — ${wedding.couple.display_names}`" />
 
     <div class="chibi-giveaway">
-        <StarField />
 
         <header class="chibi-giveaway-header">
             <div class="chibi-giveaway-header-copy">

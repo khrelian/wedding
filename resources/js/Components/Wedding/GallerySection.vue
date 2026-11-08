@@ -60,7 +60,7 @@ const ceremonyDate = computed(() => {
 });
 
 const backgroundLines = computed(() => {
-    const tagline = props.wedding?.tagline || 'Written In The Stars';
+    const tagline = props.wedding?.tagline || 'Celebrating 25 Years Together';
 
     return tagline.split(' ').reduce((lines, word, index, words) => {
         if (index % 2 === 0) {

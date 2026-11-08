@@ -20,7 +20,7 @@ defineProps({
             <p class="wedding-meta">
                 Made with care for our special day
             </p>
-            <p class="mt-4 wedding-meta">
+            <p v-if="wedding.contact.email" class="mt-4 wedding-meta">
                 <a :href="'mailto:' + wedding.contact.email" class="transition-colors hover:text-gold-soft">
                     {{ wedding.contact.email }}
                 </a>

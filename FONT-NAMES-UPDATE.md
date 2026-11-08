@@ -12,8 +12,8 @@ Updated your wedding website with simplified names and elegant script font!
 - Adjusted padding to `px-4` for consistent spacing
 
 ### 2. Simplified Names
-**Old**: Ian Jay Broñola & Karen Kate Seronay  
-**New**: **Ian Jay & Karen Kate**
+**Old**: Joboy & Mimi  
+**New**: **Joboy & Mimi**
 
 This makes the names:
 - ✨ More focused and elegant
@@ -26,7 +26,7 @@ This makes the names:
 **Great Vibes** - An elegant, flowing script font perfect for wedding names!
 
 ```
-Ian Jay & Karen Kate
+Joboy & Mimi
 ```
 
 The script font:
@@ -52,7 +52,7 @@ You now have 4 beautiful fonts:
 We're Getting Married!
     ↓ (font-display, large, bold)
 
-Ian Jay & Karen Kate
+Joboy & Mimi
     ↓ (font-script, extra large, flowing)
 
 July 17, 2026
@@ -64,7 +64,7 @@ Butuan City Cathedral
 
 ## Where Names Appear
 
-1. **Hero Section**: Large script font - `Ian Jay & Karen Kate`
+1. **Hero Section**: Large script font - `Joboy & Mimi`
 2. **Love Story Section**: Display font at the bottom with stars
 3. **Configuration**: Updated in `config/wedding.php`
 
@@ -85,7 +85,7 @@ Butuan City Cathedral
 - Medium: `text-6xl` (60px)
 - Large: `text-7xl` (72px)
 
-### "Ian Jay & Karen Kate"
+### "Joboy & Mimi"
 - Mobile: `text-4xl` (36px)
 - Small: `text-5xl` (48px)
 - Medium: `text-6xl` (60px)
@@ -119,7 +119,7 @@ If you want to use the script font elsewhere:
 
 ```vue
 <p class="font-script text-5xl text-amber-50">
-    Ian Jay & Karen Kate
+    Joboy & Mimi
 </p>
 ```
 
@@ -130,7 +130,7 @@ If you want to use the script font elsewhere:
 WE'RE GETTING MARRIED!
 (Playfair Display, huge)
 
-Ian Jay Broñola & Karen Kate Seronay
+Joboy & Mimi
 (Cormorant Garamond, medium)
 ```
 
@@ -139,7 +139,7 @@ Ian Jay Broñola & Karen Kate Seronay
 We're Getting Married!
 (Playfair Display, large)
 
-Ian Jay & Karen Kate
+Joboy & Mimi
 (Great Vibes script, large, flowing)
 ```
 
@@ -173,7 +173,7 @@ Great Vibes (400) ← NEW!
 The combination creates perfect visual hierarchy:
 
 1. **Attention** - "We're Getting Married!" (Display serif, bold)
-2. **Focus** - "Ian Jay & Karen Kate" (Script, romantic)
+2. **Focus** - "Joboy & Mimi" (Script, romantic)
 3. **Details** - Date, venue, etc. (Elegant serif/sans)
 
 This follows classic wedding invitation design principles!
@@ -191,7 +191,7 @@ Your changes are already live with the dev server!
 
 Visit **http://localhost** to see:
 - ✨ "G" no longer cut off
-- 💑 Beautiful "Ian Jay & Karen Kate" in script font
+- 💑 Beautiful "Joboy & Mimi" in script font
 - 🎨 Perfect hierarchy and spacing
 - 🌟 Elegant, romantic design
 

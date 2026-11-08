@@ -92,7 +92,7 @@ Body text content in clean, readable Montserrat
   We're Getting Married!
 </h1>
 <h2 class="font-elegant text-4xl">
-  Ian Jay Broñola & Karen Kate Seronay
+  Joboy & Mimi
 </h2>
 <p class="font-sans text-lg">
   Join us for our special day

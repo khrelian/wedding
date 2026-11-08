@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { useScrollReveal } from '@/composables/useScrollReveal';
-import StarField from '@/Components/Wedding/StarField.vue';
 
 const props = defineProps({
     invitee: Object,
@@ -36,8 +35,6 @@ useScrollReveal();
     <Head :title="`RSVP — ${wedding.couple.display_names}`" />
 
     <div class="relative min-h-screen overflow-x-hidden bg-midnight text-ivory">
-        <StarField />
-
         <div class="relative z-10 px-6 py-24 md:py-32">
             <div class="mx-auto max-w-2xl">
                 <div class="scroll-reveal text-center">
@@ -65,7 +62,7 @@ useScrollReveal();
                     <p class="mt-4 wedding-body">
                         {{
                             form.attendance === 'yes'
-                                ? "We're so excited to celebrate with you beneath the stars."
+                                ? "We're so excited to celebrate 25 years of love with you."
                                 : "We'll miss you, but we understand. Thank you for letting us know."
                         }}
                     </p>
@@ -125,7 +122,7 @@ useScrollReveal();
                                 v-model="form.song_request"
                                 type="text"
                                 class="w-full border border-white/10 bg-midnight px-4 py-3 font-sans text-ivory focus:border-gold-soft focus:ring-gold-soft"
-                                placeholder="What song will get you dancing under the stars?"
+                                placeholder="What song would you like to hear at the celebration?"
                             >
                         </div>
 
@@ -166,10 +163,13 @@ useScrollReveal();
                 </div>
 
                 <p class="scroll-reveal mt-10 text-center font-sans text-sm text-ivory/40">
-                    Questions?
-                    <a :href="'mailto:' + wedding.contact.email" class="text-gold-soft hover:text-white">
-                        {{ wedding.contact.email }}
-                    </a>
+                    RSVP Contacts:
+                    <span v-for="(contact, index) in wedding.rsvp.contacts" :key="contact.name">
+                        {{ contact.name }}
+                        <a :href="'tel:' + contact.phone" class="text-gold-soft hover:text-white">
+                            {{ contact.phone }}
+                        </a><span v-if="index < wedding.rsvp.contacts.length - 1"> · </span>
+                    </span>
                 </p>
             </div>
         </div>

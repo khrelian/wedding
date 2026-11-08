@@ -17,14 +17,14 @@ defineProps({
                     <h2 class="scroll-reveal wedding-heading">RSVP</h2>
                     <div class="scroll-reveal wedding-divider !mx-0" />
                     <p class="scroll-reveal wedding-body">
-                        We would be honored to celebrate beneath the stars with you.
-                        Please let us know if you will be joining us for this special day.
+                        Please join us as we celebrate 25 years of love, partnership, and cherished memories.
+                        Kindly confirm your attendance by {{ wedding.rsvp.deadline_display }} so we can make the necessary arrangements.
                     </p>
                     <p
                         v-if="wedding.rsvp.deadline"
                         class="scroll-reveal mt-6 wedding-meta uppercase tracking-[0.18em] text-gold-soft/70"
                     >
-                        Kindly respond by {{ wedding.rsvp.deadline }}
+                        RSVP by {{ wedding.rsvp.deadline_display }}
                     </p>
                 </div>
 
@@ -47,13 +47,16 @@ defineProps({
                         <p class="wedding-body">
                             RSVP is available through your personalized invitation link.
                         </p>
-                        <p class="mt-6 wedding-meta">
-                            Questions? Contact
-                            <a :href="'mailto:' + wedding.contact.email" class="text-gold-soft transition-colors hover:text-white">
-                                {{ wedding.contact.email }}
+                    </template>
+                    <div class="mt-8 space-y-3 wedding-meta">
+                        <p>RSVP Contacts</p>
+                        <p v-for="contact in wedding.rsvp.contacts" :key="contact.name">
+                            {{ contact.name }} ·
+                            <a :href="'tel:' + contact.phone" class="text-gold-soft transition-colors hover:text-white">
+                                {{ contact.phone }}
                             </a>
                         </p>
-                    </template>
+                    </div>
                 </div>
             </div>
 
@@ -62,7 +65,7 @@ defineProps({
                     <h3 class="wedding-subheading !text-lg">{{ wedding.policies.adults_only.title }}</h3>
                     <p class="mt-4 wedding-body">{{ wedding.policies.adults_only.body }}</p>
                 </div>
-                <div class="scroll-reveal md:col-span-6">
+                <div id="gifts" class="scroll-reveal md:col-span-6">
                     <h3 class="wedding-subheading !text-lg">{{ wedding.policies.gifts.title }}</h3>
                     <p class="mt-4 wedding-body">{{ wedding.policies.gifts.lead }}</p>
                     <p class="mt-4 wedding-body">{{ wedding.policies.gifts.body }}</p>

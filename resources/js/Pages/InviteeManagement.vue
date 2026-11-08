@@ -70,19 +70,19 @@ const shareToWhatsApp = (invitee) => {
 };
 
 const shareViaEmail = (invitee) => {
-    const subject = "You're Invited to Our Wedding!";
+    const subject = "You're Invited to Our 25th Anniversary Celebration!";
     const body = `Dear ${invitee.name},
 
-We're getting married and we'd love for you to join us!
+We're celebrating 25 years together and we'd love for you to join us!
 
 Date: ${wedding.value.date.display}
 Time: ${wedding.value.date.ceremony_time}
 Location: ${wedding.value.venue.ceremony.name}
-Theme: ${wedding.value.tagline}
+Occasion: ${wedding.value.tagline}
 
 View your personal invitation and RSVP: ${invitee.invitation_url}
 
-We can't wait to celebrate with you!
+We look forward to celebrating this special milestone with you!
 
 Love,
 ${wedding.value.couple.display_names}`;
@@ -170,8 +170,8 @@ const downloadInvitationImage = async (invitee) => {
     // Footer
     ctx.fillStyle = '#e5e7eb';
     ctx.font = '20px sans-serif';
-    ctx.fillText('Under the Starry Sky', canvas.width / 2, canvas.height - 80);
-    ctx.fillText('Please RSVP by June 30, 2026', canvas.width / 2, canvas.height - 40);
+    ctx.fillText(wedding.value.tagline, canvas.width / 2, canvas.height - 80);
+    ctx.fillText(`Please RSVP by ${wedding.value.rsvp.deadline_display}`, canvas.width / 2, canvas.height - 40);
     
     // Download the image
     canvas.toBlob((blob) => {

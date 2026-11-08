@@ -11,6 +11,6 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Ian Jay & Karen Kate — Written In The Stars" />
+    <Head title="25th Anniversary Celebration" />
     <WeddingSite />
 </template>
