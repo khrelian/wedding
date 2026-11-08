@@ -887,7 +887,7 @@
     flex-direction: column;
     justify-content: center;
     padding: clamp(4.5rem, 8vh, 6.5rem) clamp(2.25rem, 7vw, 4rem);
-    background: var(--silver-paper);
+    background: transparent;
 }
 
 .invitation-content > .invitation-frame-art {

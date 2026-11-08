@@ -8,6 +8,6 @@ defineProps({
 </script>
 
 <template>
-    <Head :title="`${invitee.name}, You're Invited — 25th Anniversary Celebration`" />
+    <Head :title="`${invitee.name}, You're Invited to Joboy & Mimi’s 25th Anniversary`" />
     <WeddingSite :invitee="invitee" />
 </template>

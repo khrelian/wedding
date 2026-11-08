@@ -177,10 +177,10 @@ const padCountdown = (value) => String(value).padStart(2, '0');
 
                 <div class="iron-gate" aria-hidden="true">
                     <div class="gate-leaf gate-leaf-left">
-                        <img src="/images/hero/ornate-ivory-wrought-iron-gate.png" alt="" draggable="false">
+                        <img src="/images/hero/silvery-metallic-gate-with-swirls.png" alt="" draggable="false">
                     </div>
                     <div class="gate-leaf gate-leaf-right">
-                        <img src="/images/hero/ornate-ivory-wrought-iron-gate.png" alt="" draggable="false">
+                        <img src="/images/hero/silvery-metallic-gate-with-swirls.png" alt="" draggable="false">
                     </div>
                 </div>
 

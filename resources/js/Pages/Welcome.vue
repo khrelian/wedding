@@ -11,6 +11,6 @@ defineProps({
 </script>
 
 <template>
-    <Head title="25th Anniversary Celebration" />
+    <Head title="Joboy & Mimi — 25th Anniversary Celebration" />
     <WeddingSite />
 </template>
