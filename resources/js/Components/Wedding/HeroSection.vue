@@ -10,12 +10,11 @@ const props = defineProps({
 const gateOpened = ref(false);
 const gateDismissed = ref(false);
 const ribbonPlaying = ref(false);
+const ribbonPlaybackSrc = ref('');
 const musicAudio = ref(null);
 const musicIsPlaying = ref(false);
 const ribbonDurationMs = 2650;
-const gateOpenDelayMs = 650;
 let gateTimer;
-let gateOpenTimer;
 let ribbonTimer;
 let orientationEnabled = false;
 
@@ -76,10 +75,9 @@ const toggleMusic = () => {
 
 const openGate = () => {
     if (gateOpened.value || ribbonPlaying.value) return;
+    ribbonPlaybackSrc.value = `/images/hero/ribbon-unwrap.png?play=${Date.now()}`;
     ribbonPlaying.value = true;
-    gateOpenTimer = window.setTimeout(() => {
-        gateOpened.value = true;
-    }, gateOpenDelayMs);
+    gateOpened.value = true;
     enableTiltShine();
     startMusic();
 };
@@ -87,7 +85,6 @@ const openGate = () => {
 const openGateAfterRibbon = () => {
     if (!ribbonPlaying.value) return;
     window.clearTimeout(ribbonTimer);
-    window.clearTimeout(gateOpenTimer);
     ribbonPlaying.value = false;
     gateOpened.value = true;
     gateTimer = window.setTimeout(() => {
@@ -107,7 +104,6 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
     window.clearTimeout(gateTimer);
-    window.clearTimeout(gateOpenTimer);
     window.clearTimeout(ribbonTimer);
     window.removeEventListener('pointermove', handlePointerMove);
     window.removeEventListener('deviceorientation', handleDeviceOrientation);
@@ -217,8 +213,9 @@ const padCountdown = (value) => String(value).padStart(2, '0');
                 >
                 <img
                     v-if="ribbonPlaying"
+                    :key="ribbonPlaybackSrc"
                     class="ribbon-overlay"
-                    src="/images/hero/ribbon-unwrap.png"
+                    :src="ribbonPlaybackSrc"
                     alt=""
                     aria-hidden="true"
                     draggable="false"
