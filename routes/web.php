@@ -5,6 +5,7 @@ use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\InviteeController;
 use App\Http\Controllers\GuestPhotoController;
 use App\Http\Controllers\GiveawayController;
+use App\Http\Controllers\GenericInvitationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +27,11 @@ Route::get('/dashboard', function () {
 // Guest Routes (signed URLs - no authentication required)
 // Personalized welcome page for invitees
 Route::get('/invitation/{token}', [InviteeController::class, 'showInvitation'])->name('invitation.show');
+// Shared invitation and RSVP entry point for guests who scan the generic QR code
+Route::get('/generic-invitation', [GenericInvitationController::class, 'show'])->name('generic-invitation.show');
+Route::post('/generic-invitation', [GenericInvitationController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('generic-invitation.store');
 // Guest RSVP Routes
 Route::get('/rsvp/guest/{token}', [RsvpController::class, 'showGuest'])->name('rsvp.guest');
 Route::post('/rsvp/guest/{token}', [RsvpController::class, 'storeGuest'])->name('rsvp.guest.store');
@@ -52,6 +58,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Invitee Management
     Route::get('/invitees', [InviteeController::class, 'index'])->name('invitees.index');
+    Route::get('/invitees/generic-qrcode', [GenericInvitationController::class, 'qrCode'])->name('invitees.generic-qrcode');
+    Route::get('/invitees/generic-qrcode/download', [GenericInvitationController::class, 'downloadQrCode'])->name('invitees.generic-qrcode.download');
     Route::post('/invitees', [InviteeController::class, 'store'])->name('invitees.store');
     Route::patch('/invitees/{invitee}', [InviteeController::class, 'update'])->name('invitees.update');
     Route::delete('/invitees/{invitee}', [InviteeController::class, 'destroy'])->name('invitees.destroy');

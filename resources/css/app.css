@@ -1161,7 +1161,11 @@
     user-select: none;
 }
 .ribbon-poster { opacity: 1; }
-.ribbon-overlay { animation: ribbon-unwrap-fall 2.65s cubic-bezier(0.42, 0, 0.78, 0.32) both; }
+.ribbon-overlay { opacity: 0; animation: none; }
+.ribbon-overlay.is-ready {
+    opacity: 1;
+    animation: ribbon-unwrap-fall 2.65s cubic-bezier(0.42, 0, 0.78, 0.32) both;
+}
 @keyframes ribbon-unwrap-fall {
     0%, 42% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
     52% { opacity: 1; transform: translate(calc(-50% + 0.35rem), calc(-50% + 3vh)) rotate(2deg); }
@@ -1283,6 +1287,13 @@
     font-family: 'Allura', cursive;
     font-size: clamp(1.65rem, 2.7vw, 2.15rem);
     line-height: 1.35;
+}
+.silver-wedding .generic-invitation-submit {
+    color: #fff !important;
+}
+.silver-wedding .generic-invitation-submit:hover,
+.silver-wedding .generic-invitation-submit:disabled {
+    color: #fff !important;
 }
 
 .silver-wedding footer { background: rgba(244, 239, 231, 0.2); }

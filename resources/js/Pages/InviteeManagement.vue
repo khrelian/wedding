@@ -6,6 +6,9 @@ import { ref, computed } from 'vue';
 const props = defineProps({
     invitees: Array,
     stats: Object,
+    genericInvitationUrl: String,
+    genericQrCodeUrl: String,
+    genericQrCodeDownloadUrl: String,
 });
 
 const page = usePage();
@@ -229,6 +232,49 @@ const copyUrl = (url) => {
 
         <div class="py-12 bg-gradient-to-b from-slate-50 to-blue-50">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <section class="mb-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg" aria-labelledby="generic-qr-heading">
+                    <div class="grid grid-cols-1 items-center gap-6 p-6 md:grid-cols-[220px_1fr] md:p-8">
+                        <div class="flex justify-center">
+                            <img
+                                :src="genericQrCodeUrl"
+                                alt="Generic RSVP QR code"
+                                class="h-52 w-52 border border-slate-200 bg-white p-3"
+                            >
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600">Share with any guest</p>
+                            <h3 id="generic-qr-heading" class="mt-2 text-xl font-semibold text-slate-900">Generic Invitation QR Code</h3>
+                            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                                Guests who scan this code will open the general invitation, enter their own name and contact details, choose their party size, and submit their RSVP.
+                            </p>
+                            <p class="mt-3 break-all rounded-md bg-slate-50 px-3 py-2 font-mono text-xs text-slate-600">{{ genericInvitationUrl }}</p>
+                            <div class="mt-4 flex flex-wrap gap-3">
+                                <a
+                                    :href="genericQrCodeDownloadUrl"
+                                    class="inline-flex items-center rounded-md bg-slate-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+                                >
+                                    Download QR PNG
+                                </a>
+                                <button
+                                    type="button"
+                                    @click="copyUrl(genericInvitationUrl)"
+                                    class="inline-flex items-center rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                >
+                                    Copy invite link
+                                </button>
+                                <a
+                                    :href="genericInvitationUrl"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center px-2 py-2 text-sm font-semibold text-amber-700 hover:text-amber-800"
+                                >
+                                    Preview invitation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                     <div class="bg-white overflow-hidden shadow-lg rounded-lg border border-amber-400/20">

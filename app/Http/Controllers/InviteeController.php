@@ -65,6 +65,9 @@ class InviteeController extends Controller
         return Inertia::render('InviteeManagement', [
             'invitees' => $invitees,
             'stats' => $stats,
+            'genericInvitationUrl' => route('generic-invitation.show'),
+            'genericQrCodeUrl' => route('invitees.generic-qrcode'),
+            'genericQrCodeDownloadUrl' => route('invitees.generic-qrcode.download'),
         ]);
     }
 

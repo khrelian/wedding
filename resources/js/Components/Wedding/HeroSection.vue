@@ -10,6 +10,7 @@ const props = defineProps({
 const gateOpened = ref(false);
 const gateDismissed = ref(false);
 const ribbonPlaying = ref(false);
+const ribbonReady = ref(false);
 const ribbonPlaybackSrc = ref('');
 const musicAudio = ref(null);
 const musicIsPlaying = ref(false);
@@ -75,9 +76,9 @@ const toggleMusic = () => {
 
 const openGate = () => {
     if (gateOpened.value || ribbonPlaying.value) return;
+    ribbonReady.value = false;
     ribbonPlaybackSrc.value = `/images/hero/ribbon-unwrap.png?play=${Date.now()}`;
     ribbonPlaying.value = true;
-    gateOpened.value = true;
     enableTiltShine();
     startMusic();
 };
@@ -85,6 +86,7 @@ const openGate = () => {
 const openGateAfterRibbon = () => {
     if (!ribbonPlaying.value) return;
     window.clearTimeout(ribbonTimer);
+    ribbonReady.value = true;
     ribbonPlaying.value = false;
     gateOpened.value = true;
     gateTimer = window.setTimeout(() => {
@@ -95,6 +97,8 @@ const openGateAfterRibbon = () => {
 
 const onRibbonLoaded = () => {
     if (!ribbonPlaying.value || ribbonTimer) return;
+    ribbonReady.value = true;
+    gateOpened.value = true;
     ribbonTimer = window.setTimeout(openGateAfterRibbon, ribbonDurationMs);
 };
 
@@ -204,7 +208,7 @@ const padCountdown = (value) => String(value).padStart(2, '0');
                 </div>
 
                 <img
-                    v-if="!ribbonPlaying && !gateOpened"
+                    v-if="!ribbonReady"
                     class="ribbon-poster"
                     src="/images/hero/ribbon-tied-poster.png"
                     alt=""
@@ -214,7 +218,7 @@ const padCountdown = (value) => String(value).padStart(2, '0');
                 <img
                     v-if="ribbonPlaying"
                     :key="ribbonPlaybackSrc"
-                    class="ribbon-overlay"
+                    :class="['ribbon-overlay', { 'is-ready': ribbonReady }]"
                     :src="ribbonPlaybackSrc"
                     alt=""
                     aria-hidden="true"
