@@ -1223,10 +1223,76 @@
 .music-toggle:hover { transform: translateY(-2px); background: #fffaf2; }
 .music-toggle svg { width: 1rem; height: 1rem; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 
+.anniversary-memory-section {
+    border-top: 1px solid rgba(45, 51, 58, 0.13);
+    border-bottom: 1px solid rgba(45, 51, 58, 0.13);
+}
+.anniversary-memory-layout {
+    display: grid;
+    max-width: 70rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 6rem);
+    margin-inline: auto;
+}
+.anniversary-memory-photo { margin: 0; }
+.anniversary-memory-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border: 1px solid rgba(45, 51, 58, 0.28);
+    object-fit: cover;
+    object-position: center 48%;
+    box-shadow: 0 22px 54px rgba(36, 42, 48, 0.2), 0 0 0 0.45rem rgba(255, 255, 255, 0.24);
+}
+.anniversary-memory-photo figcaption {
+    margin-top: 1rem;
+    color: var(--silver-ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.64rem;
+    letter-spacing: 0.22em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.anniversary-memory-quote { text-align: center; }
+.anniversary-memory-kicker {
+    color: var(--silver-ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+.anniversary-memory-years {
+    display: block;
+    margin: 1.4rem 0 0.45rem;
+    color: rgba(41, 45, 50, 0.2);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(4rem, 8vw, 6rem);
+    line-height: 0.9;
+}
+.anniversary-memory-heading {
+    color: var(--silver-ink);
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+}
+.anniversary-memory-quote blockquote {
+    max-width: 27rem;
+    margin: 1.3rem auto 0;
+    color: #45494e;
+    font-family: 'Allura', cursive;
+    font-size: clamp(1.65rem, 2.7vw, 2.15rem);
+    line-height: 1.35;
+}
+
 .silver-wedding footer { background: rgba(244, 239, 231, 0.2); }
 .silver-wedding section[id] { scroll-margin-top: 1rem; }
 
 @media (max-width: 640px) {
+    .anniversary-memory-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .anniversary-memory-quote { padding-inline: 0.5rem; }
+    .anniversary-memory-years { margin-top: 0.7rem; font-size: 4rem; }
+    .anniversary-memory-quote blockquote { font-size: 1.8rem; }
     .silver-hero { min-height: max(740px, 100svh); padding-top: 1.25rem; padding-bottom: 7rem; }
     .invitation-content { width: min(92vw, 36rem); padding: 4.25rem 2.15rem; }
     .silver-wedding .hero-minimal-name { font-size: clamp(2.5rem, 10vw, 3.3rem); }

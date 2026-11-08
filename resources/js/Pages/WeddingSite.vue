@@ -47,6 +47,30 @@ useScrollReveal();
 
         <main class="relative z-10">
             <HeroSection :wedding="wedding" :invitee="invitee" />
+            <section class="wedding-section anniversary-memory-section" aria-labelledby="anniversary-memory-title">
+                <div class="wedding-container">
+                    <div class="anniversary-memory-layout">
+                        <figure class="anniversary-memory-photo scroll-reveal">
+                            <img
+                                src="/images/anniversary-couple.jpeg"
+                                alt="Joboy and Mimi sharing a walk together"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                            <figcaption>Joboy &amp; Mimi · 25 years together</figcaption>
+                        </figure>
+
+                        <div class="anniversary-memory-quote scroll-reveal">
+                            <p class="anniversary-memory-kicker">A love that keeps growing</p>
+                            <span class="anniversary-memory-years" aria-hidden="true">25</span>
+                            <h2 id="anniversary-memory-title" class="anniversary-memory-heading">Still side by side</h2>
+                            <blockquote>
+                                After twenty-five years, the sweetest part of the journey is still walking it together.
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <DetailsSection :wedding="wedding" />
             <WhatToWearSection :wedding="wedding" />
             <RsvpSection :wedding="wedding" :invitee="invitee" />
