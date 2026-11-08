@@ -12,7 +12,6 @@ onBeforeUnmount(() => window.removeEventListener('silver-gate-dismissed', onGate
     <nav v-if="gateDismissed" class="silver-bottom-nav" aria-label="Invitation sections">
         <a href="#home">Home</a>
         <a href="#details">Location</a>
-        <a href="#gifts">Gifts</a>
         <a href="#rsvp">RSVP</a>
     </nav>
 </template>

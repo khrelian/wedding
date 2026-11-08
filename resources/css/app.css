@@ -26,6 +26,18 @@
         font-feature-settings: 'kern' 1, 'liga' 1;
     }
 
+    input:not([type='checkbox']):not([type='radio']):not([type='range']),
+    textarea,
+    select {
+        @apply text-gray-900;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #6b7280;
+        opacity: 1;
+    }
+
     ::selection {
         background: rgba(212, 175, 55, 0.35);
         color: var(--color-white);

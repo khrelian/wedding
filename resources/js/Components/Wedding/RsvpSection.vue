@@ -45,8 +45,11 @@ defineProps({
                     </template>
                     <template v-else>
                         <p class="wedding-body">
-                            RSVP is available through your personalized invitation link.
+                            Kindly confirm by {{ wedding.rsvp.deadline_display }}. Use our general RSVP form to share your details and let us know if you can join us.
                         </p>
+                        <a href="/generic-invitation" class="wedding-button-primary mt-10 inline-flex w-full md:w-auto">
+                            Open RSVP Form
+                        </a>
                     </template>
                     <div class="mt-8 space-y-3 wedding-meta">
                         <p>RSVP Contacts</p>
@@ -60,17 +63,6 @@ defineProps({
                 </div>
             </div>
 
-            <div class="editorial-grid mx-auto mt-24 max-w-5xl">
-                <div class="scroll-reveal md:col-span-6">
-                    <h3 class="wedding-subheading !text-lg">{{ wedding.policies.adults_only.title }}</h3>
-                    <p class="mt-4 wedding-body">{{ wedding.policies.adults_only.body }}</p>
-                </div>
-                <div id="gifts" class="scroll-reveal md:col-span-6">
-                    <h3 class="wedding-subheading !text-lg">{{ wedding.policies.gifts.title }}</h3>
-                    <p class="mt-4 wedding-body">{{ wedding.policies.gifts.lead }}</p>
-                    <p class="mt-4 wedding-body">{{ wedding.policies.gifts.body }}</p>
-                </div>
-            </div>
         </div>
     </section>
 </template>

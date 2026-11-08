@@ -16,8 +16,8 @@ defineProps({
 
             <div class="venue-sketch">
                 <img
-                    src="/images/venue/ceremony-house-sketch.png"
-                    alt="Illustration of the wedding venue"
+                    src="/images/venue/saint-joseph-cathedral-line-art.png"
+                    alt="Line-art illustration of Saint Joseph Cathedral"
                     draggable="false"
                 >
             </div>

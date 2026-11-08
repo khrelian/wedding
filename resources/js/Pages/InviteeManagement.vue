@@ -245,7 +245,7 @@ const copyUrl = (url) => {
                             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600">Share with any guest</p>
                             <h3 id="generic-qr-heading" class="mt-2 text-xl font-semibold text-slate-900">Generic Invitation QR Code</h3>
                             <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                                Guests who scan this code will open the general invitation, enter their own name and contact details, choose their party size, and submit their RSVP.
+                                Guests who scan this code will open the main invitation. The RSVP section shows the response deadline and links to the general form where guests can enter their details and respond.
                             </p>
                             <p class="mt-3 break-all rounded-md bg-slate-50 px-3 py-2 font-mono text-xs text-slate-600">{{ genericInvitationUrl }}</p>
                             <div class="mt-4 flex flex-wrap gap-3">

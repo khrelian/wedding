@@ -60,7 +60,7 @@ class GenericInvitationController extends Controller
             ->size(320)
             ->margin(1)
             ->errorCorrection('H')
-            ->generate(route('generic-invitation.show'));
+            ->generate(url('/'));
 
         return response($qrCode, 200)->header('Content-Type', 'image/svg+xml');
     }
@@ -71,7 +71,7 @@ class GenericInvitationController extends Controller
             ->size(800)
             ->margin(2)
             ->errorCorrection('H')
-            ->generate(route('generic-invitation.show'));
+            ->generate(url('/'));
 
         return response($qrCode, 200)
             ->header('Content-Type', 'image/png')
