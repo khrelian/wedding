@@ -14,6 +14,19 @@ defineProps({
 
             <div class="scroll-reveal wedding-divider" />
 
+            <figure class="scroll-reveal mx-auto mt-12 max-w-4xl overflow-hidden rounded-sm border border-white/20 bg-[#f2eee5] shadow-[0_18px_50px_rgba(12,18,30,0.2)]">
+                <img
+                    src="/images/entourage-wardrobe-inspiration.png"
+                    alt="Illustrated inspiration for formal celebration attire in soft colors and classic suits"
+                    class="block h-auto w-full"
+                    loading="lazy"
+                    decoding="async"
+                >
+                <figcaption class="px-4 py-3 text-center font-sans text-[0.58rem] uppercase tracking-[0.2em] text-slate-600/75">
+                    A little inspiration for the celebration
+                </figcaption>
+            </figure>
+
             <div class="scroll-reveal mx-auto mt-12 max-w-3xl text-center">
                 <p class="wedding-quote text-ivory/85">
                     {{ wedding.what_to_wear.intro }}
@@ -77,6 +90,41 @@ defineProps({
             <p class="scroll-reveal mx-auto mt-14 max-w-2xl text-center wedding-meta italic">
                 {{ wedding.dress_code.note }}
             </p>
+
+            <div class="mx-auto mt-24 max-w-5xl border-t border-white/20 pt-16">
+                <div class="scroll-reveal wedding-section-intro">
+                    <p class="wedding-label-gold mb-4">For the Wedding Entourage</p>
+                    <h3 class="wedding-heading">{{ wedding.entourage_wardrobe.title }}</h3>
+                    <p class="mx-auto mt-6 max-w-2xl text-center wedding-quote text-ivory/75">
+                        {{ wedding.entourage_wardrobe.intro }}
+                    </p>
+                </div>
+
+                <div class="editorial-grid mx-auto mt-14 max-w-4xl">
+                    <div class="scroll-reveal md:col-span-6">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-full border border-white/40 bg-[#d9dce2] shadow-[inset_0_1px_5px_rgba(255,255,255,0.75),0_5px_15px_rgba(0,0,0,0.16)]" title="Silver" />
+                            <h4 class="wedding-subheading !text-lg">Ladies</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li v-for="item in wedding.entourage_wardrobe.ladies" :key="item" class="wedding-body !text-body-md">
+                                {{ item }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="scroll-reveal md:col-span-6">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-full border border-white/25 bg-black shadow-[inset_0_1px_5px_rgba(255,255,255,0.14),0_5px_15px_rgba(0,0,0,0.2)]" title="Black" />
+                            <h4 class="wedding-subheading !text-lg">Gentlemen</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li v-for="item in wedding.entourage_wardrobe.gentlemen" :key="item" class="wedding-body !text-body-md">
+                                {{ item }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>

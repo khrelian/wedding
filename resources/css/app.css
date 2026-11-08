@@ -1167,7 +1167,8 @@
     max-width: none;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 5px 7px rgba(35, 39, 44, 0.24));
+    /* Preserve the ribbon's folds while shifting the red fabric to a cool silver. */
+    filter: grayscale(1) brightness(1.72) contrast(0.82) drop-shadow(0 5px 7px rgba(35, 39, 44, 0.24));
     pointer-events: none;
     transform: translate(-50%, -50%);
     user-select: none;

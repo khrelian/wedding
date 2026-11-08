@@ -127,6 +127,20 @@ return [
         ],
     ],
 
+    'entourage_wardrobe' => [
+        'title' => 'Entourage Wardrobe',
+        'intro' => 'With gratitude to those standing beside us, please celebrate in these coordinated looks.',
+        'ladies' => [
+            'Long gown or long dress',
+            'Silver',
+        ],
+        'gentlemen' => [
+            'Long-sleeve barong',
+            'Black pants',
+            'Black leather shoes',
+        ],
+    ],
+
     'entourage' => [
         'title' => 'Entourage & Sponsors',
         'subtitle' => 'Those Who Stand With Us',
