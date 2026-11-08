@@ -14,7 +14,6 @@ const wedding = computed(() => page.props.wedding);
 
 const form = useForm({
     attendance: props.existingRsvp?.attendance || '',
-    song_request: props.existingRsvp?.song_request || '',
     special_message: props.existingRsvp?.special_message || '',
 });
 
@@ -75,9 +74,6 @@ useScrollReveal();
                         <p class="mt-3 wedding-body">
                             We hope you can join us for our special day. Please let us know if you'll be able to attend.
                         </p>
-                        <p v-if="invitee.party_size > 1" class="mt-3 font-sans text-sm text-gold-soft/70">
-                            Your invitation is for {{ invitee.party_size }} guests.
-                        </p>
                     </div>
 
                     <div
@@ -112,18 +108,6 @@ useScrollReveal();
                                 </label>
                             </div>
                             <p v-if="form.errors.attendance" class="mt-2 text-sm text-red-400">{{ form.errors.attendance }}</p>
-                        </div>
-
-                        <div>
-                            <label class="mb-2 block font-sans text-sm uppercase tracking-[0.15em] text-ivory/70">
-                                Song Request
-                            </label>
-                            <input
-                                v-model="form.song_request"
-                                type="text"
-                                class="w-full border border-white/10 bg-midnight px-4 py-3 font-sans text-ivory focus:border-gold-soft focus:ring-gold-soft"
-                                placeholder="What song would you like to hear at the celebration?"
-                            >
                         </div>
 
                         <div>

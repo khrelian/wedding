@@ -9,7 +9,6 @@ const props = defineProps({
 
 const form = useForm({
     attendance: props.existingRsvp?.attendance || '',
-    song_request: props.existingRsvp?.song_request || '',
     special_message: props.existingRsvp?.special_message || '',
 });
 
@@ -86,19 +85,6 @@ const submit = () => {
                                     </label>
                                 </div>
                                 <p v-if="form.errors.attendance" class="mt-1 text-sm text-red-600">{{ form.errors.attendance }}</p>
-                            </div>
-
-                            <!-- Song Request -->
-                            <div>
-                                <label class="block text-sm font-medium text-slate-800 mb-2">
-                                    Song Request
-                                </label>
-                                <input 
-                                    v-model="form.song_request"
-                                    type="text" 
-                                    class="mt-1 block w-full rounded-md border-amber-200 shadow-sm focus:border-amber-500 focus:ring-amber-500 bg-white"
-                                placeholder="What song would you like to hear at the celebration?"
-                                >
                             </div>
 
                             <!-- Special Message -->

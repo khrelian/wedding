@@ -11,9 +11,7 @@ const form = useForm({
     name: '',
     email: '',
     phone: '',
-    party_size: 1,
     attendance: '',
-    song_request: '',
     special_message: '',
 });
 
@@ -38,6 +36,9 @@ useScrollReveal();
                 <h1 class="mt-5 font-display text-4xl text-slate-900 sm:text-5xl">
                     {{ wedding.couple.partner1.name }} <span class="font-display italic">&amp;</span> {{ wedding.couple.partner2.name }}
                 </h1>
+                <p v-if="submitted" class="mt-4 font-display text-2xl italic text-slate-700">
+                    Dear {{ form.name }}
+                </p>
                 <p class="mt-5 font-sans text-sm uppercase tracking-[0.16em] text-slate-600">
                     {{ wedding.date.display }} · {{ wedding.date.ceremony_time }}
                 </p>
@@ -50,7 +51,6 @@ useScrollReveal();
             <div class="my-10 h-px bg-slate-500/30 sm:my-12" />
 
             <section v-if="submitted" class="scroll-reveal border border-slate-500/30 bg-white/40 p-8 text-center shadow-lg sm:p-12">
-                <p class="font-sans text-xs uppercase tracking-[0.24em] text-slate-600">Thank you, {{ form.name }}</p>
                 <h2 class="mt-4 font-display text-3xl text-slate-900">Your RSVP is received</h2>
                 <p class="mx-auto mt-4 max-w-xl text-slate-700">
                     {{ form.attendance === 'yes'
@@ -86,11 +86,6 @@ useScrollReveal();
                     </div>
                     <p v-if="form.errors.email && form.errors.phone" class="-mt-3 text-sm text-red-700 sm:col-span-2">Please provide an email address or phone number.</p>
 
-                    <div>
-                        <label for="generic-party-size" class="mb-2 block text-sm font-medium text-slate-700">How many guests are in your party? *</label>
-                        <input id="generic-party-size" v-model.number="form.party_size" type="number" min="1" max="10" required class="w-full border border-slate-300 bg-white/80 px-4 py-3 text-slate-900 focus:border-slate-500 focus:ring-slate-500">
-                        <p v-if="form.errors.party_size" class="mt-1 text-sm text-red-700">{{ form.errors.party_size }}</p>
-                    </div>
                 </div>
 
                 <fieldset>
@@ -107,12 +102,6 @@ useScrollReveal();
                     </div>
                     <p v-if="form.errors.attendance" class="mt-2 text-sm text-red-700">{{ form.errors.attendance }}</p>
                 </fieldset>
-
-                <div>
-                    <label for="generic-song" class="mb-2 block text-sm font-medium text-slate-700">Song request <span class="font-normal text-slate-500">(optional)</span></label>
-                    <input id="generic-song" v-model="form.song_request" type="text" maxlength="255" placeholder="A song you'd love to hear" class="w-full border border-slate-300 bg-white/80 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500">
-                    <p v-if="form.errors.song_request" class="mt-1 text-sm text-red-700">{{ form.errors.song_request }}</p>
-                </div>
 
                 <div>
                     <label for="generic-message" class="mb-2 block text-sm font-medium text-slate-700">A message for the couple <span class="font-normal text-slate-500">(optional)</span></label>

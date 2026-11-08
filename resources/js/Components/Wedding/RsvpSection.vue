@@ -33,12 +33,6 @@ defineProps({
                         <p class="wedding-subheading">
                             Hello, {{ invitee.name }}
                         </p>
-                        <p
-                            v-if="invitee.party_size > 1"
-                            class="mt-3 wedding-meta"
-                        >
-                            Your invitation is for {{ invitee.party_size }} guests
-                        </p>
                         <a :href="invitee.rsvp_url" class="wedding-button-primary mt-10 inline-flex w-full md:w-auto">
                             Submit Your RSVP
                         </a>

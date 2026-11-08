@@ -52,6 +52,16 @@ defineProps({
                 </div>
                 <div class="scroll-reveal md:col-span-6">
                     <h3 class="wedding-subheading !text-lg">For the Gentlemen</h3>
+                    <div class="mt-6 flex items-center gap-4">
+                        <div
+                            class="wedding-swatch"
+                            style="background-color: #BCAF92"
+                            title="Khaki"
+                        />
+                        <span class="font-sans text-xs uppercase tracking-[0.24em] text-ivory/55">
+                            Khaki
+                        </span>
+                    </div>
                     <ul class="mt-6 space-y-4">
                         <li
                             v-for="item in wedding.dress_code.gentlemen"

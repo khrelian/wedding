@@ -103,13 +103,15 @@ return [
     'dress_code' => [
         'title' => 'Dress Code',
         'style' => 'Wedding Attire',
-        'theme' => 'Baby Pink, Powder Blue & Barong',
+        'theme' => 'Baby Pink, Powder Blue & Khaki',
         'note' => 'Please follow the attire and color guide for the celebration.',
         'ladies' => [
-            'Baby pink or powder blue',
+            'Long gown or long dress',
+            'Baby pink',
+            'Powder blue',
         ],
         'gentlemen' => [
-            'Barong',
+            'Long-sleeve barong',
             'Khaki pants',
             'Black leather shoes',
         ],

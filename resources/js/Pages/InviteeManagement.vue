@@ -94,97 +94,116 @@ ${wedding.value.couple.display_names}`;
 };
 
 const downloadInvitationImage = async (invitee) => {
-    // Create a canvas to generate invitation image
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
-    // Set canvas size (invitation card size)
+
     canvas.width = 1200;
-    canvas.height = 1600;
-    
-    // Create gradient background
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, '#0f172a'); // slate-900
-    gradient.addColorStop(0.5, '#1e3a8a'); // blue-900
-    gradient.addColorStop(1, '#312e81'); // indigo-900
-    ctx.fillStyle = gradient;
+    canvas.height = 1700;
+
+    const silver = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    silver.addColorStop(0, '#d6d5d1');
+    silver.addColorStop(0.48, '#f7f6f2');
+    silver.addColorStop(1, '#c9cbd0');
+    ctx.fillStyle = silver;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Add stars
-    ctx.fillStyle = '#fcd34d';
-    for (let i = 0; i < 50; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = Math.random() * 3 + 1;
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    
-    // Title
-    ctx.fillStyle = '#fbbf24';
-    ctx.font = 'bold 60px serif';
+
+    // Silver double-line frame to match the invitation page.
+    ctx.strokeStyle = 'rgba(99, 97, 91, 0.58)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+    ctx.strokeStyle = 'rgba(99, 97, 91, 0.36)';
+    ctx.strokeRect(66, 66, canvas.width - 132, canvas.height - 132);
+
     ctx.textAlign = 'center';
-    ctx.fillText("You're Invited!", canvas.width / 2, 120);
-    
-    // Names
-    ctx.fillStyle = '#fef3c7';
-    ctx.font = '48px cursive';
-    ctx.fillText('Ian Jay & Karen Kate', canvas.width / 2, 200);
-    
-    // Details
-    ctx.fillStyle = '#fcd34d';
-    ctx.font = '32px sans-serif';
-    ctx.fillText(`${wedding.value.date.display} • ${wedding.value.date.ceremony_time}`, canvas.width / 2, 280);
-    ctx.fillText(wedding.value.venue.ceremony.name, canvas.width / 2, 330);
-    ctx.fillText(wedding.value.venue.ceremony.city, canvas.width / 2, 370);
-    
-    // Guest name
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 36px sans-serif';
-    ctx.fillText(invitee.name, canvas.width / 2, 480);
-    
-    // QR Code box
-    const qrSize = 400;
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#58544e';
+    ctx.font = '600 22px sans-serif';
+    ctx.letterSpacing = '7px';
+    ctx.fillText('A SILVER ANNIVERSARY CELEBRATION', canvas.width / 2, 135, 1000);
+
+    ctx.fillStyle = '#282522';
+    ctx.font = 'italic 68px Georgia, "Times New Roman", serif';
+    ctx.letterSpacing = '0px';
+    ctx.fillText(wedding.value.couple.display_names, canvas.width / 2, 230, 1020);
+
+    ctx.strokeStyle = 'rgba(99, 97, 91, 0.42)';
+    ctx.beginPath();
+    ctx.moveTo(360, 295);
+    ctx.lineTo(840, 295);
+    ctx.stroke();
+    ctx.fillStyle = '#746e64';
+    ctx.font = 'italic 26px Georgia, "Times New Roman", serif';
+    ctx.fillText('Celebrating 25 years of love', canvas.width / 2, 340, 900);
+
+    ctx.fillStyle = '#6c665d';
+    ctx.font = '600 19px sans-serif';
+    ctx.letterSpacing = '4px';
+    ctx.fillText('A PERSONAL INVITATION FOR', canvas.width / 2, 408, 950);
+    ctx.fillStyle = '#282522';
+    ctx.font = 'italic 44px Georgia, "Times New Roman", serif';
+    ctx.letterSpacing = '0px';
+    ctx.fillText(invitee.name, canvas.width / 2, 468, 1000);
+
+    ctx.fillStyle = '#4c4944';
+    ctx.font = '22px sans-serif';
+    ctx.fillText(`${wedding.value.date.display} · ${wedding.value.date.ceremony_time}`, canvas.width / 2, 550, 1000);
+    ctx.font = '28px Georgia, "Times New Roman", serif';
+    ctx.fillText(wedding.value.venue.ceremony.name, canvas.width / 2, 608, 1000);
+    ctx.font = '20px sans-serif';
+    ctx.fillText(wedding.value.venue.ceremony.address || wedding.value.venue.ceremony.city, canvas.width / 2, 648, 1000);
+    ctx.font = '20px sans-serif';
+    ctx.fillText(`Reception · ${wedding.value.date.reception_time} · ${wedding.value.venue.reception.name}`, canvas.width / 2, 704, 1050);
+
+    ctx.fillStyle = '#625d55';
+    ctx.font = '600 18px sans-serif';
+    ctx.letterSpacing = '4px';
+    ctx.fillText('ATTIRE', canvas.width / 2, 780, 900);
+    ctx.fillStyle = '#4c4944';
+    ctx.font = '19px sans-serif';
+    ctx.letterSpacing = '0px';
+    ctx.fillText('Ladies · Long gown or dress in baby pink or powder blue', canvas.width / 2, 822, 1040);
+    ctx.fillText('Gentlemen · Long-sleeve barong, khaki pants, black leather shoes', canvas.width / 2, 858, 1080);
+
+    const qrSize = 360;
     const qrX = (canvas.width - qrSize) / 2;
-    const qrY = 550;
-    
-    // White background for QR code
+    const qrY = 930;
+
     ctx.fillStyle = '#ffffff';
-    ctx.fillRect(qrX - 20, qrY - 20, qrSize + 40, qrSize + 40);
-    
-    // Get QR code image
+    ctx.fillRect(qrX - 24, qrY - 24, qrSize + 48, qrSize + 48);
+    ctx.strokeStyle = 'rgba(99, 97, 91, 0.42)';
+    ctx.strokeRect(qrX - 24, qrY - 24, qrSize + 48, qrSize + 48);
+
     const qrImg = new Image();
     qrImg.crossOrigin = 'anonymous';
-    qrImg.src = route('invitees.qrcode', invitee.id);
-    
     await new Promise((resolve) => {
-        qrImg.onload = () => {
-            ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
-            resolve();
-        };
+        qrImg.onload = resolve;
+        qrImg.onerror = resolve;
+        qrImg.src = route('invitees.qrcode', invitee.id);
     });
-    
-    // Instructions
-    ctx.fillStyle = '#fcd34d';
-    ctx.font = '28px sans-serif';
-    ctx.fillText('Scan to RSVP', canvas.width / 2, qrY + qrSize + 80);
-    
-    // Footer
-    ctx.fillStyle = '#e5e7eb';
-    ctx.font = '20px sans-serif';
-    ctx.fillText(wedding.value.tagline, canvas.width / 2, canvas.height - 80);
-    ctx.fillText(`Please RSVP by ${wedding.value.rsvp.deadline_display}`, canvas.width / 2, canvas.height - 40);
-    
-    // Download the image
+    if (qrImg.naturalWidth) {
+        ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
+    }
+
+    ctx.fillStyle = '#514d47';
+    ctx.font = '600 21px sans-serif';
+    ctx.letterSpacing = '3px';
+    ctx.fillText('SCAN TO VIEW YOUR INVITATION & RSVP', canvas.width / 2, 1360, 1080);
+    ctx.letterSpacing = '0px';
+    ctx.font = '23px Georgia, "Times New Roman", serif';
+    ctx.fillText(`Kindly RSVP by ${wedding.value.rsvp.deadline_display}`, canvas.width / 2, 1450, 1000);
+    ctx.fillStyle = '#6c665d';
+    ctx.font = 'italic 20px Georgia, "Times New Roman", serif';
+    ctx.fillText(wedding.value.tagline, canvas.width / 2, 1530, 1000);
+
     canvas.toBlob((blob) => {
+        if (!blob) return;
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `invitation-${invitee.name.replace(/\s+/g, '-').toLowerCase()}.png`;
         a.click();
-        URL.revokeObjectURL(url);
-    });
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, 'image/png');
 };
 
 const submitAdd = () => {

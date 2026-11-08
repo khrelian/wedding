@@ -43,7 +43,6 @@ class RsvpController extends Controller
     {
         $validated = $request->validate([
             'attendance' => 'required|in:yes,no',
-            'song_request' => 'nullable|string|max:255',
             'special_message' => 'nullable|string',
         ]);
 
@@ -97,7 +96,6 @@ class RsvpController extends Controller
 
         $validated = $request->validate([
             'attendance' => 'required|in:yes,no',
-            'song_request' => 'nullable|string|max:255',
             'special_message' => 'nullable|string',
         ]);
 

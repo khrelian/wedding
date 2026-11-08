@@ -23,9 +23,7 @@ class GenericInvitationController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['nullable', 'required_without:phone', 'email', 'max:255'],
             'phone' => ['nullable', 'required_without:email', 'string', 'max:30'],
-            'party_size' => ['required', 'integer', 'min:1', 'max:10'],
             'attendance' => ['required', 'in:yes,no'],
-            'song_request' => ['nullable', 'string', 'max:255'],
             'special_message' => ['nullable', 'string', 'max:2000'],
         ]);
 
@@ -34,12 +32,11 @@ class GenericInvitationController extends Controller
                 'name' => $validated['name'],
                 'email' => $validated['email'] ?? null,
                 'phone' => $validated['phone'] ?? null,
-                'party_size' => $validated['party_size'],
+                'party_size' => 1,
             ]);
 
             $invitee->rsvp()->create([
                 'attendance' => $validated['attendance'],
-                'song_request' => $validated['song_request'] ?? null,
                 'special_message' => $validated['special_message'] ?? null,
             ]);
 
