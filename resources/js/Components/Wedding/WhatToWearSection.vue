@@ -14,19 +14,6 @@ defineProps({
 
             <div class="scroll-reveal wedding-divider" />
 
-            <figure class="scroll-reveal mx-auto mt-12 max-w-4xl overflow-hidden rounded-sm border border-white/20 bg-[#f2eee5] shadow-[0_18px_50px_rgba(12,18,30,0.2)]">
-                <img
-                    src="/images/entourage-wardrobe-inspiration.png"
-                    alt="Illustrated inspiration for formal celebration attire in soft colors and classic suits"
-                    class="block h-auto w-full"
-                    loading="lazy"
-                    decoding="async"
-                >
-                <figcaption class="px-4 py-3 text-center font-sans text-[0.58rem] uppercase tracking-[0.2em] text-slate-600/75">
-                    A little inspiration for the celebration
-                </figcaption>
-            </figure>
-
             <div class="scroll-reveal mx-auto mt-12 max-w-3xl text-center">
                 <p class="wedding-quote text-ivory/85">
                     {{ wedding.what_to_wear.intro }}
