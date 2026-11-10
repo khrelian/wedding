@@ -134,12 +134,15 @@ useScrollReveal();
                     </form>
                 </template>
 
-                <div class="scroll-reveal mt-10 space-y-8">
-                    <div class="border border-white/10 p-8 text-center">
+                <div
+                    v-if="wedding.policies.adults_only || wedding.policies.gifts"
+                    class="scroll-reveal mt-10 space-y-8"
+                >
+                    <div v-if="wedding.policies.adults_only" class="border border-white/10 p-8 text-center">
                         <h3 class="font-display text-xl text-white">{{ wedding.policies.adults_only.title }}</h3>
                         <p class="mt-4 wedding-body">{{ wedding.policies.adults_only.body }}</p>
                     </div>
-                    <div class="border border-white/10 p-8 text-center">
+                    <div v-if="wedding.policies.gifts" class="border border-white/10 p-8 text-center">
                         <h3 class="font-display text-xl text-white">{{ wedding.policies.gifts.title }}</h3>
                         <p class="mt-4 wedding-body">{{ wedding.policies.gifts.lead }}</p>
                         <p class="mt-4 wedding-body">{{ wedding.policies.gifts.body }}</p>
