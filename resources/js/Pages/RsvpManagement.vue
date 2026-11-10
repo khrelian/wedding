@@ -6,6 +6,67 @@ defineProps({
     rsvps: Array,
     stats: Object,
 });
+
+const columns = [
+    { key: 'guest_name', label: 'Guest' },
+    { key: 'email', label: 'Email' },
+    { key: 'attendance', label: 'Status' },
+    { key: 'song_request', label: 'Song Request' },
+    { key: 'special_message', label: 'Message' },
+    { key: 'submitted_at', label: 'Submitted' },
+];
+
+const exportRows = (rsvps) => [
+    columns.map(({ label }) => label),
+    ...rsvps.map((rsvp) => columns.map(({ key }) => {
+        const value = key === 'attendance'
+            ? (rsvp[key] === 'yes' ? 'Attending' : 'Not Attending')
+            : (rsvp[key] ?? '');
+        return String(value);
+    })),
+];
+
+const download = (content, type, filename) => {
+    const url = URL.createObjectURL(new Blob([content], { type }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+
+const fileDate = () => new Date().toISOString().slice(0, 10);
+
+const exportCsv = (rsvps) => {
+    const csv = exportRows(rsvps)
+        .map((row) => row.map((value) => {
+            const safeValue = String(value).replace(/^[=+@-]/, "'$&");
+            return `"${safeValue.replaceAll('"', '""')}"`;
+        }).join(','))
+        .join('\r\n');
+
+    download(`\uFEFF${csv}`, 'text/csv;charset=utf-8', `rsvp-responses-${fileDate()}.csv`);
+};
+
+const escapeXml = (value) => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
+
+const exportExcel = (rsvps) => {
+    const rows = exportRows(rsvps)
+        .map((row) => `<Row>${row.map((value) => `<Cell><Data ss:Type="String">${escapeXml(value)}</Data></Cell>`).join('')}</Row>`)
+        .join('');
+    const workbook = `<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?>` +
+        `<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">` +
+        `<Worksheet ss:Name="RSVP Responses"><Table>${rows}</Table></Worksheet></Workbook>`;
+
+    download(workbook, 'application/vnd.ms-excel;charset=utf-8', `rsvp-responses-${fileDate()}.xml`);
+};
 </script>
 
 <template>
@@ -147,20 +208,20 @@ defineProps({
                     </h4>
                     <p class="text-sm text-slate-600 mb-4">Download your RSVP data for planning and coordination</p>
                     <div class="flex gap-3">
-                        <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition shadow-md flex items-center gap-2">
+                        <button type="button" @click="exportExcel(rsvps)" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition shadow-md flex items-center gap-2">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                             Export to Excel
                         </button>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md flex items-center gap-2">
+                        <button type="button" @click="exportCsv(rsvps)" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md flex items-center gap-2">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                             Export to CSV
                         </button>
                     </div>
-                    <p class="text-xs text-slate-500 mt-3">Coming soon! Export functionality will be added in the next update.</p>
+                    <p class="text-xs text-slate-500 mt-3">Exports include guest names, email addresses, RSVP status, song requests, messages, and submission times.</p>
                 </div>
             </div>
         </div>
