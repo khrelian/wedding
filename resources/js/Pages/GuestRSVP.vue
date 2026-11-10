@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
-import { useScrollReveal } from '@/composables/useScrollReveal';
 
 const props = defineProps({
     invitee: Object,
@@ -27,21 +26,20 @@ const submit = () => {
     });
 };
 
-useScrollReveal();
 </script>
 
 <template>
     <Head :title="`RSVP — ${wedding.couple.display_names}`" />
 
-    <div class="relative min-h-screen overflow-x-hidden bg-midnight text-ivory">
+    <div class="silver-wedding silver-rsvp-page relative min-h-screen overflow-x-hidden bg-midnight text-ivory">
         <div class="relative z-10 px-6 py-24 md:py-32">
             <div class="mx-auto max-w-2xl">
-                <div class="scroll-reveal text-center">
+                <div class="text-center">
                     <p class="wedding-label mb-4">RSVP</p>
                     <h1 class="font-display text-display-md text-white md:text-display-lg">
                         You're Invited
                     </h1>
-                    <p class="mt-4 wedding-script-names text-gold-soft">
+                    <p class="mt-4 silver-rsvp-names text-gold-soft">
                         {{ wedding.couple.partner1.name }}
                         <span class="mx-1">&</span>
                         {{ wedding.couple.partner2.name }}
@@ -51,11 +49,11 @@ useScrollReveal();
                     </p>
                 </div>
 
-                <div class="scroll-reveal wedding-divider" />
+                <div class="wedding-divider" />
 
                 <div
                     v-if="submitted"
-                    class="scroll-reveal border border-gold-soft/30 p-10 text-center"
+                    class="border border-gold-soft/30 p-10 text-center"
                 >
                     <p class="font-display text-3xl text-white">Thank You, {{ invitee.name }}</p>
                     <p class="mt-4 wedding-body">
@@ -69,7 +67,7 @@ useScrollReveal();
                 </div>
 
                 <template v-else>
-                    <div class="scroll-reveal mb-8 border border-white/10 p-8">
+                    <div class="mb-8 border border-white/10 p-8">
                         <h2 class="font-display text-2xl text-white">Hello, {{ invitee.name }}</h2>
                         <p class="mt-3 wedding-body">
                             We hope you can join us for our special day. Please let us know if you'll be able to attend.
@@ -78,17 +76,17 @@ useScrollReveal();
 
                     <div
                         v-if="$page.props.flash?.success"
-                        class="scroll-reveal mb-6 border border-green-400/30 bg-green-400/10 p-4 text-green-100"
+                        class="mb-6 border border-green-400/30 bg-green-400/10 p-4 text-green-100"
                     >
                         {{ $page.props.flash.success }}
                     </div>
 
                     <form
-                        class="scroll-reveal space-y-8 border border-white/10 p-8 md:p-10"
+                        class="space-y-8 border border-white/10 p-8 md:p-10"
                         @submit.prevent="submit"
                     >
                         <div>
-                            <label class="mb-4 block font-sans text-sm uppercase tracking-[0.15em] text-ivory/70">
+                            <label class="mb-4 block font-sans text-sm uppercase tracking-[0.15em] text-ivory/75">
                                 Will you be attending? *
                             </label>
                             <div class="space-y-3">
@@ -96,14 +94,14 @@ useScrollReveal();
                                     class="flex cursor-pointer items-center border p-4 transition-colors"
                                     :class="form.attendance === 'yes' ? 'border-gold-soft bg-gold-soft/10' : 'border-white/10 hover:border-white/20'"
                                 >
-                                    <input v-model="form.attendance" type="radio" name="attendance" value="yes" class="mr-3 text-gold-soft focus:ring-gold-soft">
+                                    <input v-model="form.attendance" type="radio" name="attendance" value="yes" class="mr-3 accent-gold-soft focus:ring-gold-soft">
                                     <span class="font-sans text-ivory">Joyfully accept</span>
                                 </label>
                                 <label
                                     class="flex cursor-pointer items-center border p-4 transition-colors"
                                     :class="form.attendance === 'no' ? 'border-white/30 bg-white/5' : 'border-white/10 hover:border-white/20'"
                                 >
-                                    <input v-model="form.attendance" type="radio" name="attendance" value="no" class="mr-3 text-ivory focus:ring-ivory">
+                                    <input v-model="form.attendance" type="radio" name="attendance" value="no" class="mr-3 accent-ivory focus:ring-ivory">
                                     <span class="font-sans text-ivory">Regretfully decline</span>
                                 </label>
                             </div>
@@ -111,13 +109,13 @@ useScrollReveal();
                         </div>
 
                         <div>
-                            <label class="mb-2 block font-sans text-sm uppercase tracking-[0.15em] text-ivory/70">
+                            <label class="mb-2 block font-sans text-sm uppercase tracking-[0.15em] text-ivory/75">
                                 Special Message
                             </label>
                             <textarea
                                 v-model="form.special_message"
                                 rows="4"
-                                class="w-full border border-white/10 bg-midnight px-4 py-3 font-sans text-ivory focus:border-gold-soft focus:ring-gold-soft"
+                                class="w-full border border-white/10 bg-midnight px-4 py-3 font-sans text-ivory placeholder:text-ivory/40 focus:border-gold-soft focus:outline-none focus:ring-1 focus:ring-gold-soft"
                                 placeholder="Share your well wishes..."
                             />
                         </div>
@@ -149,7 +147,7 @@ useScrollReveal();
                     </div>
                 </div>
 
-                <p class="scroll-reveal mt-10 text-center font-sans text-sm text-ivory/40">
+                <p class="mt-10 text-center font-sans text-sm text-ivory/60">
                     RSVP Contacts:
                     <span v-for="(contact, index) in wedding.rsvp.contacts" :key="contact.name">
                         {{ contact.name }}

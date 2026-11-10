@@ -1312,6 +1312,34 @@
 .silver-wedding footer { background: rgba(244, 239, 231, 0.2); }
 .silver-wedding section[id] { scroll-margin-top: 1rem; }
 
+.silver-rsvp-page {
+    padding-bottom: 2rem;
+}
+
+.silver-rsvp-page textarea {
+    border-color: var(--silver-line);
+    background: rgba(247, 248, 249, 0.76);
+    color: var(--silver-ink);
+}
+
+.silver-rsvp-page textarea::placeholder {
+    color: var(--silver-ink-soft);
+    opacity: 0.8;
+}
+
+.silver-rsvp-page textarea:focus {
+    border-color: var(--silver-ink-soft);
+    --tw-ring-color: var(--silver-ink-soft);
+}
+
+.silver-rsvp-names {
+    color: var(--silver-ink);
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
 @media (max-width: 640px) {
     .anniversary-memory-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
     .anniversary-memory-quote { padding-inline: 0.5rem; }
